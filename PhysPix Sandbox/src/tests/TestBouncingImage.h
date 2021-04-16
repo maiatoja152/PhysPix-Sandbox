@@ -9,6 +9,8 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include <memory>
+
 namespace test
 {
 	class TestBouncingImage : public Test
@@ -26,15 +28,15 @@ namespace test
 		float m_TranslationSpeed, m_PositionX, m_PositionY;
 		int m_DirX, m_DirY;
 
-		VertexBuffer* m_VertexBuffer;
-		VertexBufferLayout* m_VertexBufferLayout;
-		VertexArray* m_VertexArray;
-		IndexBuffer* m_IndexBuffer;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<VertexBufferLayout> m_VertexBufferLayout;
+		std::unique_ptr<VertexArray> m_VertexArray;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
-		Shader* m_Shader;
-		Texture* m_Texture;
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<Texture> m_Texture;
 
-		Renderer* m_Renderer;
+		std::unique_ptr<Renderer> m_Renderer;
 
 		glm::mat4 m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
 	};

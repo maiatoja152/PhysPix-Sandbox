@@ -1,6 +1,16 @@
-﻿  TestBouncingImage.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(9,107): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(9,131): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(61,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(72,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  Application.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(94,23): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(96,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(99,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TestBouncingImage.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(11,107): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(11,131): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(63,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(74,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  TestClearColor.cpp
+  TestTexture2D.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

@@ -4,16 +4,16 @@
 
 namespace test
 {
-	class TestClearColor : public Test
+	class TestTexture2D : public Test
 	{
 	public:
-		TestClearColor();
-		~TestClearColor();
+		TestTexture2D();
+		~TestTexture2D();
 
 		void OnUpdate(float deltaTime) override;
 		void OnRender() override;
 		void OnImGuiRender() override;
 	private:
-		float m_ClearColor[4];
+
 	};
 }

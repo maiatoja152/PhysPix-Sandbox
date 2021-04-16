@@ -86,11 +86,11 @@ int main(void)
         // Dynamic window size
         glfwGetWindowSize(window, &resolutionX, &resolutionY);
 
+        long long currentFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
         /* Render here */
         renderer.Clear();
 
-        // Calculate deltaTime
-        long long currentFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         int deltaTime = currentFrameTime - lastFrameTime;
 
         testClearColor.OnUpdate(deltaTime);

@@ -1,4 +1,4 @@
-#include "TestClearColor.h"
+#include "TestTexture2D.h"
 
 #include "Renderer.h"
 #include "imgui/imgui.h"
@@ -6,27 +6,25 @@
 
 namespace test
 {
-	TestClearColor::TestClearColor()
-		: m_ClearColor {0.1f, 0.1f, 0.1f, 1.0f}
+	TestTexture2D::TestTexture2D()
 	{
 	}
 
-	TestClearColor::~TestClearColor()
+	TestTexture2D::~TestTexture2D()
 	{
 	}
 
-	void TestClearColor::OnUpdate(float deltaTime)
+	void TestTexture2D::OnUpdate(float deltaTime)
 	{
 	}
 
-	void TestClearColor::OnRender()
+	void TestTexture2D::OnRender()
 	{
-		GLCall(glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]));
+		GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
-	void TestClearColor::OnImGuiRender()
+	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::ColorEdit4("Clear Color", m_ClearColor);
 	}
 }

@@ -24,28 +24,28 @@ namespace test
         };
 
         // Vertex array
-        m_VertexArray = new VertexArray();
-        m_VertexBuffer = new VertexBuffer(vertPositions, 4 * 4 * sizeof(float));
+        m_VertexArray = std::make_unique<VertexArray>();
+        m_VertexBuffer = std::make_unique<VertexBuffer>(vertPositions, 4 * 4 * sizeof(float));
 
-        m_VertexBufferLayout = new VertexBufferLayout();
+        m_VertexBufferLayout = std::make_unique<VertexBufferLayout>();
         m_VertexBufferLayout->Push<float>(2);
         m_VertexBufferLayout->Push<float>(2);
         m_VertexArray->AddBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
         // Index buffer
-        m_IndexBuffer = new IndexBuffer(indices, 6);
+        m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6);
 
         // Shader
-        m_Shader = new Shader("res/shaders/Basic.shader");
+        m_Shader = std::make_unique<Shader>("res/shaders/Basic.shader");
         m_Shader->Bind();
 
         // Texture
-        m_Texture = new Texture("res/textures/dvd.png");
+        m_Texture = std::make_unique<Texture>("res/textures/dvd.png");
         m_Texture->Bind();
         // Set which texture the shader will sample (the int is the texture slot)
         m_Shader->SetUniform1i("u_Texture", 0);
 
-        m_Renderer = new Renderer();
+        m_Renderer = std::make_unique<Renderer>();
 	}
 
     TestBouncingImage::~TestBouncingImage()
