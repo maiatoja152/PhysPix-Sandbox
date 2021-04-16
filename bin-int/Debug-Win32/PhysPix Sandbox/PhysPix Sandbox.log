@@ -1,0 +1,6 @@
+﻿  TestBouncingImage.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(9,107): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(9,131): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(61,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.cpp(72,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe
