@@ -36,7 +36,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    int resolutionX = 1280, resolutionY = 960;
+    int32_t resolutionX = 1280, resolutionY = 960;
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(resolutionX, resolutionY, "Hello World", NULL, NULL);
@@ -57,7 +57,7 @@ int main(void)
     }
 
     // Log the current OpenGL version
-    std::cout << glGetString(GL_VERSION) << std::endl;
+    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
     // VSync
     glfwSwapInterval(0);
@@ -70,15 +70,17 @@ int main(void)
 
     // ImGui initialization
     IMGUI_CHECKVERSION();
+    std::cout << "ImGui Version: "<< ImGui::GetVersion() << std::endl;
+
     ImGui::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui::StyleColorsDark();
     ImGui_ImplOpenGL3_Init();
 
-    long long lastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
     test::TestClearColor testClearColor;
-    test::TestBouncingImage testBouncingImage(resolutionX, resolutionY, 100, 100, 340);
+    test::TestBouncingImage testBouncingImage(resolutionX, resolutionY, "res/textures/cat.png", 600, 340);
+
+    long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -86,12 +88,12 @@ int main(void)
         // Dynamic window size
         glfwGetWindowSize(window, &resolutionX, &resolutionY);
 
-        long long currentFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
         /* Render here */
         renderer.Clear();
 
-        int deltaTime = currentFrameTime - lastFrameTime;
+        long long currentFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+        float deltaTime = ((float)(currentFrameTime - lastFrameTime)) / 1000000;
 
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
@@ -118,7 +120,7 @@ int main(void)
         /* Poll for and process events */
         glfwPollEvents();
 
-        lastFrameTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     }
 
     // ImGUI shutdown
