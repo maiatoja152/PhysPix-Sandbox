@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <chrono>
+#include <ctime>
 
 #include "Renderer.h"
 
@@ -19,10 +21,9 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
-#include <chrono>
-
 #include "tests/TestClearColor.h"
 #include "tests/TestBouncingImage.h"
+#include "tests/TestBatchRendering.h"
 
 int main(void)
 {
@@ -77,8 +78,11 @@ int main(void)
     ImGui::StyleColorsDark();
     ImGui_ImplOpenGL3_Init();
 
+    std::srand(std::time(0));
+
     test::TestClearColor testClearColor;
     test::TestBouncingImage testBouncingImage(resolutionX, resolutionY, "res/textures/cat.png", 600, 340);
+    test::TestBatchRendering testBatchRendering(resolutionX, resolutionY, 5000, 200);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
@@ -98,8 +102,11 @@ int main(void)
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
 
-        testBouncingImage.OnUpdate(deltaTime);
-        testBouncingImage.OnRender();
+        testBatchRendering.OnUpdate(deltaTime);
+        testBatchRendering.OnRender();
+
+        //testBouncingImage.OnUpdate(deltaTime);
+        //testBouncingImage.OnRender();
 
         // ImGui new frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -108,7 +115,7 @@ int main(void)
 
         testClearColor.OnImGuiRender();
 
-        testBouncingImage.OnImGuiRender();
+        //testBouncingImage.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();

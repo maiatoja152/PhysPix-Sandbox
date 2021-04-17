@@ -69,12 +69,11 @@
     <ClCompile Include="src\tests\TestBouncingImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tests\TestTexture2D.cpp">
+    <ClCompile Include="src\tests\TestBatchRendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\Basic.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -483,6 +482,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\shaders\Textured.shader" />
+    <None Include="res\shaders\VertexColored.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Renderer.h">
@@ -1388,7 +1389,7 @@
     <ClInclude Include="src\tests\TestBouncingImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tests\TestTexture2D.h">
+    <ClInclude Include="src\tests\TestBatchRendering.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

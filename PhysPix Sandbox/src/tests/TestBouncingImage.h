@@ -16,7 +16,7 @@ namespace test
 	class TestBouncingImage : public Test
 	{
 	public:
-		TestBouncingImage(uint32_t screenWidth, uint32_t screenHeight, std::string texturePath, uint32_t startPosX = 0, uint32_t startPosY = 0);
+		TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, uint32_t startPosX = 0, uint32_t startPosY = 0);
 		~TestBouncingImage();
 
 		void OnUpdate(float deltaTime) override;
@@ -24,8 +24,7 @@ namespace test
 		void OnImGuiRender() override;
 
 	private:
-		uint32_t m_ScreenHeight, m_ScreenWidth;
-		float m_ImageSize, m_TranslationSpeed, m_PositionX, m_PositionY;
+		float m_ScreenHeight, m_ScreenWidth, m_ImageSize, m_TranslationSpeed, m_PositionX, m_PositionY;
 		int8_t m_DirX, m_DirY;
 
 		std::unique_ptr<VertexBuffer> m_VertexBuffer;
@@ -36,7 +35,7 @@ namespace test
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<Texture> m_Texture;
 
-		std::unique_ptr <Renderer> m_Renderer;
+		std::unique_ptr<Renderer> m_Renderer;
 
 		glm::mat4 m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
 	};

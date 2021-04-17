@@ -1,13 +1,12 @@
 #include "TestBouncingImage.h"
 
-#include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "imgui/imgui.h"
 
 namespace test
 {
-    TestBouncingImage::TestBouncingImage(uint32_t screenWidth, uint32_t screenHeight, std::string texturePath, uint32_t startPosX /*= 0*/, uint32_t startPosY /*= 0*/)
+    TestBouncingImage::TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, uint32_t startPosX /*= 0*/, uint32_t startPosY /*= 0*/)
         : m_ScreenWidth(screenWidth), m_ScreenHeight(screenHeight), m_ImageSize(screenWidth/6), m_TranslationSpeed(6.0f), m_PositionX(startPosX), m_PositionY(startPosY), m_DirX(1), m_DirY(1),
         m_ModelMatrix(glm::mat4(1.0f)), m_ViewMatrix(glm::mat4(1.0f)), m_ProjectionMatrix(glm::ortho(0.0f, (float)m_ScreenWidth, 0.0f, (float)m_ScreenHeight, -1.0f, 1.0f))
 	{
@@ -36,7 +35,7 @@ namespace test
         m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6);
 
         // Shader
-        m_Shader = std::make_unique<Shader>("res/shaders/Basic.shader");
+        m_Shader = std::make_unique<Shader>("res/shaders/Textured.shader");
         m_Shader->Bind();
 
         // Texture
