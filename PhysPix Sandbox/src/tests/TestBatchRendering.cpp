@@ -16,7 +16,7 @@ namespace test
 		m_ModelMatrix(glm::mat4(1.0f)), m_ViewMatrix(glm::mat4(1.0f)), m_ProjectionMatrix(glm::ortho(0.0f, (float)m_ScreenWidth, 0.0f, (float)m_ScreenHeight, -1.0f, 1.0f))
 	{
 		std::vector<float> batchedVerts;
-		std::vector<int> indices;
+		std::vector<uint32_t> indices;
 
 		for (uint32_t i = 0; i < numOfQuads; i++)
 		{
@@ -43,7 +43,7 @@ namespace test
 
 			// The total number of verts currently in the vector of batched verts. Useful for generating indices.
 			uint32_t n = i * 4;
-			float quadIndices[] = {
+			uint32_t quadIndices[] = {
 				n, n + 1, n + 2, n + 2, n + 3, n
 			};
 

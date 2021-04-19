@@ -61,7 +61,7 @@ int main(void)
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
     // VSync
-    glfwSwapInterval(0);
+    glfwSwapInterval(1);
 
     // Blending
     GLCall(glEnable(GL_BLEND));
@@ -115,7 +115,7 @@ int main(void)
 
         testClearColor.OnImGuiRender();
 
-        //testBouncingImage.OnImGuiRender();
+        testBouncingImage.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();
