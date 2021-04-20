@@ -484,6 +484,7 @@
     </None>
     <None Include="res\shaders\Textured.shader" />
     <None Include="res\shaders\VertexColored.shader" />
+    <None Include="res\shaders\BatchTextured.Shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Renderer.h">
@@ -1398,6 +1399,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\beret.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\dvd.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\cat2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\grind.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

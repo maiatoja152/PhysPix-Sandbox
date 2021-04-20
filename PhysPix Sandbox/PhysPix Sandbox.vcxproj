@@ -174,6 +174,7 @@
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\BatchTextured.Shader" />
     <None Include="res\shaders\Textured.shader" />
     <None Include="res\shaders\VertexColored.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
@@ -620,6 +621,9 @@
   <ItemGroup>
     <Image Include="res\textures\beret.png" />
     <Image Include="res\textures\cat.png" />
+    <Image Include="res\textures\cat2.jpg" />
+    <Image Include="res\textures\dvd.png" />
+    <Image Include="res\textures\grind.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

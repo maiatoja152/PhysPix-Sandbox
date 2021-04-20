@@ -7,6 +7,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "Texture.h"
 
 #include <memory>
 
@@ -31,6 +32,8 @@ namespace test
 		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<Texture> m_Texture0;
+		std::unique_ptr<Texture> m_Texture1;
 
 		std::unique_ptr<Renderer> m_Renderer;
 

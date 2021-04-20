@@ -40,3 +40,8 @@ void Texture::Unbind() const
 {
 	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 }
+
+void Texture::BindTextureUnit(unsigned int unit) const
+{
+	glBindTextureUnit(unit, m_RendererID);
+}

@@ -115,7 +115,7 @@ int main(void)
 
         testClearColor.OnImGuiRender();
 
-        testBouncingImage.OnImGuiRender();
+        //testBouncingImage.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();

@@ -30,12 +30,15 @@ namespace test
 				  b = RandomFloatRange(0, 1),
 				  a = 1;
 
-			// Generate verticies for a quad
+			uint8_t textureIndex = std::rand() % 2;
+
+			float scale = RandomFloatRange(0.25f, 1.75f);
+
 			float quadVerts[] = {
-				-m_QuadSize / 2 + offsetX, -m_QuadSize / 2 + offsetY, r, g, b, a, // 0
-				 m_QuadSize / 2 + offsetX, -m_QuadSize / 2 + offsetY, r, g, b, a, // 1
-				 m_QuadSize / 2 + offsetX,  m_QuadSize / 2 + offsetY, r, g, b, a, // 2
-				-m_QuadSize / 2 + offsetX,  m_QuadSize / 2 + offsetY, r, g, b, a  // 3
+				(-m_QuadSize / 2 + offsetX) * scale, (-m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 0.0f, 0.0f, textureIndex, // 0
+				 (m_QuadSize / 2 + offsetX) * scale, (-m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 1.0f, 0.0f, textureIndex, // 1
+				 (m_QuadSize / 2 + offsetX) * scale,  (m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 1.0f, 1.0f, textureIndex, // 2
+				(-m_QuadSize / 2 + offsetX) * scale,  (m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 0.0f, 1.0f, textureIndex  // 3
 			};
 
 			// Add to the batched verts
@@ -43,9 +46,7 @@ namespace test
 
 			// The total number of verts currently in the vector of batched verts. Useful for generating indices.
 			uint32_t n = i * 4;
-			uint32_t quadIndices[] = {
-				n, n + 1, n + 2, n + 2, n + 3, n
-			};
+			uint32_t quadIndices[] = { n, n + 1, n + 2, n + 2, n + 3, n };
 
 			// Add to the indices
 			indices.insert(indices.end(), &quadIndices[0], &quadIndices[sizeof(quadIndices) / sizeof(float)]);
@@ -53,19 +54,33 @@ namespace test
 
 		// Vertex array
 		m_VertexArray = std::make_unique<VertexArray>();
-		m_VertexBuffer = std::make_unique<VertexBuffer>((const void*)&batchedVerts[0], 6 * 4 * numOfQuads * sizeof(float));
+		m_VertexBuffer = std::make_unique<VertexBuffer>((const void*)&batchedVerts[0], 9 * 4 * numOfQuads * sizeof(float));
 
 		m_VertexBufferLayout = std::make_unique<VertexBufferLayout>();
-		m_VertexBufferLayout->Push<float>(2);
-		m_VertexBufferLayout->Push<float>(4);
+		m_VertexBufferLayout->Push<float>(2); // Position
+		m_VertexBufferLayout->Push<float>(4); // Vertex color
+		m_VertexBufferLayout->Push<float>(2); // Texture coordinates
+		m_VertexBufferLayout->Push<float>(1); // Texture index
 		m_VertexArray->AddBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
 		// Index buffer
 		m_IndexBuffer = std::make_unique<IndexBuffer>((const unsigned int*)&indices[0], indices.size());
 
 		// Shader
-		m_Shader = std::make_unique<Shader>("res/shaders/VertexColored.shader");
+		m_Shader = std::make_unique<Shader>("res/shaders/BatchTextured.shader");
 		m_Shader->Bind();
+
+		// Texture
+		m_Texture0 = std::make_unique<Texture>("res/textures/bank.png");
+		m_Texture0->Bind();
+		m_Texture0->BindTextureUnit(0);
+
+		m_Texture1 = std::make_unique<Texture>("res/textures/cat2.png");
+		m_Texture1->Bind();
+		m_Texture0->BindTextureUnit(1);
+
+		int samplers[2] = { 0, 1 };
+		m_Shader->SetUniform1iv("u_Textures", 2, samplers);
 
 		m_Renderer = std::make_unique<Renderer>();
 	}
