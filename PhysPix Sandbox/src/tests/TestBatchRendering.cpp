@@ -6,33 +6,37 @@
 
 #include "glm/gtc/matrix_transform.hpp"
 
-#include <vector>
 #include <cstdlib>
 
 namespace test
 {
-	TestBatchRendering::TestBatchRendering(float screenWidth, float screenHeight, uint32_t numOfQuads, float quadSize)
+	TestBatchRendering::TestBatchRendering(float screenWidth, float screenHeight, uint32_t numOfQuads, float quadSize, std::string* texturePaths, uint8_t count)
 		: m_ScreenWidth(screenWidth), m_ScreenHeight(screenHeight), m_QuadSize(quadSize),
 		m_ModelMatrix(glm::mat4(1.0f)), m_ViewMatrix(glm::mat4(1.0f)), m_ProjectionMatrix(glm::ortho(0.0f, (float)m_ScreenWidth, 0.0f, (float)m_ScreenHeight, -1.0f, 1.0f))
 	{
+		// Make sure the number of textures passed is less than or equal to the max number of textures available to the fragment shader
+		int maxTexUnits;
+		GLCall(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &maxTexUnits));
+		ASSERT(count <= maxTexUnits - 1);
+
 		std::vector<float> batchedVerts;
 		std::vector<uint32_t> indices;
 
 		for (uint32_t i = 0; i < numOfQuads; i++)
 		{
-			// The range of the offsets is designed so that the quads can be up to half way off the screen
-			float offsetX = RandomFloatRange(0, m_ScreenWidth);
-			float offsetY = RandomFloatRange(0, m_ScreenHeight);
+			// The range of the offsets is set so that the quads can be up to half way off the screen
+			float offsetX = RandomFloatRange(0.0f, m_ScreenWidth);
+			float offsetY = RandomFloatRange(0.0f, m_ScreenHeight);
 
 			// Vertex color RGBA values
-			float r = RandomFloatRange(0, 1),
-				  g = RandomFloatRange(0, 1),
-				  b = RandomFloatRange(0, 1),
+			float r = RandomFloatRange(0.1f, 1.0f),
+				  g = RandomFloatRange(0.1f, 1.0f),
+				  b = RandomFloatRange(0.1f, 1.0f),
 				  a = 1;
 
-			uint8_t textureIndex = std::rand() % 2;
+			uint8_t textureIndex = std::rand() % count;
 
-			float scale = RandomFloatRange(0.25f, 1.75f);
+			float scale = RandomFloatRange(0.5f, 1.5f);
 
 			float quadVerts[] = {
 				(-m_QuadSize / 2 + offsetX) * scale, (-m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 0.0f, 0.0f, textureIndex, // 0
@@ -71,16 +75,17 @@ namespace test
 		m_Shader->Bind();
 
 		// Texture
-		m_Texture0 = std::make_unique<Texture>("res/textures/bank.png");
-		m_Texture0->Bind();
-		m_Texture0->BindTextureUnit(0);
+		std::vector<int> samplers;
 
-		m_Texture1 = std::make_unique<Texture>("res/textures/cat2.png");
-		m_Texture1->Bind();
-		m_Texture0->BindTextureUnit(1);
+		for (uint8_t i = 0; i < count; i++)
+		{
+			m_Textures.push_back(Texture(texturePaths[i]));
+			m_Textures[i].Bind(i);
+			
+			samplers.push_back(i);
+		}
 
-		int samplers[2] = { 0, 1 };
-		m_Shader->SetUniform1iv("u_Textures", 2, samplers);
+		m_Shader->SetUniform1iv("u_Textures", samplers.size(), &samplers[0]);
 
 		m_Renderer = std::make_unique<Renderer>();
 	}

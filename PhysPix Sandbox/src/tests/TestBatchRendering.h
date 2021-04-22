@@ -10,13 +10,14 @@
 #include "Texture.h"
 
 #include <memory>
+#include <vector>
 
 namespace test
 {
 	class TestBatchRendering : public Test
 	{
 	public:
-		TestBatchRendering(float screenWidth, float screenHeight, uint32_t numOfQuads, float quadSize);
+		TestBatchRendering(float screenWidth, float screenHeight, uint32_t numOfQuads, float quadSize, std::string* texPaths, uint8_t count);
 		~TestBatchRendering();
 
 		void OnUpdate(float deltaTime) override;
@@ -32,8 +33,7 @@ namespace test
 		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<Texture> m_Texture0;
-		std::unique_ptr<Texture> m_Texture1;
+		std::vector<Texture> m_Textures;
 
 		std::unique_ptr<Renderer> m_Renderer;
 

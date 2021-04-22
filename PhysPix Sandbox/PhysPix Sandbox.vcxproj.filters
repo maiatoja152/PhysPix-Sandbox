@@ -72,6 +72,12 @@
     <ClCompile Include="src\tests\TestBatchRendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\CellGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1393,6 +1399,12 @@
     <ClInclude Include="src\tests\TestBatchRendering.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\CellGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\cat.png">
@@ -1401,13 +1413,10 @@
     <Image Include="res\textures\beret.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\dvd.png">
+    <Image Include="res\textures\cat2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\cat2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\grind.png">
+    <Image Include="res\textures\cat3.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

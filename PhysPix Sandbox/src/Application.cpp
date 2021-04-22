@@ -57,6 +57,8 @@ int main(void)
         return -1;
     }
 
+    std::srand(std::time(0));
+
     // Log the current OpenGL version
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
@@ -78,11 +80,11 @@ int main(void)
     ImGui::StyleColorsDark();
     ImGui_ImplOpenGL3_Init();
 
-    std::srand(std::time(0));
-
     test::TestClearColor testClearColor;
     test::TestBouncingImage testBouncingImage(resolutionX, resolutionY, "res/textures/cat.png", 600, 340);
-    test::TestBatchRendering testBatchRendering(resolutionX, resolutionY, 5000, 200);
+
+    std::string texPaths[] = { "res/textures/cat.png", "res/textures/cat2.png", "res/textures/cat3.png" };
+    test::TestBatchRendering testBatchRendering(resolutionX, resolutionY, 5000, 200, texPaths, 3);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
@@ -105,17 +107,17 @@ int main(void)
         testBatchRendering.OnUpdate(deltaTime);
         testBatchRendering.OnRender();
 
-        //testBouncingImage.OnUpdate(deltaTime);
         //testBouncingImage.OnRender();
+        //testBouncingImage.OnUpdate(deltaTime);
 
         // ImGui new frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        testClearColor.OnImGuiRender();
+        //testClearColor.OnImGuiRender();
 
-        //testBouncingImage.OnImGuiRender();
+        testBouncingImage.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();

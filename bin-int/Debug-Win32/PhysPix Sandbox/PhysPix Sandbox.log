@@ -1,7 +1,7 @@
 ﻿  Application.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(81,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(60,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(84,60): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(84,47): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(85,62): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(85,49): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(87,62): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(87,49): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

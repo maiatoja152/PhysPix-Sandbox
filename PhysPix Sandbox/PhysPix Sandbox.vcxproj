@@ -153,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Cell.cpp" />
+    <ClCompile Include="src\CellGrid.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
@@ -315,6 +317,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Cell.h" />
+    <ClInclude Include="src\CellGrid.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />
@@ -621,9 +625,8 @@
   <ItemGroup>
     <Image Include="res\textures\beret.png" />
     <Image Include="res\textures\cat.png" />
-    <Image Include="res\textures\cat2.jpg" />
-    <Image Include="res\textures\dvd.png" />
-    <Image Include="res\textures\grind.png" />
+    <Image Include="res\textures\cat2.png" />
+    <Image Include="res\textures\cat3.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
