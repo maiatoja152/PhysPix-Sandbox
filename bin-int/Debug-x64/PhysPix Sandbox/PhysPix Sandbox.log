@@ -1,13 +1,49 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(476,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Cell.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,26): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,32): error C2065: 'Cell': undeclared identifier
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,37): error C2059: syntax error: '>'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,26): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,32): error C2065: 'Cell': undeclared identifier
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,37): error C2059: syntax error: '>'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,2): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,12): error C2143: syntax error: missing ';' before '*'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,45): error C2238: unexpected token(s) preceding ';'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,43): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,53): error C2061: syntax error: identifier 'Cell'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.cpp(18,54): error C2660: 'CellGrid::ReplaceCell': function does not take 3 arguments
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,7): message : see declaration of 'CellGrid::ReplaceCell'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.cpp(24,37): error C2660: 'CellGrid::ReplaceCell': function does not take 3 arguments
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,7): message : see declaration of 'CellGrid::ReplaceCell'
+  Empty.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,26): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,32): error C2065: 'Cell': undeclared identifier
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(13,37): error C2059: syntax error: '>'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,26): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,32): error C2065: 'Cell': undeclared identifier
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(25,37): error C2059: syntax error: '>'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,2): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,12): error C2143: syntax error: missing ';' before '*'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(28,45): error C2238: unexpected token(s) preceding ';'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,43): error C2653: 'cell': is not a class or namespace name
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.h(29,53): error C2061: syntax error: identifier 'Cell'
+  CellGrid.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(11,11): error C2143: syntax error: missing ';' before '*'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(11,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(11,23): error C2238: unexpected token(s) preceding ';'
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(6,96): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(6,134): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
   Shader.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Shader.h(6,10): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Shader.h(6,10): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
   Application.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Application.cpp(1,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Application.cpp(1,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   IndexBuffer.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   Renderer.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   TestBatchRendering.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBatchRendering.h(5,10): fatal error C1083: Cannot open include file: 'VertexBuffer.h': No such file or directory
   TestBouncingImage.cpp
@@ -16,20 +52,16 @@ C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestBouncingImage.h
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\tests\TestClearColor.cpp(3,10): fatal error C1083: Cannot open include file: 'Renderer.h': No such file or directory
   glm.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\vendor\glm\detail\glm.cpp(7,10): fatal error C1083: Cannot open include file: 'glm/gtx/dual_quaternion.hpp': No such file or directory
-  imgui.cpp
-  imgui_demo.cpp
-  imgui_draw.cpp
   imgui_impl_glfw.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\vendor\imgui\imgui_impl_glfw.cpp(44,10): fatal error C1083: Cannot open include file: 'GLFW/glfw3.h': No such file or directory
   imgui_impl_opengl3.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\vendor\imgui\imgui_impl_opengl3.h(81,1): fatal error C1189: #error:  "Cannot detect OpenGL loader!"
-  imgui_tables.cpp
-  imgui_widgets.cpp
-  stb_image.cpp
   VertexBuffer.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   VertexArray.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\VertexBufferLayout.h(4,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\VertexBufferLayout.h(4,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   Texture.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Renderer.h(3,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Water.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Water.h(3,10): fatal error C1083: Cannot open include file: 'cell/Cell.h': No such file or directory
   Generating Code...

@@ -1,0 +1,16 @@
+#pragma once
+
+#include "Cell.h"
+
+namespace cell
+{
+	class Empty : public Cell
+	{
+	public:
+		Empty();
+		~Empty();
+
+		void OnTick() override;
+		void OnUpdate(float deltaTime) override;
+	};
+}

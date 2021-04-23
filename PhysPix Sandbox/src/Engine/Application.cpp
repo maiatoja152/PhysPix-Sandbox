@@ -25,6 +25,8 @@
 #include "tests/TestBouncingImage.h"
 #include "tests/TestBatchRendering.h"
 
+#include "cell/CellGrid.h"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -81,43 +83,32 @@ int main(void)
     ImGui_ImplOpenGL3_Init();
 
     test::TestClearColor testClearColor;
-    test::TestBouncingImage testBouncingImage(resolutionX, resolutionY, "res/textures/cat.png", 600, 340);
 
-    std::string texPaths[] = { "res/textures/cat.png", "res/textures/cat2.png", "res/textures/cat3.png" };
-    test::TestBatchRendering testBatchRendering(resolutionX, resolutionY, 5000, 200, texPaths, 3);
+    CellGrid cellGrid(resolutionX, resolutionY, 30);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
+        float deltaTime = ((float)(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastFrameTime)) / 1000000.0f;
+        lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
         // Dynamic window size
         glfwGetWindowSize(window, &resolutionX, &resolutionY);
 
         /* Render here */
         renderer.Clear();
 
-        long long currentFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
-        float deltaTime = ((float)(currentFrameTime - lastFrameTime)) / 1000000;
-
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
 
-        testBatchRendering.OnUpdate(deltaTime);
-        testBatchRendering.OnRender();
-
-        //testBouncingImage.OnRender();
-        //testBouncingImage.OnUpdate(deltaTime);
+        cellGrid.OnUpdate(deltaTime);
 
         // ImGui new frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-
-        //testClearColor.OnImGuiRender();
-
-        testBouncingImage.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();
@@ -128,8 +119,6 @@ int main(void)
 
         /* Poll for and process events */
         glfwPollEvents();
-
-        lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     }
 
     // ImGUI shutdown
