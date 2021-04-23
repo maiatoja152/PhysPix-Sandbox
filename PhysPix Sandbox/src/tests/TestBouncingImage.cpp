@@ -6,8 +6,8 @@
 
 namespace test
 {
-    TestBouncingImage::TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, uint32_t startPosX /*= 0*/, uint32_t startPosY /*= 0*/)
-        : m_ScreenWidth(screenWidth), m_ScreenHeight(screenHeight), m_ImageSize(screenWidth/6), m_TranslationSpeed(6.0f), m_PositionX(startPosX), m_PositionY(startPosY), m_DirX(1), m_DirY(1),
+    TestBouncingImage::TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, float startPosX /*= 0*/, float startPosY /*= 0*/)
+        : m_ScreenWidth(screenWidth), m_ScreenHeight(screenHeight), m_ImageSize(screenWidth/6), m_TranslationSpeed(1.0f), m_PositionX(startPosX), m_PositionY(startPosY), m_DirX(1), m_DirY(1),
         m_ModelMatrix(glm::mat4(1.0f)), m_ViewMatrix(glm::mat4(1.0f)), m_ProjectionMatrix(glm::ortho(0.0f, (float)m_ScreenWidth, 0.0f, (float)m_ScreenHeight, -1.0f, 1.0f))
 	{
         float vertPositions[] = {
@@ -24,7 +24,7 @@ namespace test
 
         // Vertex array
         m_VertexArray = std::make_unique<VertexArray>();
-        m_VertexBuffer = std::make_unique<VertexBuffer>(vertPositions, 4 * 4 * sizeof(float));
+        m_VertexBuffer = std::make_unique<VertexBuffer>(vertPositions, 4 * 4 * sizeof(float), GL_STATIC_DRAW);
 
         m_VertexBufferLayout = std::make_unique<VertexBufferLayout>();
         m_VertexBufferLayout->Push<float>(2);
@@ -32,7 +32,7 @@ namespace test
         m_VertexArray->AddBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
         // Index buffer
-        m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6);
+        m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6, GL_STATIC_DRAW);
 
         // Shader
         m_Shader = std::make_unique<Shader>("res/shaders/Textured.shader");
@@ -40,7 +40,7 @@ namespace test
 
         // Texture
         m_Texture = std::make_unique<Texture>(texturePath);
-        m_Texture->Bind();
+        m_Texture->Bind(0);
         // Set which texture the shader will sample (the int is the texture slot)
         m_Shader->SetUniform1i("u_Texture", 0);
 
@@ -93,7 +93,7 @@ namespace test
     void TestBouncingImage::OnImGuiRender()
     {
         ImGui::Begin("TestBouncingImage");
-        ImGui::SliderFloat("Translation speed", &m_TranslationSpeed, 0.0f, 20.0f);
+        ImGui::SliderFloat("Translation speed", &m_TranslationSpeed, 0.0f, 3.0f);
         ImGui::SliderFloat("Image size", &m_ImageSize, 0.0f, m_ScreenWidth/2);
         ImGui::End();
     }

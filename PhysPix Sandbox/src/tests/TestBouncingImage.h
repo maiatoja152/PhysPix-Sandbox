@@ -16,7 +16,7 @@ namespace test
 	class TestBouncingImage : public Test
 	{
 	public:
-		TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, uint32_t startPosX = 0, uint32_t startPosY = 0);
+		TestBouncingImage(float screenWidth, float screenHeight, std::string texturePath, float startPosX = 0, float startPosY = 0);
 		~TestBouncingImage();
 
 		void OnUpdate(float deltaTime) override;

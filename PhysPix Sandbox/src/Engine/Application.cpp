@@ -84,6 +84,9 @@ int main(void)
 
     test::TestClearColor testClearColor;
 
+    std::string texPaths[] = { "res/textures/cat.png", "res/textures/cat2.png" };
+    test::TestBatchRendering testBatchRender(resolutionX, resolutionY, 500, 150, texPaths, 2);
+
     CellGrid cellGrid(resolutionX, resolutionY, 30);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -102,6 +105,8 @@ int main(void)
 
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
+
+        testBatchRender.OnRender();
 
         cellGrid.OnUpdate(deltaTime);
 
