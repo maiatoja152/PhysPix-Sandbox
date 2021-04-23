@@ -1,8 +1,9 @@
 #include "TestClearColor.h"
 
-#include "Renderer.h"
-#include "imgui/imgui.h"
+#include "GLCore.h"
+#include "GL/glew.h"
 
+#include "imgui/imgui.h"
 
 namespace test
 {

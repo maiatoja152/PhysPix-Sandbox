@@ -1,6 +1,6 @@
 #include "IndexBuffer.h"
 
-#include "Renderer.h"
+#include "GLCore.h"
 
 IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count, GLenum usage)
     : m_Count(count)

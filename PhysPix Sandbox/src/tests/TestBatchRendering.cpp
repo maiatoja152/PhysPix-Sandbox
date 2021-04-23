@@ -1,6 +1,6 @@
 #include "TestBatchRendering.h"
 
-#include "Renderer.h"
+#include "GLCore.h"
 
 #include "imgui/imgui.h"
 
