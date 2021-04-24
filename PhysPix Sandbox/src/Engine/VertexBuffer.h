@@ -7,11 +7,12 @@ class VertexBuffer
 private:
 	unsigned int m_RendererID;
 public:
-	VertexBuffer(const void* data, unsigned int size, GLenum usage);
+	VertexBuffer(unsigned int size, const void* data, GLenum usage);
 	~VertexBuffer();
 
 	void Bind() const;
 	void Unbind() const;
 
+	void BufferData(int size, const void* data, GLenum usage);
 	void BufferSubData(int offset, int size, const void* data);
 };

@@ -24,7 +24,7 @@ namespace test
 
         // Vertex array
         m_VertexArray = std::make_unique<VertexArray>();
-        m_VertexBuffer = std::make_unique<VertexBuffer>(vertPositions, 4 * 4 * sizeof(float), GL_STATIC_DRAW);
+        m_VertexBuffer = std::make_unique<VertexBuffer>(4 * 4 * sizeof(float), vertPositions, GL_STATIC_DRAW);
 
         m_VertexBufferLayout = std::make_unique<VertexBufferLayout>();
         m_VertexBufferLayout->Push<float>(2);
@@ -32,7 +32,7 @@ namespace test
         m_VertexArray->AddBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
         // Index buffer
-        m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6, GL_STATIC_DRAW);
+        m_IndexBuffer = std::make_unique<IndexBuffer>(6, indices, GL_STATIC_DRAW);
 
         // Shader
         m_Shader = std::make_unique<Shader>("res/shaders/Textured.shader");

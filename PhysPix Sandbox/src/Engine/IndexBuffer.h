@@ -8,7 +8,7 @@ private:
 	unsigned int m_RendererID;
 	unsigned int m_Count;
 public:
-	IndexBuffer(const unsigned int* data, unsigned int count, GLenum usage);
+	IndexBuffer(unsigned int count, const unsigned int* data, GLenum usage);
 	~IndexBuffer();
 
 	void Bind() const;

@@ -3,7 +3,6 @@
 #include "GLCore.h"
 
 #include "imgui/imgui.h"
-
 #include "glm/gtc/matrix_transform.hpp"
 
 #include <cstdlib>
@@ -36,13 +35,13 @@ namespace test
 
 			uint8_t textureIndex = std::rand() % count;
 
-			float scale = RandomFloatRange(0.5f, 1.5f);
+			float randScale = RandomFloatRange(0.5f, 1.5f);
 
 			float quadVerts[] = {
-				(-m_QuadSize / 2 + offsetX) * scale, (-m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 0.0f, 0.0f, static_cast<float>(textureIndex), // 0
-				 (m_QuadSize / 2 + offsetX) * scale, (-m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 1.0f, 0.0f, static_cast<float>(textureIndex), // 1
-				 (m_QuadSize / 2 + offsetX) * scale,  (m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 1.0f, 1.0f, static_cast<float>(textureIndex), // 2
-				(-m_QuadSize / 2 + offsetX) * scale,  (m_QuadSize / 2 + offsetY) * scale, r, g, b, a, 0.0f, 1.0f, static_cast<float>(textureIndex)  // 3
+				(-m_QuadSize / 2 + offsetX) * randScale, (-m_QuadSize / 2 + offsetY) * randScale, r, g, b, a, 0.0f, 0.0f, static_cast<float>(textureIndex), // 0
+				 (m_QuadSize / 2 + offsetX) * randScale, (-m_QuadSize / 2 + offsetY) * randScale, r, g, b, a, 1.0f, 0.0f, static_cast<float>(textureIndex), // 1
+				 (m_QuadSize / 2 + offsetX) * randScale,  (m_QuadSize / 2 + offsetY) * randScale, r, g, b, a, 1.0f, 1.0f, static_cast<float>(textureIndex), // 2
+				(-m_QuadSize / 2 + offsetX) * randScale,  (m_QuadSize / 2 + offsetY) * randScale, r, g, b, a, 0.0f, 1.0f, static_cast<float>(textureIndex)  // 3
 			};
 
 			// Add to the batched verts
@@ -58,7 +57,7 @@ namespace test
 
 		// Vertex array
 		m_VertexArray = std::make_unique<VertexArray>();
-		m_VertexBuffer = std::make_unique<VertexBuffer>((const void*)&batchedVerts[0], 9 * 4 * numOfQuads * sizeof(float), GL_STATIC_DRAW);
+		m_VertexBuffer = std::make_unique<VertexBuffer>(9 * 4 * numOfQuads * sizeof(float), (const void*)&batchedVerts[0], GL_STATIC_DRAW);
 
 		m_VertexBufferLayout = std::make_unique<VertexBufferLayout>();
 		m_VertexBufferLayout->Push<float>(2); // Position
@@ -68,7 +67,7 @@ namespace test
 		m_VertexArray->AddBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
 		// Index buffer
-		m_IndexBuffer = std::make_unique<IndexBuffer>((const unsigned int*)&indices[0], indices.size(), GL_STATIC_DRAW);
+		m_IndexBuffer = std::make_unique<IndexBuffer>(indices.size(), (const unsigned int*)&indices[0], GL_STATIC_DRAW);
 
 		// Shader
 		m_Shader = std::make_unique<Shader>("res/shaders/BatchTextured.shader");

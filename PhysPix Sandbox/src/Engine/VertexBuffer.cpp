@@ -2,7 +2,7 @@
 
 #include "GLCore.h"
 
-VertexBuffer::VertexBuffer(const void* data, unsigned int size, GLenum usage)
+VertexBuffer::VertexBuffer(unsigned int size, const void* data, GLenum usage)
 {
     GLCall(glGenBuffers(1, &m_RendererID));
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
@@ -24,8 +24,12 @@ void VertexBuffer::Unbind() const
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
+void VertexBuffer::BufferData(int size, const void* data, GLenum usage)
+{
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage);
+}
+
 void VertexBuffer::BufferSubData(int offset, int size, const void* data)
 {
-    Bind();
     GLCall(glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, size, data));
 }

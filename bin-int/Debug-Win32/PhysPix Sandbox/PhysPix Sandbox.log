@@ -1,2 +1,4 @@
-﻿  TestBatchRendering.cpp
-  PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe
+﻿LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+BatchRenderer.obj : error LNK2019: unresolved external symbol "public: static void __cdecl BatchRenderer::Flush(void)" (?Flush@BatchRenderer@@SAXXZ) referenced in function "public: static void __cdecl BatchRenderer::DrawQuad(struct glm::vec<2,float,0> const &,struct glm::vec<2,float,0> const &,struct glm::vec<4,float,0> const &)" (?DrawQuad@BatchRenderer@@SAXABU?$vec@$01M$0A@@glm@@0ABU?$vec@$03M$0A@@3@@Z)
+C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe : fatal error LNK1120: 1 unresolved externals

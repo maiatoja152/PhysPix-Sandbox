@@ -2,7 +2,7 @@
 
 #include "GLCore.h"
 
-IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count, GLenum usage)
+IndexBuffer::IndexBuffer(unsigned int count, const unsigned int* data, GLenum usage)
     : m_Count(count)
 {
     ASSERT(sizeof(unsigned int) == sizeof(GLuint));
