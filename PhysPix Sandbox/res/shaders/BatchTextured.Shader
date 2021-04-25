@@ -10,7 +10,7 @@ out vec4 v_Color;
 out vec2 v_TexCoord;
 out float v_TexIndex;
 
-// Projection matrix
+// Model view projection matrix
 uniform mat4 u_MVP;
 
 void main()

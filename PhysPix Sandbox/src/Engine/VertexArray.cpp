@@ -5,7 +5,7 @@
 
 VertexArray::VertexArray()
 {
-	GLCall(glGenVertexArrays(1, &m_RendererID));
+	GLCall(glCreateVertexArrays(1, &m_RendererID));
 }
 
 VertexArray::~VertexArray()
@@ -18,8 +18,8 @@ void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& la
 	Bind();
 	vb.Bind();
 	const std::vector<VertexBufferElement>& elements = layout.GetElements();
-	unsigned int offset = 0;
 
+	unsigned int offset = 0;
 	for (uint32_t i = 0; i < elements.size(); i++)
 	{
 		const VertexBufferElement element = elements[i];

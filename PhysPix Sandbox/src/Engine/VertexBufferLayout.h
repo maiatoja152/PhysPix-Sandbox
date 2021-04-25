@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
-#include <GL/glew.h>
-
 #include "GLCore.h"
+#include "GL/glew.h"
+
+#include <vector>
 
 struct VertexBufferElement
 {

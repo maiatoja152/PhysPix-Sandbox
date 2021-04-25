@@ -14,7 +14,7 @@
 #include <array>
 #include <memory>
 
-static const size_t MaxQuadCount = 1000;
+static const size_t MaxQuadCount = 10000;
 static const size_t MaxVertexCount = MaxQuadCount * 4;
 static const size_t MaxIndexCount = MaxQuadCount * 6;
 static const size_t MaxTextures = 32;
@@ -106,7 +106,7 @@ void BatchRenderer::Init()
 		offset += 4;
 	}
 
-	s_Data.QuadIB = std::make_unique<IndexBuffer>(sizeof(indices) / sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
+	s_Data.QuadIB = std::make_unique<IndexBuffer>(indices.size(), &indices[0], GL_STATIC_DRAW);
 
 	// 1x1 white texture
 	glCreateTextures(GL_TEXTURE_2D, 1, &s_Data.WhiteTexture);
@@ -120,7 +120,9 @@ void BatchRenderer::Init()
 	uint32_t color = 0xffffffff;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, &color);
 
-	memset(s_Data.TextureSlots.data(), 0, sizeof(s_Data.TextureSlots));
+	s_Data.TextureSlots[s_Data.WhiteTextureSlot] = s_Data.WhiteTexture;
+	for (size_t i = 1; i < MaxTextures; i++)
+		s_Data.TextureSlots[i] = 0;
 }
 
 void BatchRenderer::Shutdown()
@@ -158,7 +160,7 @@ void BatchRenderer::Flush()
 
 void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
 {
-	if (s_Data.IndexCount >= MaxIndexCount)
+	if (s_Data.IndexCount + 6 > MaxIndexCount)
 	{
 		EndBatch();
 		Flush();
@@ -166,7 +168,7 @@ void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, c
 	}
 
 	float textureIndex = 0.0f;
-	// Generate vertices
+
 	GenerateQuadVerts(position, size, color, textureIndex);
 
 	s_Data.IndexCount += 6;
@@ -175,7 +177,7 @@ void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, c
 
 void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, uint32_t textureID)
 {
-	if (s_Data.IndexCount + 6 >= MaxIndexCount || s_Data.TextureSlotIndex > 31)
+	if (s_Data.IndexCount + 6 > MaxIndexCount || s_Data.TextureSlotIndex > 31)
 	{
 		EndBatch();
 		Flush();
@@ -218,19 +220,19 @@ void BatchRenderer::GenerateQuadVerts(const glm::vec2& position, const glm::vec2
 
 	s_Data.QuadBufferPtr->Position = { size.x / 2 + position.x, -size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
-	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
+	s_Data.QuadBufferPtr->TexCoords = { 1.0f, 0.0f };
 	s_Data.QuadBufferPtr->TexIndex = textureID;
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { size.x / 2 + position.x, size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
-	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
+	s_Data.QuadBufferPtr->TexCoords = { 1.0f, 1.0f };
 	s_Data.QuadBufferPtr->TexIndex = textureID;
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { -size.x / 2 + position.x, size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
-	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
+	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
 	s_Data.QuadBufferPtr->TexIndex = textureID;
 	s_Data.QuadBufferPtr++;
 }

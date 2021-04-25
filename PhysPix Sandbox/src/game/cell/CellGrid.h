@@ -3,9 +3,11 @@
 namespace cell
 {
 	class Cell;
+	class Boundary;
 }
 
 #include <vector>
+#include <memory>
 
 class CellGrid
 {
@@ -16,11 +18,14 @@ private:
 	std::vector<std::vector<cell::Cell*>> m_Cells;
 	float m_TickInterval, m_TickTimer;
 
+	std::unique_ptr<cell::Boundary> m_BoundaryPtr;
+
 public:
 	CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize);
 	~CellGrid();
 
 	void OnUpdate(float deltaTime);
+	void OnRender();
 
 private:
 	void Tick();
@@ -30,5 +35,7 @@ private:
 public:
 	cell::Cell* GetCell(uint16_t x, uint16_t y);
 	void ReplaceCell(uint16_t x, uint16_t y, cell::Cell* replacement);
+	void MoveCell(uint16_t posX, uint16_t posY, uint16_t destX, uint16_t destY);
+	void SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 };
 

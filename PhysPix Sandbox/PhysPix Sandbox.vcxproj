@@ -153,6 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\cell\Sand.cpp" />
+    <ClCompile Include="src\game\cell\Powder.cpp" />
+    <ClCompile Include="src\game\cell\Fluid.cpp" />
+    <ClCompile Include="src\game\cell\Boundary.cpp" />
     <ClCompile Include="src\engine\BatchRenderer.cpp" />
     <ClCompile Include="src\engine\GLCore.cpp" />
     <ClCompile Include="src\Engine\Shader.cpp" />
@@ -321,6 +325,10 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\cell\Sand.h" />
+    <ClInclude Include="src\game\cell\Powder.h" />
+    <ClInclude Include="src\game\cell\Fluid.h" />
+    <ClInclude Include="src\game\cell\Boundary.h" />
     <ClInclude Include="src\engine\BatchRenderer.h" />
     <ClInclude Include="src\engine\GLCore.h" />
     <ClInclude Include="src\Engine\Shader.h" />

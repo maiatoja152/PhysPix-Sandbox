@@ -5,7 +5,8 @@
 #include <chrono>
 #include <ctime>
 
-#include "Renderer.h"
+#include "BatchRenderer.h"
+
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
@@ -81,12 +82,11 @@ int main(void)
     ImGui::StyleColorsDark();
     ImGui_ImplOpenGL3_Init();
 
+    BatchRenderer::Init();
+
     test::TestClearColor testClearColor;
 
-    std::string texPaths[] = { "res/textures/cat.png", "res/textures/cat2.png" };
-    test::TestBatchRendering testBatchRender(resolutionX, resolutionY, 500, 150, texPaths, 2);
-
-    CellGrid cellGrid(resolutionX, resolutionY, 30);
+    CellGrid cellGrid(resolutionX, resolutionY, 4);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
@@ -105,14 +105,26 @@ int main(void)
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
 
-        testBatchRender.OnRender();
+        Shader shader("res/shaders/BatchTextured.shader");
+        shader.Bind();
+
+        glm::mat4 projection = glm::ortho(0.0f, (float)resolutionX, 0.0f, (float)resolutionY, -1.0f, 1.0f);
+        glm::mat4 view = glm::mat4(1.0f);
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 mvp = projection * view * model;
+        shader.SetUniformMat4f("u_MVP", mvp);
 
         cellGrid.OnUpdate(deltaTime);
+        cellGrid.OnRender();
+
+        BatchRenderer::Flush();
 
         // ImGui new frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+
+        testClearColor.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();
@@ -129,6 +141,8 @@ int main(void)
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
+
+    BatchRenderer::Shutdown();
 
     glfwTerminate();
 

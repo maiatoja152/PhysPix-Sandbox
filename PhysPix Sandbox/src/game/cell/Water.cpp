@@ -4,12 +4,22 @@
 
 #include "Empty.h"
 
+#include <cstdlib>
+
 namespace cell
 {
-	Water::Water(int32_t posX, int32_t posY)
+	Water::Water(CellGrid* cellGrid, int32_t posX, int32_t posY)
 	{
+		m_CellGrid = cellGrid;
+
 		m_PosX = posX;
 		m_PosY = posY;
+
+		m_CellID = 2;
+
+		m_Color = { 0.1f, 0.3f, 0.8f, 1.0f };
+
+		m_FluidDirection = -1;
 	}
 
 	Water::~Water()
@@ -22,23 +32,6 @@ namespace cell
 
 	void Water::OnTick()
 	{
-		Empty* empty = new Empty();
-		
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1) == empty)
-		{
-			MoveCell(m_PosX, m_PosY + 1);
-		}
-		else if (m_CellGrid->GetCell(m_PosX + 1, m_PosY + 1) == empty)
-		{
-			MoveCell(m_PosX + 1, m_PosY + 1);
-		}
-		else if (m_CellGrid->GetCell(m_PosX - 1, m_PosY + 1) == empty)
-		{
-			MoveCell(m_PosX - 1, m_PosY + 1);
-		}
-		else
-		{
-			delete empty;
-		}
+		FluidMove();
 	}
 }

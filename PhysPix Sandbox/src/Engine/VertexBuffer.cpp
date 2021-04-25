@@ -4,7 +4,7 @@
 
 VertexBuffer::VertexBuffer(unsigned int size, const void* data, GLenum usage)
 {
-    GLCall(glGenBuffers(1, &m_RendererID));
+    GLCall(glCreateBuffers(1, &m_RendererID));
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
     GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, usage));
 }
@@ -26,10 +26,10 @@ void VertexBuffer::Unbind() const
 
 void VertexBuffer::BufferData(int size, const void* data, GLenum usage)
 {
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage);
+    glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 }
 
 void VertexBuffer::BufferSubData(int offset, int size, const void* data)
 {
-    GLCall(glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, size, data));
+    GLCall(glBufferSubData(GL_ARRAY_BUFFER, offset, size, data));
 }
