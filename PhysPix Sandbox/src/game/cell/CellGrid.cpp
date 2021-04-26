@@ -10,7 +10,7 @@
 
 CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize)
 	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize), m_CellColumns(m_WindowWidth / cellSize), m_CellRows(windowHeight / cellSize),
-	m_Cells(InitCells()), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>())
+	m_Cells(InitCells()), m_TickInterval(0.001f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
 {
 }
 
@@ -37,17 +37,19 @@ void CellGrid::OnUpdate(float deltaTime)
 		m_TickTimer += m_TickInterval;
 	}
 
-	for (std::vector<cell::Cell*> row : m_Cells)
+	for (uint16_t i = 0; i < m_Cells.size(); i++)
 	{
-		for (cell::Cell* cell : row)
+		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			cell->OnUpdate(deltaTime);
+			m_Cells[i][j]->OnUpdate(deltaTime);
 		}
 	}
 }
 
 void CellGrid::Tick()
 {
+	m_Dir *= -1;
+
 	for (uint16_t i = 0; i < m_Cells.size(); i++)
 	{
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
@@ -85,11 +87,11 @@ std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
 	{
 		for (uint16_t j = 0; j < cells[0].size(); j++)
 		{
-			if (j < cells[0].size() * 0.3)
+			if (i % 9 == 0 && j < cells[0].size() * 0.6f && i > cells.size() * 0.6f)
 			{
 				cells[i][j] = new cell::Water(this, i, j);
 			}
-			else if (((i % 3 == 0 && j % 5 == 0) /*|| (i % 5 == 0 && j % 5 == 0)*/) && j > cells[0].size() * 0.6)
+			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.6f)
 			{
 				cells[i][j] = new cell::Sand(this, i, j);
 			}
@@ -133,8 +135,8 @@ void CellGrid::SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 	cell::Cell* temp = m_Cells[x2][y2];
 
 	m_Cells[x2][y2] = m_Cells[x1][y1];
-	m_Cells[x2][y2]->UpdatePosition(x2, y2);
-
 	m_Cells[x1][y1] = temp;
-	temp->UpdatePosition(x1, y2);
+
+	m_Cells[x2][y2]->UpdatePosition(x2, y2);
+	m_Cells[x1][y1]->UpdatePosition(x1, y1);
 }

@@ -6,7 +6,7 @@
 #include "Texture.h"
 
 #include <memory>
-#include <vector>
+#include <array>
 
 namespace test
 {
@@ -24,7 +24,7 @@ namespace test
 		float m_ScreenWidth, m_ScreenHeight, m_QuadSize;
 
 		std::unique_ptr<Shader> m_Shader;
-		std::vector<Texture> m_Textures;
+		std::unique_ptr<Texture> m_Textures[32];
 
 		glm::mat4 m_ModelMatrix, m_ViewMatrix, m_ProjectionMatrix;
 

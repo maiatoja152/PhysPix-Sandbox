@@ -9,6 +9,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include <cstdlib>
+#include <array>
 
 namespace test
 {
@@ -26,8 +27,8 @@ namespace test
 
 		for (uint8_t i = 0; i < count; i++)
 		{
-			m_Textures.push_back(Texture(texturePaths[i]));
-			m_Textures[i].Bind(i);
+			m_Textures[i] = std::make_unique<Texture>(texturePaths[i]);
+			m_Textures[i]->Bind(i);
 
 			samplers.push_back(i + 1);
 		}
@@ -55,7 +56,7 @@ namespace test
 
 			float randScale = RandomFloatRange(0.5f, 1.5f);
 
-			BatchRenderer::DrawQuad({ offsetX, offsetY }, { m_QuadSize * randScale, m_QuadSize * randScale }, m_Textures[textureIndex].GetRendererID());
+			BatchRenderer::DrawQuad({ offsetX, offsetY }, { m_QuadSize * randScale, m_QuadSize * randScale }, m_Textures[textureIndex]->GetRendererID());
 		}
 		BatchRenderer::EndBatch();
 	}

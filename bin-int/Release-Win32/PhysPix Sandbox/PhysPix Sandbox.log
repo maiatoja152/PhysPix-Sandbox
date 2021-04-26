@@ -1,12 +1,9 @@
-﻿  CellGrid.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(11,96): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(11,134): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
+﻿  TestBatchRendering.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  2 of 2138 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  13 of 2141 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    21 functions had inline decision re-evaluated but remain unchanged
+    89 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

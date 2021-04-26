@@ -13,7 +13,7 @@ private:
 public:
 	Texture(const std::string& path);
 	~Texture();
-	Texture(const Texture&);
+	Texture(const Texture&) = delete;
 
 	void Bind(unsigned int slot = 0);
 	void Unbind() const;

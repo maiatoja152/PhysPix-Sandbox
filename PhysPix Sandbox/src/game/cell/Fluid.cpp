@@ -24,27 +24,25 @@ namespace cell
 		if (m_CellGrid->GetCell(m_PosX, m_PosY + m_FluidDirection)->GetID() == 1)
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX, m_PosY + m_FluidDirection);
+			return;
 		}
-		else if (m_CellGrid->GetCell(m_PosX + 1, m_PosY + m_FluidDirection)->GetID() == 1)
-		{
-			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + 1, m_PosY + m_FluidDirection);
-		}
-		else if (m_CellGrid->GetCell(m_PosX - 1, m_PosY + m_FluidDirection)->GetID() == 1)
-		{
-			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - 1, m_PosY + m_FluidDirection);
-		}
-		else
-		{
-			uint8_t dir = (std::rand() % 2) == 0 ? -1 : 1;
 
-			if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == 1)
-			{
-				m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY);
-			}
-			else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == 1)
-			{
-				m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
-			}
+		int8_t dir = m_CellGrid->GetDir();
+		if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + m_FluidDirection)->GetID() == 1)
+		{
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY + m_FluidDirection);
+		}
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + m_FluidDirection)->GetID() == 1)
+		{
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY + m_FluidDirection);
+		}
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == 1)
+		{
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY);
+		}
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == 1)
+		{
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
 		}
 	}
 }

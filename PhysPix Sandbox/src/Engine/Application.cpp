@@ -59,7 +59,7 @@ int main(void)
         return -1;
     }
 
-    std::srand(std::time(0));
+    std::srand(std::time(NULL));
 
     // Log the current OpenGL version
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
@@ -86,7 +86,7 @@ int main(void)
 
     test::TestClearColor testClearColor;
 
-    CellGrid cellGrid(resolutionX, resolutionY, 4);
+    CellGrid cellGrid(resolutionX, resolutionY, 2);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 

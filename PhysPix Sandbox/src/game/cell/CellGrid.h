@@ -20,6 +20,8 @@ private:
 
 	std::unique_ptr<cell::Boundary> m_BoundaryPtr;
 
+	int8_t m_Dir;
+
 public:
 	CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize);
 	~CellGrid();
@@ -37,5 +39,7 @@ public:
 	void ReplaceCell(uint16_t x, uint16_t y, cell::Cell* replacement);
 	void MoveCell(uint16_t posX, uint16_t posY, uint16_t destX, uint16_t destY);
 	void SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+
+	inline int8_t GetDir() { return m_Dir; }
 };
 
