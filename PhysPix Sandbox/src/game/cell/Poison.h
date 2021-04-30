@@ -12,5 +12,7 @@ namespace cell
 
 		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
+
+		void Spread();
 	};
 }

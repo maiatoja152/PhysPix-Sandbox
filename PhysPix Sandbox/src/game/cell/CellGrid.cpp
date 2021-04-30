@@ -104,7 +104,7 @@ std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
 			{
 				cells[i][j] = new cell::Sand(this, i, j);
 			}
-			else if ((i % 5 == 0 || i % 2 == 0) && j > cells[0].size() * 0.8f && i < cells.size() * 0.8f)
+			else if (i == 5 && j > cells[0].size() * 0.8f && i < cells.size() * 0.8f)
 			{
 				cells[i][j] = new cell::Poison(this, i, j);
 			}

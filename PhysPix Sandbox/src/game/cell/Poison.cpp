@@ -34,6 +34,11 @@ namespace cell
 	{
 		FluidMove();
 
+		Spread();
+	}
+
+	void Poison::Spread()
+	{
 		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == 2)
 			m_CellGrid->ReplaceCell(m_PosX + 1, m_PosY, new Poison(m_CellGrid, m_PosX + 1, m_PosY));
 
