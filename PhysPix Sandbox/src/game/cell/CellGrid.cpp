@@ -2,10 +2,11 @@
 
 #include "BatchRenderer.h"
 
-#include "Cell.h";
+#include "Cell.h"
 #include "Empty.h"
 #include "Water.h"
 #include "Sand.h"
+#include "Poison.h"
 #include "Boundary.h"
 
 #include <algorithm>
@@ -56,7 +57,7 @@ void CellGrid::Tick()
 
 	auto cellsToTick = m_Cells;
 	long long seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	std::shuffle(cellsToTick.begin(), cellsToTick.end(), std::mt19937(seed));
+	std::shuffle(cellsToTick.begin(), cellsToTick.end(), std::mt19937(static_cast<unsigned int>(seed)));
 
 	for (uint16_t i = 0; i < cellsToTick.size(); i++)
 	{
@@ -99,9 +100,13 @@ std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
 			{
 				cells[i][j] = new cell::Water(this, i, j);
 			}
-			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.8f)
+			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.6f)
 			{
 				cells[i][j] = new cell::Sand(this, i, j);
+			}
+			else if ((i % 5 == 0 || i % 2 == 0) && j > cells[0].size() * 0.8f && i < cells.size() * 0.8f)
+			{
+				cells[i][j] = new cell::Poison(this, i, j);
 			}
 			else
 			{

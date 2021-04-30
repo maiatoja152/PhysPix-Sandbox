@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\cell\Poison.cpp" />
     <ClCompile Include="src\game\cell\Sand.cpp" />
     <ClCompile Include="src\game\cell\Powder.cpp" />
     <ClCompile Include="src\game\cell\Fluid.cpp" />
@@ -325,6 +326,7 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\cell\Poison.h" />
     <ClInclude Include="src\game\cell\Sand.h" />
     <ClInclude Include="src\game\cell\Powder.h" />
     <ClInclude Include="src\game\cell\Fluid.h" />
