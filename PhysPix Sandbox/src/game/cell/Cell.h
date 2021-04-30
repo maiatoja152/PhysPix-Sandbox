@@ -23,6 +23,8 @@ namespace cell
 		Cell();
 		~Cell();
 
+		//Cell(const Cell&);
+
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnTick() {}
 

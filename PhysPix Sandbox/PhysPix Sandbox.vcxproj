@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\CellPlacement.cpp" />
     <ClCompile Include="src\game\cell\Poison.cpp" />
     <ClCompile Include="src\game\cell\Sand.cpp" />
     <ClCompile Include="src\game\cell\Powder.cpp" />
@@ -165,7 +166,7 @@
     <ClCompile Include="src\Engine\IndexBuffer.cpp" />
     <ClCompile Include="src\Engine\Renderer.cpp" />
     <ClCompile Include="src\game\cell\Cell.cpp" />
-    <ClCompile Include="src\game\cell\CellGrid.cpp" />
+    <ClCompile Include="src\game\CellGrid.cpp" />
     <ClCompile Include="src\game\cell\Empty.cpp" />
     <ClCompile Include="src\game\cell\Water.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
@@ -326,6 +327,7 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\CellPlacement.h" />
     <ClInclude Include="src\game\cell\Poison.h" />
     <ClInclude Include="src\game\cell\Sand.h" />
     <ClInclude Include="src\game\cell\Powder.h" />
@@ -337,7 +339,7 @@
     <ClInclude Include="src\Engine\IndexBuffer.h" />
     <ClInclude Include="src\Engine\Renderer.h" />
     <ClInclude Include="src\game\cell\Cell.h" />
-    <ClInclude Include="src\game\cell\CellGrid.h" />
+    <ClInclude Include="src\game\CellGrid.h" />
     <ClInclude Include="src\game\cell\Empty.h" />
     <ClInclude Include="src\game\cell\Water.h" />
     <ClInclude Include="src\tests\Test.h" />

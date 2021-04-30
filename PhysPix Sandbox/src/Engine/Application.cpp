@@ -25,7 +25,7 @@
 #include "tests/TestBouncingImage.h"
 #include "tests/TestBatchRendering.h"
 
-#include "cell/CellGrid.h"
+#include "CellGrid.h"
 
 int main(void)
 {
