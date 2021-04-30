@@ -8,9 +8,13 @@
 #include "Sand.h"
 #include "Boundary.h"
 
+#include <algorithm>
+#include <random>
+#include <chrono>
+
 CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize)
-	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize), m_CellColumns(m_WindowWidth / cellSize), m_CellRows(windowHeight / cellSize),
-	m_Cells(InitCells()), m_TickInterval(0.001f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
+	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize), m_CellColumns(static_cast<uint16_t>(m_WindowWidth / cellSize)), m_CellRows(static_cast<uint16_t>(windowHeight / cellSize)),
+	m_Cells(InitCells()), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
 {
 }
 
@@ -50,11 +54,15 @@ void CellGrid::Tick()
 {
 	m_Dir *= -1;
 
-	for (uint16_t i = 0; i < m_Cells.size(); i++)
+	auto cellsToTick = m_Cells;
+	long long seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	std::shuffle(cellsToTick.begin(), cellsToTick.end(), std::mt19937(seed));
+
+	for (uint16_t i = 0; i < cellsToTick.size(); i++)
 	{
-		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
+		for (uint16_t j = 0; j < cellsToTick[0].size(); j++)
 		{
-			m_Cells[i][j]->OnTick();
+			cellsToTick[i][j]->OnTick();
 		}
 	}
 }
@@ -87,11 +95,11 @@ std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
 	{
 		for (uint16_t j = 0; j < cells[0].size(); j++)
 		{
-			if (i % 9 == 0 && j < cells[0].size() * 0.6f && i > cells.size() * 0.6f)
+			if (i % 3 == 0 && j < cells[0].size() * 0.6f && i > cells.size() * 0.3f)
 			{
 				cells[i][j] = new cell::Water(this, i, j);
 			}
-			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.6f)
+			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.8f)
 			{
 				cells[i][j] = new cell::Sand(this, i, j);
 			}

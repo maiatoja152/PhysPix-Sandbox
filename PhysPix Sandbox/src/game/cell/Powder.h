@@ -8,5 +8,6 @@ namespace cell
 	{
 	protected:
 		void PowderMove();
+		void DisplaceFluid(int32_t destX, int32_t destY);
 	};
 }
