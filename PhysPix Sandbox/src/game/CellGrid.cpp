@@ -15,8 +15,9 @@
 
 CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize)
 	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize), m_CellColumns(static_cast<uint16_t>(m_WindowWidth / cellSize)), m_CellRows(static_cast<uint16_t>(windowHeight / cellSize)),
-	m_Cells(InitCells()), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
+	m_Cells(NULL), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
 {
+	InitCells();
 }
 
 CellGrid::~CellGrid()
@@ -88,19 +89,17 @@ void CellGrid::OnRender()
 	BatchRenderer::EndBatch();
 }
 
-std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
+void CellGrid::InitCells()
 {
-	std::vector<std::vector<cell::Cell*>> cells(m_CellColumns, std::vector<cell::Cell*>(m_CellRows));
+	m_Cells = std::vector<std::vector<cell::Cell*>>(m_CellColumns, std::vector<cell::Cell*>(m_CellRows));
 
-	for (uint16_t i = 0; i < cells.size(); i++)
+	for (uint16_t i = 0; i < m_Cells.size(); i++)
 	{
-		for (uint16_t j = 0; j < cells[0].size(); j++)
+		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			cells[i][j] = new cell::Empty();
+			m_Cells[i][j] = new cell::Empty();
 		}
 	}
-
-	return cells;
 }
 
 cell::Cell* CellGrid::GetCell(uint16_t x, uint16_t y)
@@ -113,9 +112,12 @@ cell::Cell* CellGrid::GetCell(uint16_t x, uint16_t y)
 
 void CellGrid::ReplaceCell(uint16_t x, uint16_t y, cell::Cell* replacement)
 {
-	delete m_Cells[x][y];
-	m_Cells[x][y] = replacement;
-	replacement->UpdatePosition(x, y);
+	if (x < m_CellColumns && y < m_CellRows)
+	{
+		delete m_Cells[x][y];
+		m_Cells[x][y] = replacement;
+		replacement->UpdatePosition(x, y);
+	}
 }
 
 void CellGrid::MoveCell(uint16_t posX, uint16_t posY, uint16_t destX, uint16_t destY)

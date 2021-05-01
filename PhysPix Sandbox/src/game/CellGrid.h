@@ -29,10 +29,10 @@ public:
 	void OnUpdate(float deltaTime);
 	void OnRender();
 
+	void InitCells();
+
 private:
 	void Tick();
-
-	std::vector<std::vector<cell::Cell*>> InitCells();
 
 public:
 	cell::Cell* GetCell(uint16_t x, uint16_t y);

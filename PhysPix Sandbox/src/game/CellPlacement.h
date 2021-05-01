@@ -26,5 +26,6 @@ public:
 
 private:
 	void OnClick(GLFWwindow* window, int button, int action, int mods);
-	void Place(int32_t x, int32_t y);
+	void Place(int32_t posX, int32_t posY);
+	void Erase(int32_t posX, int32_t posY);
 };
