@@ -17,7 +17,7 @@
 #include <math.h>
 
 CellPlacement::CellPlacement(CellGrid* cellGrid, GLFWwindow* window)
-	: m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_CellGrid(cellGrid), m_PlaceSize(5)
+	: m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_CellGrid(cellGrid), m_PlaceSize(5), m_InputEnabled(true)
 {
 	glfwSetWindowUserPointer(window, this);
 
@@ -35,7 +35,7 @@ CellPlacement::~CellPlacement()
 
 void CellPlacement::OnClick(GLFWwindow* window, int button, int action, int mods)
 {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && m_InputEnabled)
 	{
 		double mousePosX, mousePosY;
 		glfwGetCursorPos(window, &mousePosX, &mousePosY);
@@ -50,7 +50,7 @@ void CellPlacement::OnClick(GLFWwindow* window, int button, int action, int mods
 		mousePosY /= m_CellGrid->GetCellSize();
 		Place(mousePosX, mousePosY);
 	}
-	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS && m_InputEnabled)
 	{
 		double mousePosX, mousePosY;
 		glfwGetCursorPos(window, &mousePosX, &mousePosY);
@@ -100,6 +100,7 @@ void CellPlacement::Erase(int32_t posX, int32_t posY)
 		return;
 	}
 
+	// Generate circle
 	int32_t r = m_PlaceSize;
 	for (int y = -r; y <= r; y++)
 	{
@@ -117,6 +118,8 @@ void CellPlacement::OnImGuiRender()
 {
 	ImGui::Begin("Cell Placement Menu");
 
+	m_InputEnabled = !ImGui::IsWindowHovered();
+
 	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 30);
 
 	if (ImGui::Button("Water"))
@@ -131,9 +134,7 @@ void CellPlacement::OnImGuiRender()
 	ImGui::NewLine();
 
 	if (ImGui::Button("Reset"))
-	{
 		m_CellGrid->InitCells();
-	}
 
 	ImGui::End();
 }

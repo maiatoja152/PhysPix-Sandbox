@@ -18,6 +18,8 @@ private:
 	CellGrid* m_CellGrid;
 	int32_t m_PlaceSize;
 
+	bool m_InputEnabled;
+
 public:
 	CellPlacement(CellGrid* cellGrid, GLFWwindow* window);
 	~CellPlacement();
