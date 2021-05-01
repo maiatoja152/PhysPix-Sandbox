@@ -26,6 +26,7 @@
 #include "tests/TestBatchRendering.h"
 
 #include "CellGrid.h"
+#include "CellPlacement.h"
 
 int main(void)
 {
@@ -86,7 +87,8 @@ int main(void)
 
     test::TestClearColor testClearColor;
 
-    CellGrid cellGrid(resolutionX, resolutionY, 3);
+    CellGrid cellGrid(resolutionX, resolutionY, 4);
+    CellPlacement cellPlacement(&cellGrid, window);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
@@ -125,6 +127,7 @@ int main(void)
         ImGui::NewFrame();
 
         testClearColor.OnImGuiRender();
+        cellPlacement.OnImGuiRender();
 
         // ImGui render
         ImGui::Render();

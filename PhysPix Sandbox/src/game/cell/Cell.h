@@ -23,7 +23,7 @@ namespace cell
 		Cell();
 		~Cell();
 
-		//Cell(const Cell&);
+		virtual Cell* clone() const = 0;
 
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnTick() {}

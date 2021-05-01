@@ -12,4 +12,9 @@ namespace cell
 	Boundary::~Boundary()
 	{
 	}
+
+	Boundary* Boundary::clone() const
+	{
+		return new Boundary(*this);
+	}
 }

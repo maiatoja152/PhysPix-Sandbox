@@ -9,6 +9,8 @@ namespace cell
 		Sand(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Sand();
 
+		virtual Sand* clone() const override;
+
 		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 	};

@@ -26,6 +26,11 @@ namespace cell
 	{
 	}
 
+	Poison* Poison::clone() const
+	{
+		return new Poison(*this);
+	}
+
 	void Poison::OnUpdate(float deltaTime)
 	{
 	}

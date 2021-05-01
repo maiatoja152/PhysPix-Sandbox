@@ -26,6 +26,11 @@ namespace cell
 	{
 	}
 
+	Water* Water::clone() const
+	{
+		return new Water(*this);
+	}
+
 	void Water::OnUpdate(float deltaTime)
 	{
 	}

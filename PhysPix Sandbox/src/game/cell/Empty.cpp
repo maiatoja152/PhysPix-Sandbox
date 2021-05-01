@@ -12,4 +12,9 @@ namespace cell
 	Empty::~Empty()
 	{
 	}
+
+	Empty* Empty::clone() const
+	{
+		return new Empty(*this);
+	}
 }

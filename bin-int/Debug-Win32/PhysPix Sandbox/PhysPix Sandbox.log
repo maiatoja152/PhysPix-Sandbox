@@ -1,5 +1,4 @@
-﻿  CellGrid.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(12,96): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\CellGrid.cpp(12,134): warning C4244: 'initializing': conversion from 'float' to 'uint16_t', possible loss of data
+﻿  CellPlacement.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(32,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(32,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

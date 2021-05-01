@@ -184,6 +184,7 @@
     <ClCompile Include="src\Engine\VertexBuffer.cpp" />
     <ClCompile Include="src\Engine\VertexArray.cpp" />
     <ClCompile Include="src\Engine\Texture.cpp" />
+    <ClCompile Include="src\game\cell\Stone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\BatchTextured.Shader" />
@@ -641,6 +642,7 @@
     <ClInclude Include="src\Engine\VertexArray.h" />
     <ClInclude Include="src\Engine\VertexBufferLayout.h" />
     <ClInclude Include="src\Engine\Texture.h" />
+    <ClInclude Include="src\game\cell\Stone.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\beret.png" />

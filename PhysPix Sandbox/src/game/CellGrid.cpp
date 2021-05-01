@@ -96,22 +96,7 @@ std::vector<std::vector<cell::Cell*>> CellGrid::InitCells()
 	{
 		for (uint16_t j = 0; j < cells[0].size(); j++)
 		{
-			if (i % 3 == 0 && j < cells[0].size() * 0.6f && i > cells.size() * 0.3f)
-			{
-				cells[i][j] = new cell::Water(this, i, j);
-			}
-			else if (i % 2 == 0 && j > cells[0].size() * 0.6f && i < cells.size() * 0.6f)
-			{
-				cells[i][j] = new cell::Sand(this, i, j);
-			}
-			else if (i == 5 && j > cells[0].size() * 0.8f && i < cells.size() * 0.8f)
-			{
-				cells[i][j] = new cell::Poison(this, i, j);
-			}
-			else
-			{
-				cells[i][j] = new cell::Empty();
-			}
+			cells[i][j] = new cell::Empty();
 		}
 	}
 

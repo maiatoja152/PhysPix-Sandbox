@@ -18,6 +18,11 @@ namespace cell
 	{
 	}
 
+	Sand* Sand::clone() const
+	{
+		return new Sand(*this);
+	}
+
 	void Sand::OnUpdate(float deltaTime)
 	{
 	}
