@@ -1,16 +1,24 @@
 ﻿  CellGrid.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2832): error C2259: 'cell::Cell': cannot instantiate abstract class
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(11): message : see declaration of 'cell::Cell'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2832): message : due to following members:
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2832): message : 'cell::Cell *cell::Cell::clone(void) const': is abstract
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(26): message : see declaration of 'cell::Cell::clone'
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellGrid.cpp(111): message : see reference to function template instantiation 'std::unique_ptr<cell::Cell,std::default_delete<cell::Cell>> std::make_unique<cell::Cell,cell::Cell*&,0>(cell::Cell *&)' being compiled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2833,35): error C2259: 'cell::Cell': cannot instantiate abstract class
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(11): message : see declaration of 'cell::Cell'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2833,35): message : due to following members:
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2833,35): message : 'cell::Cell *cell::Cell::clone(void) const': is abstract
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(26): message : see declaration of 'cell::Cell::clone'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2833,35): error C2664: 'cell::Cell::Cell(const cell::Cell &)': cannot convert argument 1 from 'cell::Cell *' to 'const cell::Cell &'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2832,1): message : Reason: cannot convert from 'cell::Cell *' to 'const cell::Cell'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\memory(2832,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\cell\Cell.h(38,2): message : see declaration of 'cell::Cell::Cell'
+  CellPlacement.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(51,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(51,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(66,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(66,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(73,79): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+  Boundary.cpp
+  Cell.cpp
+  Empty.cpp
+  Fluid.cpp
+  Poison.cpp
+  Powder.cpp
+  Sand.cpp
+  Stone.cpp
+  Water.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  83 of 2338 functions ( 3.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    28 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
+  PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

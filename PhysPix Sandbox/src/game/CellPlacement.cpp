@@ -134,7 +134,7 @@ void CellPlacement::OnImGuiRender()
 	ImGui::NewLine();
 
 	if (ImGui::Button("Reset"))
-		m_CellGrid->InitCells();
+		m_CellGrid->Reset();
 
 	ImGui::End();
 }

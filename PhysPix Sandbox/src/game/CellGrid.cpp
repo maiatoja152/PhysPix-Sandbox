@@ -102,6 +102,21 @@ void CellGrid::InitCells()
 	}
 }
 
+void CellGrid::Reset()
+{
+	for (uint16_t i = 0; i < m_Cells.size(); i++)
+	{
+		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
+		{
+			// Only replace non empty cells
+			if (m_Cells[i][j]->GetID() != 1)
+			{
+				ReplaceCell(i, j, new cell::Empty());
+			}
+		}
+	}
+}
+
 cell::Cell* CellGrid::GetCell(uint16_t x, uint16_t y)
 {
 	if (x > m_CellColumns - 1 || y > m_CellRows - 1)

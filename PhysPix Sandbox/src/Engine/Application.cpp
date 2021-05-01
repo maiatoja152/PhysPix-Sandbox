@@ -87,7 +87,7 @@ int main(void)
 
     test::TestClearColor testClearColor;
 
-    CellGrid cellGrid(resolutionX, resolutionY, 4);
+    CellGrid cellGrid(resolutionX, resolutionY, 3);
     CellPlacement cellPlacement(&cellGrid, window);
 
     long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();

@@ -29,10 +29,12 @@ public:
 	void OnUpdate(float deltaTime);
 	void OnRender();
 
-	void InitCells();
+	void Reset();
 
 private:
 	void Tick();
+
+	void InitCells();
 
 public:
 	cell::Cell* GetCell(uint16_t x, uint16_t y);
