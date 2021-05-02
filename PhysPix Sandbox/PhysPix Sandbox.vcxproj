@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\game\CellPlacement.cpp" />
+    <ClCompile Include="src\game\cell\Lava.cpp" />
     <ClCompile Include="src\game\cell\Poison.cpp" />
     <ClCompile Include="src\game\cell\Sand.cpp" />
     <ClCompile Include="src\game\cell\Powder.cpp" />
@@ -329,6 +330,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\CellPlacement.h" />
+    <ClInclude Include="src\game\cell\Lava.h" />
     <ClInclude Include="src\game\cell\Poison.h" />
     <ClInclude Include="src\game\cell\Sand.h" />
     <ClInclude Include="src\game\cell\Powder.h" />

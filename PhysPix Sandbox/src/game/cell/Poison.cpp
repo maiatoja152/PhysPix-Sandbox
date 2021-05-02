@@ -15,7 +15,7 @@ namespace cell
 		m_PosX = posX;
 		m_PosY = posY;
 
-		m_CellID = 4;
+		m_CellID = cell_id::poison;
 
 		m_Color = { 0.1f, 0.75f, 0.2f, 1.0f };
 
@@ -44,16 +44,16 @@ namespace cell
 
 	void Poison::Spread()
 	{
-		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == 2)
+		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX + 1, m_PosY, new Poison(m_CellGrid, m_PosX + 1, m_PosY));
 
-		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->GetID() == 2)
+		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX - 1, m_PosY, new Poison(m_CellGrid, m_PosX - 1, m_PosY));
 
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == 2)
+		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX, m_PosY + 1, new Poison(m_CellGrid, m_PosX, m_PosY + 1));
 
-		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == 2)
+		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX, m_PosY - 1, new Poison(m_CellGrid, m_PosX, m_PosY - 1));
 	}
 }

@@ -8,6 +8,7 @@
 #include "cell/Sand.h"
 #include "cell/Poison.h"
 #include "cell/Stone.h"
+#include "cell/Lava.h"
 
 #include "imgui/imgui.h"
 
@@ -73,17 +74,11 @@ void CellPlacement::OnTick()
 void CellPlacement::MouseBtnCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && m_InputEnabled)
-	{
 		m_ClickState = ClickState::Left;
-	}
 	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS && m_InputEnabled)
-	{
 		m_ClickState = ClickState::Right;
-	}
 	else if ((button == GLFW_MOUSE_BUTTON_LEFT || button == GLFW_MOUSE_BUTTON_RIGHT) && action == GLFW_RELEASE && m_InputEnabled)
-	{
 		m_ClickState = ClickState::None;
-	}
 }
 
 void CellPlacement::Place(int32_t posX, int32_t posY)
@@ -149,6 +144,8 @@ void CellPlacement::OnImGuiRender()
 		m_ActiveCell = std::make_unique<cell::Poison>(m_CellGrid, 0, 0);
 	if (ImGui::Button("Stone"))
 		m_ActiveCell = std::make_unique<cell::Stone>(m_CellGrid, 0, 0);
+	if (ImGui::Button("Lava"))
+		m_ActiveCell = std::make_unique<cell::Lava>(m_CellGrid, 0, 0);
 
 	ImGui::NewLine();
 

@@ -7,15 +7,15 @@ namespace cell
 	void Powder::PowderMove()
 	{
 		int8_t dir = m_CellGrid->GetDir();
-		if (m_CellGrid->GetCell(m_PosX, m_PosY -1 )->GetID() == 1 || m_CellGrid->GetCell(m_PosX, m_PosY - 1)->IsFluid())
+		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::empty || m_CellGrid->GetCell(m_PosX, m_PosY - 1)->IsFluid())
 		{
 			DisplaceFluid(m_PosX, m_PosY - 1);
 		}
-		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY - 1)->GetID() == 1 || m_CellGrid->GetCell(m_PosX + dir, m_PosY - 1)->IsFluid())
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY - 1)->GetID() == cell_id::empty || m_CellGrid->GetCell(m_PosX + dir, m_PosY - 1)->IsFluid())
 		{
 			DisplaceFluid(m_PosX + dir, m_PosY - 1);
 		}
-		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY - 1)->GetID() == 1 || m_CellGrid->GetCell(m_PosX - dir, m_PosY - 1)->IsFluid())
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY - 1)->GetID() == cell_id::empty || m_CellGrid->GetCell(m_PosX - dir, m_PosY - 1)->IsFluid())
 		{
 			DisplaceFluid(m_PosX - dir, m_PosY - 1);
 		}
@@ -25,23 +25,23 @@ namespace cell
 	{
 		int8_t dir = m_CellGrid->GetDir();
 		// Check left and right
-		if (m_CellGrid->GetCell(destX + dir, destY)->GetID() == 1)
+		if (m_CellGrid->GetCell(destX + dir, destY)->GetID() == cell_id::empty)
 		{
 			m_CellGrid->SwapCells(destX, destY, destX + dir, destY);
 			m_CellGrid->SwapCells(m_PosX, m_PosY, destX, destY);
 		}
-		else if (m_CellGrid->GetCell(destX - dir, destY)->GetID() == 1)
+		else if (m_CellGrid->GetCell(destX - dir, destY)->GetID() == cell_id::empty)
 		{
 			m_CellGrid->SwapCells(destX, destY, destX - dir, destY);
 			m_CellGrid->SwapCells(m_PosX, m_PosY, destX, destY);
 		}
 		// Check upper left and right
-		else if (m_CellGrid->GetCell(destX + dir, destY + 1)->GetID() == 1)
+		else if (m_CellGrid->GetCell(destX + dir, destY + 1)->GetID() == cell_id::empty)
 		{
 			m_CellGrid->SwapCells(destX, destY, destX + dir, destY + 1);
 			m_CellGrid->SwapCells(m_PosX, m_PosY, destX, destY);
 		}
-		else if (m_CellGrid->GetCell(destX - dir, destY + 1)->GetID() == 1)
+		else if (m_CellGrid->GetCell(destX - dir, destY + 1)->GetID() == cell_id::empty)
 		{
 			m_CellGrid->SwapCells(destX, destY, destX - dir, destY + 1);
 			m_CellGrid->SwapCells(m_PosX, m_PosY, destX, destY);

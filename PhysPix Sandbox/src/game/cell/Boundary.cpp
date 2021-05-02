@@ -6,7 +6,7 @@ namespace cell
 	{
 		m_Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 
-		m_CellID = 255;
+		m_CellID = cell_id::boundary;
 	}
 
 	Boundary::~Boundary()

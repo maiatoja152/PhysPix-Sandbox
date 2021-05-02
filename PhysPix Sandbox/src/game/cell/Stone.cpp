@@ -9,7 +9,7 @@ namespace cell
 		m_PosX = posX;
 		m_PosY = posY;
 
-		m_CellID = 5;
+		m_CellID = cell_id::stone;
 
 		m_Color = { 0.6f, 0.6f, 0.65f, 1.0f };
 	}

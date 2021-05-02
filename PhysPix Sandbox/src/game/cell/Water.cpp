@@ -15,7 +15,7 @@ namespace cell
 		m_PosX = posX;
 		m_PosY = posY;
 
-		m_CellID = 2;
+		m_CellID = cell_id::water;
 
 		m_Color = { 0.1f, 0.3f, 0.8f, 1.0f };
 

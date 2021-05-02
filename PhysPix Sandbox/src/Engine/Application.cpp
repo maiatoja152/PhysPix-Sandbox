@@ -43,7 +43,7 @@ int main(void)
     int32_t resolutionX = 1280, resolutionY = 960;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(resolutionX, resolutionY, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(resolutionX, resolutionY, "PhysPix Sandbox", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -66,7 +66,7 @@ int main(void)
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
     // VSync
-    glfwSwapInterval(1);
+    glfwSwapInterval(0);
 
     // Blending
     GLCall(glEnable(GL_BLEND));

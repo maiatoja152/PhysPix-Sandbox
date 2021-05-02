@@ -37,3 +37,15 @@ namespace cell
 		inline bool IsFluid() { return m_IsFluid; }
 	};
 }
+
+namespace cell_id
+{
+	static constexpr uint8_t default_id = 0;
+	static constexpr uint8_t empty = 1;
+	static constexpr uint8_t water = 2;
+	static constexpr uint8_t poison = 3;
+	static constexpr uint8_t lava = 4;
+	static constexpr uint8_t sand = 5;
+	static constexpr uint8_t stone = 6;
+	static constexpr uint8_t boundary = 255;
+}

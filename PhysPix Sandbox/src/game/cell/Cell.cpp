@@ -7,7 +7,7 @@
 namespace cell
 {
 	Cell::Cell()
-		: m_PosX(0), m_PosY(0), m_CellID(0), m_CellGrid(nullptr), m_Color(1.0f, 0.0f, 1.0f, 1.0f), m_IsFluid(false)
+		: m_PosX(0), m_PosY(0), m_CellID(cell_id::default_id), m_CellGrid(nullptr), m_Color(1.0f, 0.0f, 1.0f, 1.0f), m_IsFluid(false)
 	{
 	}
 
