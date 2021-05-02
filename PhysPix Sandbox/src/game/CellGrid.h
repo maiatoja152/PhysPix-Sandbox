@@ -6,6 +6,8 @@ namespace cell
 	class Boundary;
 }
 
+class CellPlacement;
+
 #include <vector>
 #include <memory>
 
@@ -22,8 +24,10 @@ private:
 
 	int8_t m_Dir;
 
+	CellPlacement* m_CellPlacement;
+
 public:
-	CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize);
+	CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize, CellPlacement* = nullptr);
 	~CellGrid();
 
 	void OnUpdate(float deltaTime);
@@ -44,5 +48,7 @@ public:
 
 	inline float GetCellSize() { return m_CellSize; }
 	inline int8_t GetDir() { return m_Dir; }
+
+	inline void SetCellPlacement(CellPlacement* cellPlacement) { m_CellPlacement = cellPlacement; }
 };
 

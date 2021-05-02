@@ -1,24 +1,42 @@
-﻿  CellGrid.cpp
-  CellPlacement.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(51,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(51,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(66,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(66,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(73,79): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-  Boundary.cpp
-  Cell.cpp
-  Empty.cpp
-  Fluid.cpp
-  Poison.cpp
-  Powder.cpp
-  Sand.cpp
-  Stone.cpp
-  Water.cpp
+﻿  Application.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Application.cpp(63,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  83 of 2338 functions ( 3.6%) were compiled, the rest were copied from previous compilation.
+  1 of 2340 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    28 functions had inline decision re-evaluated but remain unchanged
+    22 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
+CellPlacement.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'CellPlacement.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Poison.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Poison.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Sand.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Sand.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Powder.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Powder.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Fluid.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Fluid.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Boundary.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Boundary.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+BatchRenderer.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'BatchRenderer.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+GLCore.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'GLCore.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Shader.obj : warning LNK4099: PDB '' was not found with 'Shader.obj' or at ''; linking object as if no debug info
+IndexBuffer.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'IndexBuffer.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Renderer.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Renderer.obj' or at 'c:\coding projects\physpix sandbox\bin-int\release-win32\physpix sandbox\vc142.pdb'; linking object as if no debug info
+Renderer.obj : warning LNK4020: a type record in 'c:\coding projects\physpix sandbox\bin-int\release-win32\physpix sandbox\vc142.pdb' is corrupted; some symbols and types may not be accessible from the debugger
+Cell.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Cell.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+CellGrid.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'CellGrid.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Empty.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Empty.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Water.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Water.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+TestBatchRendering.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'TestBatchRendering.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+TestBouncingImage.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'TestBouncingImage.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+TestClearColor.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'TestClearColor.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+glm.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'glm.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_demo.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui_demo.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_draw.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui_draw.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_impl_glfw.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui_impl_glfw.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_impl_opengl3.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui_impl_opengl3.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_tables.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'imgui_tables.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+imgui_widgets.obj : warning LNK4099: PDB '' was not found with 'imgui_widgets.obj' or at ''; linking object as if no debug info
+stb_image.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'stb_image.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+VertexBuffer.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'VertexBuffer.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+VertexArray.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'VertexArray.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Texture.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Texture.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
+Stone.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Stone.obj' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc142.pdb'; linking object as if no debug info
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

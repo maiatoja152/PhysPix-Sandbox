@@ -9,13 +9,16 @@
 #include "cell/Poison.h"
 #include "cell/Boundary.h"
 
+#include "CellPlacement.h"
+
 #include <algorithm>
 #include <random>
 #include <chrono>
 
-CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize)
-	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize), m_CellColumns(static_cast<uint16_t>(m_WindowWidth / cellSize)), m_CellRows(static_cast<uint16_t>(windowHeight / cellSize)),
-	m_Cells(NULL), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1)
+CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize, CellPlacement* cellPlacement /*= nullptr*/)
+	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize),
+	m_CellColumns(static_cast<uint16_t>(m_WindowWidth / cellSize)), m_CellRows(static_cast<uint16_t>(windowHeight / cellSize)),
+	m_Cells(NULL), m_TickInterval(0.03f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1), m_CellPlacement(cellPlacement)
 {
 	InitCells();
 }
@@ -55,6 +58,9 @@ void CellGrid::OnUpdate(float deltaTime)
 void CellGrid::Tick()
 {
 	m_Dir *= -1;
+
+	if (m_CellPlacement != nullptr)
+		m_CellPlacement->OnTick();
 
 	auto cellsToTick = m_Cells;
 	long long seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -108,7 +114,7 @@ void CellGrid::Reset()
 	{
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			// Only replace non empty cells
+			// Only replace non-empty cells
 			if (m_Cells[i][j]->GetID() != 1)
 			{
 				ReplaceCell(i, j, new cell::Empty());

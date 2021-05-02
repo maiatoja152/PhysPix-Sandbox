@@ -14,18 +14,19 @@
 #include <random>
 #include <chrono>
 #include <functional>
-#include <math.h>
 
 CellPlacement::CellPlacement(CellGrid* cellGrid, GLFWwindow* window)
-	: m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_CellGrid(cellGrid), m_PlaceSize(5), m_InputEnabled(true)
+	: m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_CellGrid(cellGrid), m_PlaceSize(5), m_InputEnabled(true),
+	m_ClickState(ClickState::None), m_Window(window)
 {
-	glfwSetWindowUserPointer(window, this);
+	if (m_CellGrid != nullptr)
+		m_CellGrid->SetCellPlacement(this);
 
+	glfwSetWindowUserPointer(window, this);
 	auto func = [](GLFWwindow* window, int button, int action, int mods)
 	{
-		static_cast<CellPlacement*>(glfwGetWindowUserPointer(window))->OnClick(window, button, action, mods);
+		static_cast<CellPlacement*>(glfwGetWindowUserPointer(window))->MouseBtnCallback(window, button, action, mods);
 	};
-
 	glfwSetMouseButtonCallback(window, func);
 }
 
@@ -33,37 +34,55 @@ CellPlacement::~CellPlacement()
 {
 }
 
-void CellPlacement::OnClick(GLFWwindow* window, int button, int action, int mods)
+void CellPlacement::OnTick()
+{
+	if (m_ClickState == ClickState::Left)
+	{
+		double clickPosX, clickPosY;
+		glfwGetCursorPos(m_Window, &clickPosX, &clickPosY);
+
+		int32_t windowWidth, windowHeight;
+		glfwGetWindowSize(m_Window, &windowWidth, &windowHeight);
+
+		// Remap mouse position to make the origin bottom-left instead of top-left
+		clickPosY = static_cast<double>(windowHeight + (clickPosY - 0) * (0 - windowHeight) / (windowHeight - 0));
+
+		clickPosX /= m_CellGrid->GetCellSize();
+		clickPosY /= m_CellGrid->GetCellSize();
+
+		Place(clickPosX, clickPosY);
+	}
+	else if (m_ClickState == ClickState::Right)
+	{
+		double clickPosX, clickPosY;
+		glfwGetCursorPos(m_Window, &clickPosX, &clickPosY);
+
+		int32_t windowWidth, windowHeight;
+		glfwGetWindowSize(m_Window, &windowWidth, &windowHeight);
+
+		// Remap mouse position to make the origin bottom-left instead of top-left
+		clickPosY = static_cast<double>(windowHeight + (clickPosY - 0) * (0 - windowHeight) / (windowHeight - 0));
+
+		clickPosX /= m_CellGrid->GetCellSize();
+		clickPosY /= m_CellGrid->GetCellSize();
+
+		Erase(clickPosX, clickPosY);
+	}
+}
+
+void CellPlacement::MouseBtnCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && m_InputEnabled)
 	{
-		double mousePosX, mousePosY;
-		glfwGetCursorPos(window, &mousePosX, &mousePosY);
-
-		int32_t windowWidth, windowHeight;
-		glfwGetWindowSize(window, &windowWidth, &windowHeight);
-
-		// Remap mouse position to make the origin bottom-left instead of top-left
-		mousePosY = static_cast<double>(windowHeight + (mousePosY - 0) * (0 - windowHeight) / (windowHeight - 0));
-
-		mousePosX /= m_CellGrid->GetCellSize();
-		mousePosY /= m_CellGrid->GetCellSize();
-		Place(mousePosX, mousePosY);
+		m_ClickState = ClickState::Left;
 	}
 	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS && m_InputEnabled)
 	{
-		double mousePosX, mousePosY;
-		glfwGetCursorPos(window, &mousePosX, &mousePosY);
-
-		int32_t windowWidth, windowHeight;
-		glfwGetWindowSize(window, &windowWidth, &windowHeight);
-
-		// Remap mouse position to make the origin bottom-left instead of top-left
-		mousePosY = static_cast<double>(windowHeight + (mousePosY - 0) * (0 - windowHeight) / (windowHeight - 0));
-
-		mousePosX /= m_CellGrid->GetCellSize();
-		mousePosY /= m_CellGrid->GetCellSize();
-		Erase(mousePosX, mousePosY);
+		m_ClickState = ClickState::Right;
+	}
+	else if ((button == GLFW_MOUSE_BUTTON_LEFT || button == GLFW_MOUSE_BUTTON_RIGHT) && action == GLFW_RELEASE && m_InputEnabled)
+	{
+		m_ClickState = ClickState::None;
 	}
 }
 

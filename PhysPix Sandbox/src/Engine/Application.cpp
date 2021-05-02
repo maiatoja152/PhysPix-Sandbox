@@ -95,7 +95,8 @@ int main(void)
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        float deltaTime = ((float)(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastFrameTime)) / 1000000.0f;
+        long long now = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        float deltaTime = (float)(now - lastFrameTime) / 1000000.0f;
         lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
         // Dynamic window size
@@ -107,7 +108,7 @@ int main(void)
         testClearColor.OnUpdate(deltaTime);
         testClearColor.OnRender();
 
-        Shader shader("res/shaders/BatchTextured.shader");
+        Shader shader("C:/Coding Projects/PhysPix Sandbox/PhysPix Sandbox/res/shaders/BatchTextured.shader");
         shader.Bind();
 
         glm::mat4 projection = glm::ortho(0.0f, (float)resolutionX, 0.0f, (float)resolutionY, -1.0f, 1.0f);
