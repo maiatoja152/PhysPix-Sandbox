@@ -17,7 +17,6 @@
 #include <random>
 #include <chrono>
 #include <numeric>
-#include <functional>
 
 CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize, CellPlacement* cellPlacement /*= nullptr*/)
 	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize),

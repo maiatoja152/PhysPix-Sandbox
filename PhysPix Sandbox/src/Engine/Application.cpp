@@ -40,7 +40,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    int32_t resolutionX = 1920, resolutionY = 1080;
+    int32_t resolutionX = 1280, resolutionY = 960;
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(resolutionX, resolutionY, "PhysPix Sandbox", NULL, NULL);
