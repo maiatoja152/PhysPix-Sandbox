@@ -9,5 +9,8 @@ namespace cell
 	public:
 		Empty();
 		~Empty();
+
+		void OnUpdate(float deltaTime) override;
+		void OnTick() override;
 	};
 }

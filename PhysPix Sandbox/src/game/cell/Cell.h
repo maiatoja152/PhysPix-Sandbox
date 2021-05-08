@@ -24,8 +24,8 @@ namespace cell
 		Cell();
 		~Cell();
 
-		virtual void OnUpdate(float deltaTime) {}
-		virtual void OnTick() {}
+		virtual void OnUpdate(float deltaTime) = 0;
+		virtual void OnTick() = 0;
 
 		void RemoveCell();
 

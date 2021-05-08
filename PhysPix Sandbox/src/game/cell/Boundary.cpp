@@ -12,4 +12,12 @@ namespace cell
 	Boundary::~Boundary()
 	{
 	}
+
+	void Boundary::OnUpdate(float deltaTime)
+	{
+	}
+
+	void Boundary::OnTick()
+	{
+	}
 }

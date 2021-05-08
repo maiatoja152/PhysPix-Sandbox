@@ -17,4 +17,12 @@ namespace cell
 	Stone::~Stone()
 	{
 	}
+
+	void Stone::OnUpdate(float deltaTime)
+	{
+	}
+
+	void Stone::OnTick()
+	{
+	}
 }

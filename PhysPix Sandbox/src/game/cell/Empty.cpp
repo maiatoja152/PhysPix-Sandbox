@@ -12,4 +12,12 @@ namespace cell
 	Empty::~Empty()
 	{
 	}
+
+	void Empty::OnUpdate(float deltaTime)
+	{
+	}
+
+	void Empty::OnTick()
+	{
+	}
 }
