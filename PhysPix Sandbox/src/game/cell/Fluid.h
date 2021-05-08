@@ -11,8 +11,8 @@ namespace cell
 	protected:
 		int8_t m_FluidDirection;
 
-	public:
 		Fluid();
+	public:
 		~Fluid();
 
 	protected:

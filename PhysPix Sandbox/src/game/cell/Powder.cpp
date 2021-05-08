@@ -6,6 +6,14 @@
 
 namespace cell
 {
+	Powder::Powder()
+	{
+	}
+
+	Powder::~Powder()
+	{
+	}
+
 	void Powder::PowderMove(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 	{
 		int8_t dir = cellGrid->GetDir();

@@ -8,8 +8,9 @@ namespace cell
 {
 	class Flammable
 	{
-	public:
+	protected:
 		Flammable();
+	public:
 		~Flammable();
 
 	protected:
