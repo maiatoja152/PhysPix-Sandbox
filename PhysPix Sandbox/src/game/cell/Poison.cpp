@@ -19,6 +19,7 @@ namespace cell
 
 		m_Color = { 0.0f, 0.6f, 0.1f, 1.0f };
 
+		m_IsFluid = true;
 		m_FluidDirection = -1;
 	}
 
@@ -32,7 +33,9 @@ namespace cell
 
 	void Poison::OnTick()
 	{
-		FluidMove();
+		BurnOnContact(m_CellGrid, m_PosX, m_PosY);
+
+		FluidMove(m_CellGrid, m_PosX, m_PosY);
 
 		Spread();
 	}
@@ -50,5 +53,10 @@ namespace cell
 
 		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX, m_PosY - 1, new Poison(m_CellGrid, m_PosX, m_PosY - 1));
+	}
+
+	void Poison::Burn()
+	{
+		RemoveCell();
 	}
 }

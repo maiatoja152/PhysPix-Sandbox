@@ -110,13 +110,8 @@ void CellGrid::OnRender()
 	{
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			if (m_Cells[i][j]->GetID() != cell_id::empty && i == m_Cells.size() - 1)
-			{
-				glm::vec2 position = { static_cast<float>(i * m_CellSize + m_CellSize / 2 + border.x / 2), static_cast<float>(j * m_CellSize + m_CellSize / 2 + border.y / 2) };
-				BatchRenderer::DrawQuad(position, { m_CellSize, m_CellSize }, { 1.0f, 1.0f, 1.0f, 1.0f });
-			}
 			// Don't draw a quad for empty cells for performance
-			else if (m_Cells[i][j]->GetID() != cell_id::empty)
+			if (m_Cells[i][j]->GetID() != cell_id::empty)
 			{
 				glm::vec2 position = { static_cast<float>(i * m_CellSize + m_CellSize / 2 + border.x / 2), static_cast<float>(j * m_CellSize + m_CellSize / 2 + border.y / 2) };
 				BatchRenderer::DrawQuad(position, { m_CellSize, m_CellSize }, m_Cells[i][j]->GetColor());

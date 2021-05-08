@@ -15,6 +15,7 @@
 #include <random>
 #include <chrono>
 #include <functional>
+#include <iostream>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
 	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
@@ -50,7 +51,7 @@ void CellPlacement::OnTick()
 		clickPosX /= m_CellGrid->GetCellSize();
 		clickPosY /= m_CellGrid->GetCellSize();
 
-		Place(clickPosX, clickPosY);
+		Place(static_cast<int32_t>(clickPosX), static_cast<int32_t>(clickPosY));
 	}
 	else if (m_ClickState == ClickState::Right)
 	{
@@ -66,7 +67,7 @@ void CellPlacement::OnTick()
 		clickPosX /= m_CellGrid->GetCellSize();
 		clickPosY /= m_CellGrid->GetCellSize();
 
-		Erase(clickPosX, clickPosY);
+		Erase(static_cast<int32_t>(clickPosX), static_cast<int32_t>(clickPosY));
 	}
 }
 
@@ -83,7 +84,7 @@ void CellPlacement::MouseBtnCallback(GLFWwindow* window, int button, int action,
 void CellPlacement::Place(int32_t posX, int32_t posY)
 {
 	long long seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	auto rng = std::bind(std::uniform_int_distribution<int>(1, 10), std::mt19937(seed));
+	auto rng = std::bind(std::uniform_int_distribution<int>(1, 10), std::mt19937(static_cast<unsigned int>(seed)));
 
 	if (m_PlaceSize == 1)
 	{
@@ -146,6 +147,8 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 	case cell_id::lava:
 		return new cell::Lava(m_CellGrid, 0, 0);
 		break;
+	default:
+		throw std::invalid_argument("Default case triggered due to invalid cell ID");
 	}
 }
 

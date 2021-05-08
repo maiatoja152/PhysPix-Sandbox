@@ -19,6 +19,7 @@ namespace cell
 
 		m_Color = { 0.1f, 0.3f, 0.8f, 1.0f };
 
+		m_IsFluid = true;
 		m_FluidDirection = -1;
 	}
 
@@ -32,6 +33,6 @@ namespace cell
 
 	void Water::OnTick()
 	{
-		FluidMove();
+		FluidMove(m_CellGrid, m_PosX, m_PosY);
 	}
 }

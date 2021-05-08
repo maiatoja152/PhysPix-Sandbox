@@ -4,6 +4,8 @@
 
 #include "Empty.h"
 
+#include "Flammable.h"
+
 #include <cstdlib>
 
 namespace cell
@@ -19,7 +21,10 @@ namespace cell
 
 		m_Color = { 1.0f, 0.45f, 0.2f, 1.0f };
 
+		m_IsFluid = true;
 		m_FluidDirection = -1;
+
+		m_BurnsSurroudings = true;
 	}
 
 	Lava::~Lava()
@@ -32,23 +37,6 @@ namespace cell
 
 	void Lava::OnTick()
 	{
-		FluidMove();
-
-		BurnFlammables();
-	}
-
-	void Lava::BurnFlammables()
-	{
-		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->IsFlammable())
-			m_CellGrid->ReplaceCell(m_PosX + 1, m_PosY, new Empty());
-
-		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->IsFlammable())
-			m_CellGrid->ReplaceCell(m_PosX - 1, m_PosY, new Empty());
-
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->IsFlammable())
-			m_CellGrid->ReplaceCell(m_PosX, m_PosY + 1, new Empty());
-
-		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->IsFlammable())
-			m_CellGrid->ReplaceCell(m_PosX, m_PosY - 1, new Empty());
+		FluidMove(m_CellGrid, m_PosX, m_PosY);
 	}
 }
