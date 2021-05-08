@@ -1,24 +1,5 @@
 ﻿  Application.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Application.cpp(63,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   CellGrid.cpp
-  CellPlacement.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(54,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(54,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(70,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(70,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(87,79): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-  Boundary.cpp
-  Cell.cpp
-  Empty.cpp
-  Fluid.cpp
-  Lava.cpp
-  Poison.cpp
-  Powder.cpp
-  Sand.cpp
-  Stone.cpp
-  Water.cpp
   Generating Code...
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

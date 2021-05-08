@@ -14,18 +14,18 @@ class CellGrid;
 class CellPlacement
 {
 private:
-	std::unique_ptr<cell::Cell> m_ActiveCell;
+	GLFWwindow* m_Window;
 	CellGrid* m_CellGrid;
+	std::unique_ptr<cell::Cell> m_ActiveCell;
 	int32_t m_PlaceSize;
 
 	bool m_InputEnabled;
 
 	enum class ClickState { None, Left, Right};
 	ClickState m_ClickState;
-	GLFWwindow* m_Window;
 
 public:
-	CellPlacement(CellGrid* cellGrid, GLFWwindow* window);
+	CellPlacement(GLFWwindow* window, CellGrid* cellGrid);
 	~CellPlacement();
 
 	void OnTick();

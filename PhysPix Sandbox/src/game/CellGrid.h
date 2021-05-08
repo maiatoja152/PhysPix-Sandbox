@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GLFW/glfw3.h"
+
 namespace cell
 {
 	class Cell;
@@ -14,6 +16,7 @@ class CellPlacement;
 class CellGrid
 {
 private:
+	GLFWwindow* m_Window;
 	int32_t m_WindowWidth, m_WindowHeight;
 	float m_CellSize;
 	uint16_t m_CellColumns, m_CellRows;
@@ -27,7 +30,7 @@ private:
 	CellPlacement* m_CellPlacement;
 
 public:
-	CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize, CellPlacement* = nullptr);
+	CellGrid(GLFWwindow* window, float cellSize, CellPlacement* cellPlacement = nullptr);
 	~CellGrid();
 
 	void OnUpdate(float deltaTime);
@@ -39,6 +42,8 @@ private:
 	void Tick();
 
 	void InitCells();
+
+	void ResizeGrid(uint16_t columns, uint16_t rows);
 
 public:
 	cell::Cell* GetCell(uint16_t x, uint16_t y);

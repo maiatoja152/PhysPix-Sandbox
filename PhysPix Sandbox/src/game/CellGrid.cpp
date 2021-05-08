@@ -3,6 +3,7 @@
 #include "BatchRenderer.h"
 #include "Shader.h"
 
+#include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "cell/Cell.h"
@@ -18,20 +19,23 @@
 #include <chrono>
 #include <numeric>
 
-CellGrid::CellGrid(int32_t windowWidth, int32_t windowHeight, float cellSize, CellPlacement* cellPlacement /*= nullptr*/)
-	:m_WindowWidth(windowWidth), m_WindowHeight(windowHeight), m_CellSize(cellSize),
-	m_CellColumns(static_cast<uint16_t>(m_WindowWidth / cellSize)), m_CellRows(static_cast<uint16_t>(windowHeight / cellSize)),
+CellGrid::CellGrid(GLFWwindow* window, float cellSize, CellPlacement* cellPlacement /*= nullptr*/)
+	: m_Window(window), m_WindowWidth(0), m_WindowHeight(0), m_CellSize(cellSize), m_CellColumns(0), m_CellRows(0),
 	m_Cells(NULL), m_TickInterval(0.02f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1), m_CellPlacement(cellPlacement)
 {
+	glfwGetFramebufferSize(window, &m_WindowWidth, &m_WindowHeight);
+	m_CellColumns = static_cast<uint16_t>(m_WindowWidth / cellSize);
+	m_CellRows = static_cast<uint16_t>(m_WindowHeight / cellSize);
+
 	InitCells();
 }
 
 CellGrid::~CellGrid()
 {
 	// Delete all cells
-	for (std::vector<cell::Cell*> row : m_Cells)
+	for (auto row : m_Cells)
 	{
-		for (cell::Cell* cell : row)
+		for (auto cell : row)
 		{
 			delete cell;
 		}
@@ -61,6 +65,12 @@ void CellGrid::OnUpdate(float deltaTime)
 
 void CellGrid::Tick()
 {
+	if (!glfwGetWindowAttrib(m_Window, GLFW_ICONIFIED))
+	{
+		glfwGetFramebufferSize(m_Window, &m_WindowWidth, &m_WindowHeight);
+		ResizeGrid(static_cast<uint16_t>(m_WindowWidth / m_CellSize), static_cast<uint16_t>(m_WindowHeight / m_CellSize));
+	}
+
 	m_Dir *= -1;
 
 	if (m_CellPlacement != nullptr)
@@ -84,7 +94,7 @@ void CellGrid::Tick()
 
 void CellGrid::OnRender()
 {
-	Shader shader("C:/Coding Projects/PhysPix Sandbox/PhysPix Sandbox/res/shaders/BatchTextured.shader");
+	Shader shader("res/shaders/BatchTextured.shader");
 	shader.Bind();
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_WindowWidth), 0.0f, static_cast<float>(m_WindowHeight), -1.0f, 1.0f);
@@ -100,11 +110,16 @@ void CellGrid::OnRender()
 	{
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			// Don't draw a quad for empty cells for performance
-			if (m_Cells[i][j]->GetID() != cell_id::empty)
+			if (m_Cells[i][j]->GetID() != cell_id::empty && i == m_Cells.size() - 1)
 			{
-				glm::vec2 position = { i * m_CellSize + m_CellSize / 2 + border.x / 2, j * m_CellSize + m_CellSize / 2 + border.y / 2 };
-				BatchRenderer::DrawQuad(position, { m_CellSize - 0, m_CellSize - 0 }, m_Cells[i][j]->GetColor());
+				glm::vec2 position = { static_cast<float>(i * m_CellSize + m_CellSize / 2 + border.x / 2), static_cast<float>(j * m_CellSize + m_CellSize / 2 + border.y / 2) };
+				BatchRenderer::DrawQuad(position, { m_CellSize, m_CellSize }, { 1.0f, 1.0f, 1.0f, 1.0f });
+			}
+			// Don't draw a quad for empty cells for performance
+			else if (m_Cells[i][j]->GetID() != cell_id::empty)
+			{
+				glm::vec2 position = { static_cast<float>(i * m_CellSize + m_CellSize / 2 + border.x / 2), static_cast<float>(j * m_CellSize + m_CellSize / 2 + border.y / 2) };
+				BatchRenderer::DrawQuad(position, { m_CellSize, m_CellSize }, m_Cells[i][j]->GetColor());
 			}
 		}
 	}
@@ -135,6 +150,64 @@ void CellGrid::Reset()
 				ReplaceCell(i, j, new cell::Empty());
 		}
 	}
+}
+
+void CellGrid::ResizeGrid(uint16_t columns, uint16_t rows)
+{
+	if (columns > m_CellColumns)
+	{
+		m_Cells.reserve(columns);
+
+		uint16_t rowsToAdd = columns - m_CellColumns;
+		for (uint16_t i = 0; i < rowsToAdd; i++)
+		{
+			std::vector<cell::Cell*> emptyRow(m_CellRows);
+			for (auto& cell : emptyRow)
+				cell = new cell::Empty();
+
+			m_Cells.push_back(emptyRow);
+		}
+	}
+	else if (columns < m_CellColumns)
+	{
+		uint16_t rowsToRemove = m_CellColumns - columns;
+		for (uint16_t i = 0; i < rowsToRemove; i++)
+		{
+			for (auto& cell : m_Cells.back())
+				delete cell;
+
+			m_Cells.pop_back();
+		}
+	}
+
+	if (rows > m_CellRows)
+	{
+		for (auto& row : m_Cells)
+		{
+			row.reserve(rows);
+
+			uint16_t cellsToAdd = rows - m_CellRows;
+			for (uint16_t i = 0; i < cellsToAdd; i++)
+			{
+				row.push_back(new cell::Empty);
+			}
+		}
+	}
+	else if (rows < m_CellRows)
+	{
+		for (auto& row : m_Cells)
+		{
+			uint16_t cellsToRemove = m_CellRows - rows;
+			for (uint16_t i = 0; i < cellsToRemove; i++)
+			{
+				delete row.back();
+				row.pop_back();
+			}
+		}
+	}
+
+	m_CellColumns = columns;
+	m_CellRows = rows;
 }
 
 cell::Cell* CellGrid::GetCell(uint16_t x, uint16_t y)
