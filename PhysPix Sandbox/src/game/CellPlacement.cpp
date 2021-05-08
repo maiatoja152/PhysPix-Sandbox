@@ -17,7 +17,7 @@
 #include <functional>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
-	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_PlaceSize(5), m_InputEnabled(true), m_ClickState(ClickState::None)
+	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
 {
 	if (m_CellGrid != nullptr)
 		m_CellGrid->SetCellPlacement(this);

@@ -17,7 +17,7 @@ namespace cell
 
 		m_CellID = cell_id::poison;
 
-		m_Color = { 0.1f, 0.75f, 0.2f, 1.0f };
+		m_Color = { 0.0f, 0.6f, 0.1f, 1.0f };
 
 		m_FluidDirection = -1;
 	}

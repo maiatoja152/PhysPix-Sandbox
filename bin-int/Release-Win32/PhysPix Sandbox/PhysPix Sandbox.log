@@ -1,15 +1,7 @@
-﻿  Application.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Application.cpp(53,16): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
-  CellGrid.cpp
-  CellPlacement.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(53,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(53,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(69,20): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(69,9): warning C4244: 'argument': conversion from 'double' to 'int32_t', possible loss of data
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(86,79): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+﻿  Poison.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  21 of 2421 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
+  4 of 2421 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     23 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
