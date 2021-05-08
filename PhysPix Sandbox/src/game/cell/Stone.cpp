@@ -17,9 +17,4 @@ namespace cell
 	Stone::~Stone()
 	{
 	}
-
-	Stone* Stone::clone() const
-	{
-		return new Stone(*this);
-	}
 }

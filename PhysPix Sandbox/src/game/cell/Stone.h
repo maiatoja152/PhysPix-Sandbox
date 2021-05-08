@@ -11,7 +11,5 @@ namespace cell
 	public:
 		Stone(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Stone();
-
-		virtual Stone* clone() const override;
 	};
 }

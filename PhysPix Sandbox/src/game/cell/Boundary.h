@@ -9,7 +9,5 @@ namespace cell
 	public:
 		Boundary();
 		~Boundary();
-
-		virtual Boundary* clone() const override;
 	};
 }

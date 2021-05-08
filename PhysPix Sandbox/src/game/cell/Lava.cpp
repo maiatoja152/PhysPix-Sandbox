@@ -26,11 +26,6 @@ namespace cell
 	{
 	}
 
-	Lava* Lava::clone() const
-	{
-		return new Lava(*this);
-	}
-
 	void Lava::OnUpdate(float deltaTime)
 	{
 	}
@@ -38,5 +33,22 @@ namespace cell
 	void Lava::OnTick()
 	{
 		FluidMove();
+
+		BurnFlammables();
+	}
+
+	void Lava::BurnFlammables()
+	{
+		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->IsFlammable())
+			m_CellGrid->ReplaceCell(m_PosX + 1, m_PosY, new Empty());
+
+		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->IsFlammable())
+			m_CellGrid->ReplaceCell(m_PosX - 1, m_PosY, new Empty());
+
+		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->IsFlammable())
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY + 1, new Empty());
+
+		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->IsFlammable())
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY - 1, new Empty());
 	}
 }

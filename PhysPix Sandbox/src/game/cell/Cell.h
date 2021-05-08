@@ -18,12 +18,11 @@ namespace cell
 		glm::vec4 m_Color;
 
 		bool m_IsFluid;
+		bool m_IsFlammable;
 
 	public:
 		Cell();
 		~Cell();
-
-		virtual Cell* clone() const = 0;
 
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnTick() {}
@@ -35,6 +34,7 @@ namespace cell
 		inline glm::vec4 GetColor() { return m_Color; }
 		inline uint8_t GetID() { return m_CellID; }
 		inline bool IsFluid() { return m_IsFluid; }
+		inline bool IsFlammable() { return m_IsFlammable; }
 	};
 }
 

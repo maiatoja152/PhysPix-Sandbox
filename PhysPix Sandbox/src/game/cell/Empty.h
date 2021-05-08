@@ -9,7 +9,5 @@ namespace cell
 	public:
 		Empty();
 		~Empty();
-
-		virtual Empty* clone() const override;
 	};
 }

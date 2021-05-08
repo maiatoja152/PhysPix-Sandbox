@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fluid.h"
+#include "Flammable.h"
 
 namespace cell
 {
@@ -9,8 +10,6 @@ namespace cell
 	public:
 		Poison(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Poison();
-
-		virtual Poison* clone() const override;
 
 		void OnUpdate(float deltaTime) override;
 		void OnTick() override;

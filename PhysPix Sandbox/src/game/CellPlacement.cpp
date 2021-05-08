@@ -17,7 +17,7 @@
 #include <functional>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
-	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(std::make_unique<cell::Water>(cellGrid, 0, 0)), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
+	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
 {
 	if (m_CellGrid != nullptr)
 		m_CellGrid->SetCellPlacement(this);
@@ -87,7 +87,7 @@ void CellPlacement::Place(int32_t posX, int32_t posY)
 
 	if (m_PlaceSize == 1)
 	{
-		m_CellGrid->ReplaceCell(posX, posY, m_ActiveCell->clone());
+		m_CellGrid->ReplaceCell(posX, posY, GetNewCellByID(m_ActiveCell));
 		return;
 	}
 
@@ -99,7 +99,7 @@ void CellPlacement::Place(int32_t posX, int32_t posY)
 		{
 			if (x * x + y * y <= r * r && rng() > 7)
 			{
-				m_CellGrid->ReplaceCell(posX + x, posY + y, m_ActiveCell->clone());
+				m_CellGrid->ReplaceCell(posX + x, posY + y, GetNewCellByID(m_ActiveCell));
 			}
 		}
 	}
@@ -127,6 +127,28 @@ void CellPlacement::Erase(int32_t posX, int32_t posY)
 	}
 }
 
+cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
+{
+	switch (id)
+	{
+	case cell_id::water:
+		return new cell::Water(m_CellGrid, 0, 0);
+		break;
+	case cell_id::sand:
+		return new cell::Sand(m_CellGrid, 0, 0);
+		break;
+	case cell_id::poison:
+		return new cell::Poison(m_CellGrid, 0, 0);
+		break;
+	case cell_id::stone:
+		return new cell::Stone(m_CellGrid, 0, 0);
+		break;
+	case cell_id::lava:
+		return new cell::Lava(m_CellGrid, 0, 0);
+		break;
+	}
+}
+
 void CellPlacement::OnImGuiRender()
 {
 	ImGui::Begin("Cell Placement Menu");
@@ -136,15 +158,15 @@ void CellPlacement::OnImGuiRender()
 	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 30);
 
 	if (ImGui::Button("Water"))
-		m_ActiveCell = std::make_unique<cell::Water>(m_CellGrid, 0, 0);
+		m_ActiveCell = cell_id::water;
 	if (ImGui::Button("Sand"))
-		m_ActiveCell = std::make_unique<cell::Sand>(m_CellGrid, 0, 0);
+		m_ActiveCell = cell_id::sand;
 	if (ImGui::Button("Poison"))
-		m_ActiveCell = std::make_unique<cell::Poison>(m_CellGrid, 0, 0);
+		m_ActiveCell = cell_id::poison;
 	if (ImGui::Button("Stone"))
-		m_ActiveCell = std::make_unique<cell::Stone>(m_CellGrid, 0, 0);
+		m_ActiveCell = cell_id::stone;
 	if (ImGui::Button("Lava"))
-		m_ActiveCell = std::make_unique<cell::Lava>(m_CellGrid, 0, 0);
+		m_ActiveCell = cell_id::lava;
 
 	ImGui::NewLine();
 
