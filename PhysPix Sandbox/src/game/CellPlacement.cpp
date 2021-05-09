@@ -15,7 +15,7 @@
 #include <random>
 #include <chrono>
 #include <functional>
-#include <iostream>
+#include <stdexcept>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
 	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
