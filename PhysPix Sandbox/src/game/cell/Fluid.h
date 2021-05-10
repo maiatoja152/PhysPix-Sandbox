@@ -1,6 +1,9 @@
 #pragma once
 
-class CellGrid;
+namespace cell
+{
+	class Cell;
+}
 
 #include <stdint.h>
 
@@ -9,13 +12,13 @@ namespace cell
 	class Fluid
 	{
 	protected:
-		int8_t m_FluidDirection;
+		int8_t m_FluidDir;
 
 		Fluid();
 	public:
 		~Fluid();
 
 	protected:
-		void FluidMove(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
+		void FluidMove(Cell* cell);
 	};
 }

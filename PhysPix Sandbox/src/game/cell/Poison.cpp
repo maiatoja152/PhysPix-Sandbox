@@ -20,7 +20,10 @@ namespace cell
 		m_Color = { 0.0f, 0.6f, 0.1f, 1.0f };
 
 		m_IsFluid = true;
-		m_FluidDirection = -1;
+		m_FluidDir = -1;
+		m_Density = cell_density::poison;
+
+		m_BurnLifetime = 20;
 	}
 
 	Poison::~Poison()
@@ -33,11 +36,16 @@ namespace cell
 
 	void Poison::OnTick()
 	{
-		BurnOnContact(m_CellGrid, m_PosX, m_PosY);
-
-		FluidMove(m_CellGrid, m_PosX, m_PosY);
+		FluidMove(this);
 
 		Spread();
+
+		SetBurningOnContact(m_CellGrid, m_PosX, m_PosY);
+		if (m_IsBurning)
+		{
+			m_BurnsSurroudings = true;
+			Burn();
+		}
 	}
 
 	void Poison::Spread()
@@ -57,6 +65,8 @@ namespace cell
 
 	void Poison::Burn()
 	{
-		RemoveCell();
+		m_BurnCounter++;
+		if (m_BurnCounter >= m_BurnLifetime)
+			RemoveCell();
 	}
 }

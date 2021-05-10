@@ -7,7 +7,7 @@
 namespace cell
 {
 	Cell::Cell()
-		: m_CellGrid(nullptr), m_PosX(0), m_PosY(0), m_CellID(cell_id::default_id), m_Color(1.0f, 0.0f, 1.0f, 1.0f), m_IsFluid(false), m_BurnsSurroudings(false)
+		: m_CellGrid(nullptr), m_IsTicked(false) , m_PosX(0), m_PosY(0), m_CellID(cell_id::default_id), m_Color(1.0f, 0.0f, 1.0f, 1.0f), m_IsFluid(false), m_Density(cell_density::default_density), m_BurnsSurroudings(false)
 	{
 	}
 

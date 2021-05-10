@@ -50,6 +50,7 @@ public:
 	void ReplaceCell(uint16_t x, uint16_t y, cell::Cell* replacement);
 	void MoveCell(uint16_t posX, uint16_t posY, uint16_t destX, uint16_t destY);
 	void SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+	void DisplaceFluid(uint16_t posX, uint16_t posY, int32_t destX, int32_t destY);
 
 	inline float GetCellSize() { return m_CellSize; }
 	inline int8_t GetDir() { return m_Dir; }

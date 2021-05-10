@@ -22,7 +22,8 @@ namespace cell
 		m_Color = { 1.0f, 0.45f, 0.2f, 1.0f };
 
 		m_IsFluid = true;
-		m_FluidDirection = -1;
+		m_FluidDir = -1;
+		m_Density = cell_density::lava;
 
 		m_BurnsSurroudings = true;
 	}
@@ -37,6 +38,6 @@ namespace cell
 
 	void Lava::OnTick()
 	{
-		FluidMove(m_CellGrid, m_PosX, m_PosY);
+		FluidMove(this);
 	}
 }

@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\cell\Smoke.cpp" />
     <ClCompile Include="src\game\CellPlacement.cpp" />
     <ClCompile Include="src\game\cell\Flammable.cpp" />
     <ClCompile Include="src\game\cell\Lava.cpp" />
@@ -330,6 +331,7 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\cell\Smoke.h" />
     <ClInclude Include="src\game\CellPlacement.h" />
     <ClInclude Include="src\game\cell\Flammable.h" />
     <ClInclude Include="src\game\cell\Lava.h" />

@@ -9,13 +9,17 @@
 #include "cell/Poison.h"
 #include "cell/Stone.h"
 #include "cell/Lava.h"
+#include "cell/Smoke.h"
 
 #include "imgui/imgui.h"
 
 #include <random>
 #include <chrono>
 #include <functional>
+
 #include <stdexcept>
+#include <string>
+#include <iostream>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
 	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
@@ -147,8 +151,13 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 	case cell_id::lava:
 		return new cell::Lava(m_CellGrid, 0, 0);
 		break;
+	case cell_id::smoke:
+		return new cell::Smoke(m_CellGrid, 0, 0);
+		break;
 	default:
-		throw std::invalid_argument("Default case triggered due to invalid cell ID");
+		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
+		std::cout << "[ERROR] " << message << std::endl;
+		throw std::invalid_argument(message.c_str());
 	}
 }
 
@@ -170,6 +179,8 @@ void CellPlacement::OnImGuiRender()
 		m_ActiveCell = cell_id::stone;
 	if (ImGui::Button("Lava"))
 		m_ActiveCell = cell_id::lava;
+	if (ImGui::Button("Smoke"))
+		m_ActiveCell = cell_id::smoke;
 
 	ImGui::NewLine();
 

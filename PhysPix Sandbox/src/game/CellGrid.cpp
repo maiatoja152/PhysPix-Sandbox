@@ -86,10 +86,18 @@ void CellGrid::Tick()
 	{
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
-			if(m_Cells[indices[i]][j]->GetID() != cell_id::empty)
+			if (m_Cells[indices[i]][j]->GetID() != cell_id::empty && !m_Cells[indices[i]][j]->IsTicked())
+			{
+				m_Cells[indices[i]][j]->SetTickState(true);
 				m_Cells[indices[i]][j]->OnTick();
+			}
 		}
 	}
+
+	// Untick all cells
+	for (auto& row : m_Cells)
+		for (auto& cell : row)
+			cell->SetTickState(false);
 }
 
 void CellGrid::OnRender()
@@ -244,4 +252,34 @@ void CellGrid::SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 
 	m_Cells[x2][y2]->UpdatePosition(x2, y2);
 	m_Cells[x1][y1]->UpdatePosition(x1, y1);
+}
+
+void CellGrid::DisplaceFluid(uint16_t posX, uint16_t posY, int32_t destX, int32_t destY)
+{
+	// Check left and right
+	if (GetCell(destX + m_Dir, destY)->GetID() == cell_id::empty)
+	{
+		SwapCells(destX, destY, destX + m_Dir, destY);
+		SwapCells(posX, posY, destX, destY);
+	}
+	else if (GetCell(destX - m_Dir, destY)->GetID() == cell_id::empty)
+	{
+		SwapCells(destX, destY, destX - m_Dir, destY);
+		SwapCells(posX, posY, destX, destY);
+	}
+	// Check upper left and right
+	else if (GetCell(destX + m_Dir, destY + 1)->GetID() == cell_id::empty)
+	{
+		SwapCells(destX, destY, destX + m_Dir, destY + 1);
+		SwapCells(posX, posY, destX, destY);
+	}
+	else if (GetCell(destX - m_Dir, destY + 1)->GetID() == cell_id::empty)
+	{
+		SwapCells(destX, destY, destX - m_Dir, destY + 1);
+		SwapCells(posX, posY, destX, destY);
+	}
+	else
+	{
+		SwapCells(posX, posY, destX, destY);
+	}
 }

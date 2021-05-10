@@ -6,6 +6,7 @@
 namespace cell
 {
 	Flammable::Flammable()
+		: m_IsBurning(false), m_BurnLifetime(0), m_BurnCounter(0)
 	{
 	}
 
@@ -13,18 +14,18 @@ namespace cell
 	{
 	}
 
-	void Flammable::BurnOnContact(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
+	void Flammable::SetBurningOnContact(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 	{
 		if (cellGrid->GetCell(posX + 1, posY)->BurnsSurroudings())
-			Burn();
+			m_IsBurning = true;
 
 		if (cellGrid->GetCell(posX - 1, posY)->BurnsSurroudings())
-			Burn();
+			m_IsBurning = true;
 
 		if (cellGrid->GetCell(posX, posY + 1)->BurnsSurroudings())
-			Burn();
+			m_IsBurning = true;
 
 		if (cellGrid->GetCell(posX, posY - 1)->BurnsSurroudings())
-			Burn();
+			m_IsBurning = true;
 	}
 }

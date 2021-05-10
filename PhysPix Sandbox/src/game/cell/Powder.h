@@ -1,6 +1,9 @@
 #pragma once
 
-class CellGrid;
+namespace cell
+{
+	class Cell;
+}
 
 #include <stdint.h>
 
@@ -11,8 +14,7 @@ namespace cell
 	protected:
 		Powder();
 
-		void PowderMove(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
-		void DisplaceFluid(CellGrid* cellGrid, uint16_t posX, uint16_t posY, int32_t destX, int32_t destY);
+		void PowderMove(Cell* cell);
 
 	public:
 		~Powder();

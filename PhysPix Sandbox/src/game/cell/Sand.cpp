@@ -24,6 +24,6 @@ namespace cell
 
 	void Sand::OnTick()
 	{
-		PowderMove(m_CellGrid, m_PosX, m_PosY);
+		PowderMove(this);
 	}
 }
