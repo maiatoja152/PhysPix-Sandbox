@@ -39,7 +39,7 @@ namespace cell
 		Cell* currCell = cellGrid->GetCell(posX, posY + m_FluidDir);
 		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
-			cellGrid->DisplaceFluid(posX, posY, posX, posY + m_FluidDir);
+			cellGrid->DisplaceFluid(posX, posY, posX, posY + m_FluidDir, m_FluidDir);
 			return;
 		}
 		int8_t dir = cellGrid->GetDir();
