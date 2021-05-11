@@ -7,6 +7,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "cell/Cell.h"
+#include "cell/Fluid.h"
+
 #include "cell/Empty.h"
 #include "cell/Water.h"
 #include "cell/Sand.h"
@@ -254,8 +256,10 @@ void CellGrid::SwapCells(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 	m_Cells[x1][y1]->UpdatePosition(x1, y1);
 }
 
-void CellGrid::DisplaceFluid(uint16_t posX, uint16_t posY, int32_t destX, int32_t destY)
+void CellGrid::DisplaceFluid(uint16_t posX, uint16_t posY, int32_t destX, int32_t destY, int8_t fluidDir /*= -1*/)
 {
+	cell::Fluid::CheckValidFluidDir(fluidDir);
+
 	// Check left and right
 	if (GetCell(destX + m_Dir, destY)->GetID() == cell_id::empty)
 	{
@@ -267,15 +271,15 @@ void CellGrid::DisplaceFluid(uint16_t posX, uint16_t posY, int32_t destX, int32_
 		SwapCells(destX, destY, destX - m_Dir, destY);
 		SwapCells(posX, posY, destX, destY);
 	}
-	// Check upper left and right
-	else if (GetCell(destX + m_Dir, destY + 1)->GetID() == cell_id::empty)
+	// Check upper or lower left and right based on fluid direction
+	else if (GetCell(destX + m_Dir, destY - fluidDir)->GetID() == cell_id::empty)
 	{
-		SwapCells(destX, destY, destX + m_Dir, destY + 1);
+		SwapCells(destX, destY, destX + m_Dir, destY - fluidDir);
 		SwapCells(posX, posY, destX, destY);
 	}
-	else if (GetCell(destX - m_Dir, destY + 1)->GetID() == cell_id::empty)
+	else if (GetCell(destX - m_Dir, destY - fluidDir)->GetID() == cell_id::empty)
 	{
-		SwapCells(destX, destY, destX - m_Dir, destY + 1);
+		SwapCells(destX, destY, destX - m_Dir, destY - fluidDir);
 		SwapCells(posX, posY, destX, destY);
 	}
 	else

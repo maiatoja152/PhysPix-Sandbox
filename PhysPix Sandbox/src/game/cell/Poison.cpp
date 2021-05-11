@@ -2,7 +2,7 @@
 
 #include "CellGrid.h"
 
-#include "Empty.h"
+#include "Smoke.h"
 
 #include <cstdlib>
 
@@ -40,7 +40,7 @@ namespace cell
 
 		Spread();
 
-		SetBurningOnContact(m_CellGrid, m_PosX, m_PosY);
+		SetBurningOnContact(this);
 		if (m_IsBurning)
 		{
 			m_BurnsSurroudings = true;
@@ -67,6 +67,6 @@ namespace cell
 	{
 		m_BurnCounter++;
 		if (m_BurnCounter >= m_BurnLifetime)
-			RemoveCell();
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Smoke(m_CellGrid, m_PosX, m_PosX));
 	}
 }

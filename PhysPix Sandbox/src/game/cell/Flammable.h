@@ -1,6 +1,9 @@
 #pragma once
 
-class CellGrid;
+namespace cell
+{
+	class Cell;
+}
 
 #include <stdint.h>
 
@@ -18,7 +21,7 @@ namespace cell
 		~Flammable();
 
 	protected:
-		void SetBurningOnContact(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
+		void SetBurningOnContact(Cell* cell);
 		virtual void Burn() = 0;
 	};
 }

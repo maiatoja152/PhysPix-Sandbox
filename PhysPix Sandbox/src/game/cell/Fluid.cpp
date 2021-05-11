@@ -26,12 +26,8 @@ namespace cell
 		auto density = cell->GetDensity();
 
 		// Error handling
-		if (m_FluidDir != -1 && m_FluidDir != 1)
-		{
-			std::string message = std::string("Invalid fluid direction value: ") + std::to_string(m_FluidDir) + ". Fluid direction should be either -1 or 1.";
-			std::cout << "[ERROR] " << message << std::endl;
-			throw std::logic_error(message.c_str());
-		}
+		CheckValidFluidDir(m_FluidDir);
+
 		if (density == cell_density::default_density)
 		{
 			const char* message = "Density of a fluid should not be equal to default density";
@@ -39,29 +35,60 @@ namespace cell
 			throw std::logic_error(message);
 		}
 
-		// Multiply the density check by (m_FluidDir == -1) because it should only apply for fluids that move downward.
-		// Doing this avoids a pair of if else statements and a lot of repeated code.
-		if (cellGrid->GetCell(posX, posY + m_FluidDir)->GetID() == cell_id::empty || (cellGrid->GetCell(posX, posY + m_FluidDir)->GetDensity() < density) * (m_FluidDir == -1))
+		// Movement checks
+		Cell* currCell = cellGrid->GetCell(posX, posY + m_FluidDir);
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX, posY + m_FluidDir);
 			return;
 		}
 		int8_t dir = cellGrid->GetDir();
-		if (cellGrid->GetCell(posX + dir, posY + m_FluidDir)->GetID() == cell_id::empty || (cellGrid->GetCell(posX + dir, posY + m_FluidDir)->GetDensity() < density) * (m_FluidDir == -1))
+		currCell = cellGrid->GetCell(posX + dir, posY + m_FluidDir);
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
-			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY + m_FluidDir);
+			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY + m_FluidDir, m_FluidDir);
+			return;
 		}
-		else if (cellGrid->GetCell(posX - dir, posY + m_FluidDir)->GetID() == cell_id::empty || (cellGrid->GetCell(posX - dir, posY + m_FluidDir)->GetDensity() < density) * (m_FluidDir == -1))
+		currCell = cellGrid->GetCell(posX - dir, posY + m_FluidDir);
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
-			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY + m_FluidDir);
+			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY + m_FluidDir, m_FluidDir);
+			return;
 		}
-		else if (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || (cellGrid->GetCell(posX + dir, posY)->GetDensity() < density) * (m_FluidDir == -1))
+		currCell = cellGrid->GetCell(posX + dir, posY);
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
-			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY);
+			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY, m_FluidDir);
+			return;
 		}
-		else if (cellGrid->GetCell(posX - dir, posY)->GetID() == cell_id::empty || (cellGrid->GetCell(posX - dir, posY)->GetDensity() < density) * (m_FluidDir == -1))
+		currCell = cellGrid->GetCell(posX - dir, posY);
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
-			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY);
+			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY, m_FluidDir);
+			return;
+		}
+	}
+
+	// Check if a fluid may displace another fluid based on their relative densities
+	bool Fluid::IsValidFluidDisplacement(uint8_t cellDensity, uint8_t destCellDensity)
+	{
+		// Not a fluid
+		if (destCellDensity == cell_density::default_density)
+			return false;
+
+		if (m_FluidDir == -1)
+			return destCellDensity < cellDensity;
+		else
+			return destCellDensity > cellDensity;
+	}
+
+	void Fluid::CheckValidFluidDir(int8_t fluidDir)
+	{
+		if (fluidDir != -1 && fluidDir != 1)
+		{
+			std::string message = std::string("Invalid fluid direction value: ") + std::to_string(fluidDir) + ". Fluid direction should be either -1 or 1.";
+			std::cout << "[ERROR] " << message << std::endl;
+			throw std::logic_error(message.c_str());
 		}
 	}
 }
