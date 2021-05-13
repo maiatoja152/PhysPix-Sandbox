@@ -183,6 +183,8 @@ void CellGrid::ResizeGrid(uint16_t columns, uint16_t rows)
 
 			m_Cells.pop_back();
 		}
+
+		m_Cells.reserve(columns);
 	}
 
 	if (rows > m_CellRows)
@@ -208,6 +210,8 @@ void CellGrid::ResizeGrid(uint16_t columns, uint16_t rows)
 				delete row.back();
 				row.pop_back();
 			}
+
+			row.reserve(rows);
 		}
 	}
 
