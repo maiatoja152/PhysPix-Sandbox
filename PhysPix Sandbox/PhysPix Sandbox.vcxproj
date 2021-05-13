@@ -172,6 +172,7 @@
     <ClCompile Include="src\game\CellGrid.cpp" />
     <ClCompile Include="src\game\cell\Empty.cpp" />
     <ClCompile Include="src\game\cell\Water.cpp" />
+    <ClCompile Include="src\game\PhysPix.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
     <ClCompile Include="src\tests\TestBouncingImage.cpp" />
     <ClCompile Include="src\tests\TestClearColor.cpp" />
@@ -331,6 +332,7 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\Assertion.h" />
     <ClInclude Include="src\game\cell\Smoke.h" />
     <ClInclude Include="src\game\CellPlacement.h" />
     <ClInclude Include="src\game\cell\Flammable.h" />
@@ -349,6 +351,7 @@
     <ClInclude Include="src\game\CellGrid.h" />
     <ClInclude Include="src\game\cell\Empty.h" />
     <ClInclude Include="src\game\cell\Water.h" />
+    <ClInclude Include="src\game\PhysPix.h" />
     <ClInclude Include="src\tests\Test.h" />
     <ClInclude Include="src\tests\TestBatchRendering.h" />
     <ClInclude Include="src\tests\TestBouncingImage.h" />

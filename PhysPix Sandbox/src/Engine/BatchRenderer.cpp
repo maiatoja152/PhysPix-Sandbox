@@ -26,26 +26,6 @@ struct Vertex
 	float TexIndex;
 };
 
-//struct RendererData
-//{
-//	GLuint QuadVA = 0;
-//	GLuint QuadVB = 0;
-//	GLuint QuadIB = 0;
-//
-//	GLuint WhiteTexture = 0;
-//	uint32_t WhiteTextureSlot = 0;
-//
-//	uint32_t IndexCount = 0;
-//
-//	Vertex* QuadBuffer = nullptr;
-//	Vertex* QuadBufferPtr = nullptr;
-//
-//	std::array<uint32_t, MaxTextures> TextureSlots;
-//	uint32_t TextureSlotIndex = 1;
-//
-//	BatchRenderer::Stats RendererStats;
-//};
-
 struct RendererData
 {
 	std::unique_ptr<VertexArray> QuadVA = nullptr;
@@ -191,7 +171,7 @@ void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, u
 	{
 		if (s_Data.TextureSlots[i] == textureID)
 		{
-			textureIndex = i;
+			textureIndex = static_cast<float>(i);
 			break;
 		}
 	}
@@ -209,29 +189,29 @@ void BatchRenderer::DrawQuad(const glm::vec2& position, const glm::vec2& size, u
 	s_Data.RendererStats.QuadCount++;
 }
 
-void BatchRenderer::GenerateQuadVerts(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color, uint32_t textureID)
+void BatchRenderer::GenerateQuadVerts(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color, float textureID)
 {
 	s_Data.QuadBufferPtr->Position = { -size.x / 2 + position.x, -size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
 	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 0.0f };
-	s_Data.QuadBufferPtr->TexIndex = textureID;
+	s_Data.QuadBufferPtr->TexIndex = static_cast<float>(textureID);
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { size.x / 2 + position.x, -size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
 	s_Data.QuadBufferPtr->TexCoords = { 1.0f, 0.0f };
-	s_Data.QuadBufferPtr->TexIndex = textureID;
+	s_Data.QuadBufferPtr->TexIndex = static_cast<float>(textureID);
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { size.x / 2 + position.x, size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
 	s_Data.QuadBufferPtr->TexCoords = { 1.0f, 1.0f };
-	s_Data.QuadBufferPtr->TexIndex = textureID;
+	s_Data.QuadBufferPtr->TexIndex = static_cast<float>(textureID);
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { -size.x / 2 + position.x, size.y / 2 + position.y, 0.0f };
 	s_Data.QuadBufferPtr->Color = color;
 	s_Data.QuadBufferPtr->TexCoords = { 0.0f, 1.0f };
-	s_Data.QuadBufferPtr->TexIndex = textureID;
+	s_Data.QuadBufferPtr->TexIndex = static_cast<float>(textureID);
 	s_Data.QuadBufferPtr++;
 }

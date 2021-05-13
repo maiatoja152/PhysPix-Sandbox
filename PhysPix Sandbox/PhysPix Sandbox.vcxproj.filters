@@ -72,15 +72,6 @@
     <ClCompile Include="src\Engine\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\cell\Cell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\cell\Empty.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\cell\Water.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\BatchRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,7 +81,22 @@
     <ClCompile Include="src\game\cell\Boundary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\cell\Cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\cell\Empty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\cell\Flammable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\game\cell\Fluid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\cell\Lava.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\cell\Poison.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\game\cell\Powder.cpp">
@@ -99,25 +105,22 @@
     <ClCompile Include="src\game\cell\Sand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\cell\Poison.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CellPlacement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\CellGrid.cpp">
+    <ClCompile Include="src\game\cell\Smoke.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\game\cell\Stone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\cell\Lava.cpp">
+    <ClCompile Include="src\game\cell\Water.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\cell\Flammable.cpp">
+    <ClCompile Include="src\game\CellGrid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\cell\Smoke.cpp">
+    <ClCompile Include="src\game\CellPlacement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\PhysPix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1441,15 +1444,6 @@
     <ClInclude Include="src\Engine\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\cell\Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\cell\Empty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\cell\Water.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\BatchRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1459,7 +1453,22 @@
     <ClInclude Include="src\game\cell\Boundary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\cell\Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\cell\Empty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\cell\Flammable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\game\cell\Fluid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\cell\Lava.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\cell\Poison.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\cell\Powder.h">
@@ -1468,25 +1477,25 @@
     <ClInclude Include="src\game\cell\Sand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\cell\Poison.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CellPlacement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\CellGrid.h">
+    <ClInclude Include="src\game\cell\Smoke.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\cell\Stone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\cell\Lava.h">
+    <ClInclude Include="src\game\cell\Water.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\cell\Flammable.h">
+    <ClInclude Include="src\game\CellGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\cell\Smoke.h">
+    <ClInclude Include="src\game\CellPlacement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\PhysPix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Assertion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

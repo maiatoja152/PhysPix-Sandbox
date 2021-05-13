@@ -1,6 +1,7 @@
 #pragma once
 
-#define ASSERT(x) if (!(x)) __debugbreak();
+#include "Assertion.h"
+
 #define GLCall(x) GLClearError();\
     x;\
     ASSERT(GLLogCall(#x, __FILE__, __LINE__))

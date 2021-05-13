@@ -20,7 +20,7 @@ public:
 	static void DrawQuad(const glm::vec2& position, const glm::vec2& size, uint32_t textureID);
 
 private:
-	static void GenerateQuadVerts(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color, uint32_t textureID);
+	static void GenerateQuadVerts(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color, float textureID);
 
 public:
 	struct Stats

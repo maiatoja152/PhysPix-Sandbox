@@ -1,0 +1,134 @@
+#include "PhysPix.h"
+
+#include "GLCore.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include "BatchRenderer.h"
+
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
+#include "CellGrid.h"
+#include "CellPlacement.h"
+
+#include <iostream>
+#include <chrono>
+#include <memory>
+
+namespace physpix
+{
+	static GLFWwindow* glfwWindow;
+	static int32_t windowResX = 1280, windowResY = 960;
+
+    static constexpr float cellSize = 3.0f;
+    static std::unique_ptr<CellGrid> cellGrid;
+    static std::unique_ptr<CellPlacement> cellPlacement;
+
+	bool Init()
+	{
+        if (!glfwInit())
+            return false;
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        /* Create a windowed mode window and its OpenGL context */
+        glfwWindow = glfwCreateWindow(windowResX, windowResY, "PhysPix Sandbox", NULL, NULL);
+        if (!glfwWindow)
+        {
+            glfwTerminate();
+            return false;
+        }
+
+        /* Make the window's context current */
+        glfwMakeContextCurrent(glfwWindow);
+
+        // Initialize GLEW
+        if (glewInit() != GLEW_OK)
+        {
+            glfwTerminate();
+            return false;
+        }
+
+        // Log the current OpenGL version
+        std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
+
+        // VSync
+        glfwSwapInterval(1);
+
+        // ImGui initialization
+        IMGUI_CHECKVERSION();
+        std::cout << "ImGui Version: " << ImGui::GetVersion() << std::endl;
+
+        ImGui::CreateContext();
+        ImGui_ImplGlfw_InitForOpenGL(glfwWindow, true);
+        ImGui::StyleColorsDark();
+        ImGui_ImplOpenGL3_Init();
+
+        BatchRenderer::Init();
+
+        cellGrid = std::make_unique<CellGrid>(glfwWindow, cellSize);
+        cellPlacement = std::make_unique<CellPlacement>(glfwWindow, cellGrid.get());
+
+        GLCall(glClearColor(0.1f, 0.1f, 0.1f, 1.0f));
+
+        return true;
+	}
+
+    void Run()
+    {
+        long long lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+        /* Loop until the user closes the window */
+        while (!glfwWindowShouldClose(glfwWindow))
+        {
+            glfwGetFramebufferSize(glfwWindow, &windowResX, &windowResY);
+            GLCall(glViewport(0, 0, windowResX, windowResY));
+
+            long long now = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            float deltaTime = (float)(now - lastFrameTime) / 1000000.0f;
+            lastFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+            cellGrid->OnUpdate(deltaTime);
+
+            /* Render here */
+            GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+            cellGrid->OnRender();
+
+            BatchRenderer::Flush();
+
+            // ImGui new frame
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplGlfw_NewFrame();
+            ImGui::NewFrame();
+
+            cellPlacement->OnImGuiRender();
+
+            // ImGui render
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+            /* Swap front and back buffers */
+            glfwSwapBuffers(glfwWindow);
+
+            /* Poll for and process events */
+            glfwPollEvents();
+        }
+    }
+
+    void Shutdown()
+    {
+        // ImGUI shutdown
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+
+        BatchRenderer::Shutdown();
+
+        glfwTerminate();
+    }
+}
