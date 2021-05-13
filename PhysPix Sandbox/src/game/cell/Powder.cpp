@@ -20,18 +20,27 @@ namespace cell
 		int32_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
-		int8_t dir = cellGrid->GetDir();
-		if (cellGrid->GetCell(posX, posY - 1)->GetID() == cell_id::empty || cellGrid->GetCell(posX, posY - 1)->IsFluid())
+		// Check down cell
+		Cell* currCell = cellGrid->GetCell(posX, posY - 1);
+		if (currCell->GetID() == cell_id::empty || currCell->IsFluid())
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX, posY - 1);
+			return;
 		}
-		else if (cellGrid->GetCell(posX + dir, posY - 1)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY - 1)->IsFluid())
+
+		// Check bottom left and right cells as well as the left and right cells on the same y-level
+		int8_t dir = cellGrid->GetDir();
+		currCell = cellGrid->GetCell(posX + dir, posY - 1);
+		if ((currCell->GetID() == cell_id::empty || currCell->IsFluid()) && (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY - 1);
+			return;
 		}
-		else if (cellGrid->GetCell(posX - dir, posY - 1)->GetID() == cell_id::empty || cellGrid->GetCell(posX - dir, posY - 1)->IsFluid())
+		currCell = cellGrid->GetCell(posX - dir, posY - 1);
+		if ((currCell->GetID() == cell_id::empty || currCell->IsFluid()) && (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY - 1);
+			return;
 		}
 	}
 }

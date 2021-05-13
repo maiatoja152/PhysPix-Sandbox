@@ -2,9 +2,10 @@
 
 #include "CellGrid.h"
 
-#include "Empty.h"
-
 #include "Flammable.h"
+
+#include "Empty.h"
+#include "Stone.h"
 
 #include <cstdlib>
 
@@ -38,6 +39,39 @@ namespace cell
 
 	void Lava::OnTick()
 	{
+		CoolToStone();
+
 		FluidMove(this);
+	}
+
+	void Lava::CoolToStone()
+	{
+		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == cell_id::water)
+		{
+			m_CellGrid->GetCell(m_PosX + 1, m_PosY)->RemoveCell();
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Stone(m_CellGrid, m_PosX + 1, m_PosY));
+			return;
+		}
+
+		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->GetID() == cell_id::water)
+		{
+			m_CellGrid->GetCell(m_PosX - 1, m_PosY)->RemoveCell();
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Stone(m_CellGrid, m_PosX - 1, m_PosY));
+			return;
+		}
+
+		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::water)
+		{
+			m_CellGrid->GetCell(m_PosX, m_PosY + 1)->RemoveCell();
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Stone(m_CellGrid, m_PosX, m_PosY + 1));
+			return;
+		}
+
+		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::water)
+		{
+			m_CellGrid->GetCell(m_PosX, m_PosY - 1)->RemoveCell();
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Stone(m_CellGrid, m_PosX, m_PosY - 1));
+			return;
+		}
 	}
 }
