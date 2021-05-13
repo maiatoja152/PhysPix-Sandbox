@@ -13,6 +13,7 @@
 #include "CellGrid.h"
 #include "CellPlacement.h"
 
+#include <stdint.h>
 #include <iostream>
 #include <chrono>
 #include <memory>
@@ -25,6 +26,8 @@ namespace physpix
     static constexpr float cellSize = 3.0f;
     static std::unique_ptr<CellGrid> cellGrid;
     static std::unique_ptr<CellPlacement> cellPlacement;
+
+    static constexpr float clearColor[4] = { 0.1f, 0.1f, 0.1f, 1.0f };
 
 	bool Init()
 	{
@@ -73,7 +76,7 @@ namespace physpix
         cellGrid = std::make_unique<CellGrid>(glfwWindow, cellSize);
         cellPlacement = std::make_unique<CellPlacement>(glfwWindow, cellGrid.get());
 
-        GLCall(glClearColor(0.1f, 0.1f, 0.1f, 1.0f));
+        GLCall(glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
 
         return true;
 	}
