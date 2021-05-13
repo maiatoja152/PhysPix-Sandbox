@@ -11,7 +11,7 @@ namespace cell
 
 		m_CellID = cell_id::steam;
 
-		m_Color = { 0.7f, 0.7f, 0.7f, 1.0f };
+		m_Color = { 0.8f, 0.8f, 0.8f, 1.0f };
 
 		m_IsFluid = true;
 		m_FluidDir = 1;

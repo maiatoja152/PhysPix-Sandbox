@@ -11,7 +11,7 @@ namespace cell
 
 		m_CellID = cell_id::stone;
 
-		m_Color = { 0.6f, 0.6f, 0.65f, 1.0f };
+		m_Color = { 0.5f, 0.5f, 0.53f, 1.0f };
 	}
 
 	Stone::~Stone()
