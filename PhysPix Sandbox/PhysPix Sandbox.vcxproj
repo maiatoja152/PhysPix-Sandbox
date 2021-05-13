@@ -171,6 +171,7 @@
     <ClCompile Include="src\game\cell\Cell.cpp" />
     <ClCompile Include="src\game\CellGrid.cpp" />
     <ClCompile Include="src\game\cell\Empty.cpp" />
+    <ClCompile Include="src\game\cell\Steam.cpp" />
     <ClCompile Include="src\game\cell\Water.cpp" />
     <ClCompile Include="src\game\PhysPix.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
@@ -350,6 +351,7 @@
     <ClInclude Include="src\game\cell\Cell.h" />
     <ClInclude Include="src\game\CellGrid.h" />
     <ClInclude Include="src\game\cell\Empty.h" />
+    <ClInclude Include="src\game\cell\Steam.h" />
     <ClInclude Include="src\game\cell\Water.h" />
     <ClInclude Include="src\game\PhysPix.h" />
     <ClInclude Include="src\tests\Test.h" />

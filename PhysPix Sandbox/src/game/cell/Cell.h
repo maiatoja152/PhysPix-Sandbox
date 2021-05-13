@@ -58,13 +58,14 @@ namespace cell_id
 	static constexpr uint8_t sand = 5;
 	static constexpr uint8_t stone = 6;
 	static constexpr uint8_t smoke = 7;
-	static constexpr uint8_t fire = 8;
+	static constexpr uint8_t steam = 8;
 	static constexpr uint8_t boundary = 255;
 }
 
 namespace cell_density
 {
 	static constexpr uint8_t default_density = 255;
+	static constexpr uint8_t steam = 125;
 	static constexpr uint8_t smoke = 126;
 	static constexpr uint8_t water = 127;
 	static constexpr uint8_t poison = 127;
