@@ -18,7 +18,6 @@ namespace cell
 
 		glm::vec4 m_Color;
 
-
 		bool m_IsFluid;
 		uint8_t m_Density;
 
@@ -66,6 +65,7 @@ namespace cell_id
 namespace cell_density
 {
 	static constexpr uint8_t default_density = 255;
+	static constexpr uint8_t fire = 0;
 	static constexpr uint8_t steam = 125;
 	static constexpr uint8_t smoke = 126;
 	static constexpr uint8_t water = 127;

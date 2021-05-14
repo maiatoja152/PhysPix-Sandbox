@@ -1,6 +1,7 @@
 #include "Fire.h"
 
 #include "CellGrid.h"
+
 #include "Smoke.h"
 
 #include <chrono>
@@ -20,6 +21,9 @@ namespace cell
 		m_CellID = cell_id::fire;
 
 		m_Color = { 0.8f, 0.1f, 0.1f, 1.0f };
+
+		m_IsFluid = true;
+		m_Density = cell_density::fire;
 
 		m_BurnsSurroudings = true;
 
@@ -55,6 +59,7 @@ namespace cell
 	void Fire::FireMove()
 	{
 		std::vector<std::pair<int32_t, int32_t>> validMovePositions;
+		int8_t dir = m_CellGrid->GetDir();
 
 		// Check down
 		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty)
@@ -62,22 +67,22 @@ namespace cell
 			validMovePositions.push_back({ m_PosX, m_PosY + 1 });
 		}
 		// Check upper left and right
-		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY + 1)->GetID() == cell_id::empty)
+		if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty)
 		{
-			validMovePositions.push_back({ m_PosX + 1, m_PosY + 1 });
+			validMovePositions.push_back({ m_PosX + dir, m_PosY + 1 });
 		}
-		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY + 1)->GetID() == cell_id::empty)
+		if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty)
 		{
-			validMovePositions.push_back({ m_PosX - 1, m_PosY + 1 });
+			validMovePositions.push_back({ m_PosX - dir, m_PosY + 1 });
 		}
 		// Check left and right
-		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == cell_id::empty)
+		if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty)
 		{
-			validMovePositions.push_back({ m_PosX + 1, m_PosY });
+			validMovePositions.push_back({ m_PosX + dir, m_PosY });
 		}
-		if (m_CellGrid->GetCell(m_PosX - 1, m_PosY)->GetID() == cell_id::empty)
+		if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty)
 		{
-			validMovePositions.push_back({ m_PosX - 1, m_PosY });
+			validMovePositions.push_back({ m_PosX - dir, m_PosY });
 		}
 
 		// Exit immediately if there are no valid moves
@@ -94,6 +99,5 @@ namespace cell
 				return;
 			}
 		}
-
 	}
 }

@@ -3,6 +3,7 @@
 #include "CellGrid.h"
 
 #include "Smoke.h"
+#include "Fire.h"
 
 #include <cstdlib>
 
@@ -23,7 +24,7 @@ namespace cell
 		m_FluidDir = -1;
 		m_Density = cell_density::poison;
 
-		m_BurnLifetime = 20;
+		m_BurnLifetime = 3;
 	}
 
 	Poison::~Poison()
@@ -41,6 +42,7 @@ namespace cell
 		Spread();
 
 		SetBurningOnContact(this);
+		ExtinguishIfSuffocated(this);
 		if (m_IsBurning)
 		{
 			m_BurnsSurroudings = true;
@@ -65,8 +67,34 @@ namespace cell
 
 	void Poison::Burn()
 	{
-		m_BurnCounter++;
-		if (m_BurnCounter >= m_BurnLifetime)
-			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Smoke(m_CellGrid, m_PosX, m_PosX));
+		int8_t dir = m_CellGrid->GetDir();
+		// Check down
+		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty)
+		{
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY + 1, new Fire(m_CellGrid, m_PosX, m_PosY + 1));
+		}
+		// Check upper left and right
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty)
+		{
+			m_CellGrid->ReplaceCell(m_PosX + dir, m_PosY + 1, new Fire(m_CellGrid, m_PosX + dir, m_PosY + 1));
+		}
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty)
+		{
+			m_CellGrid->ReplaceCell(m_PosX - dir, m_PosY + 1, new Fire(m_CellGrid, m_PosX - dir, m_PosY + 1));
+		}
+		// Check left and right
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty)
+		{
+			m_CellGrid->ReplaceCell(m_PosX + dir, m_PosY, new Fire(m_CellGrid, m_PosX + dir, m_PosY));
+		}
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty)
+		{
+			m_CellGrid->ReplaceCell(m_PosX - dir, m_PosY, new Fire(m_CellGrid, m_PosX - dir, m_PosY));
+		}
+
+		if (++m_BurnCounter >= m_BurnLifetime)
+		{
+			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Fire(m_CellGrid, m_PosX, m_PosX));
+		}
 	}
 }

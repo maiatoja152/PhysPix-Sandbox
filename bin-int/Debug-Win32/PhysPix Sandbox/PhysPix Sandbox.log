@@ -1,5 +1,2 @@
-﻿  Application.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\Engine\Application.cpp(63,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  CellGrid.cpp
-  Generating Code...
+﻿  PhysPix.cpp
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

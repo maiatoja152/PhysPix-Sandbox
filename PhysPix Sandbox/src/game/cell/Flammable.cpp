@@ -20,16 +20,31 @@ namespace cell
 		int32_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
-		if (cellGrid->GetCell(posX + 1, posY)->BurnsSurroudings())
+		if (cellGrid->GetCell(posX + 1, posY)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX - 1, posY)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX, posY + 1)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX, posY - 1)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX + 1, posY + 1)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX + 1, posY - 1)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX - 1, posY - 1)->BurnsSurroudings() ||
+			cellGrid->GetCell(posX - 1, posY + 1)->BurnsSurroudings())
+		{
 			m_IsBurning = true;
+		}
+	}
 
-		if (cellGrid->GetCell(posX - 1, posY)->BurnsSurroudings())
-			m_IsBurning = true;
+	void Flammable::ExtinguishIfSuffocated(Cell* cell)
+	{
+		auto cellGrid = cell->GetCellGrid();
+		int32_t posX, posY;
+		cell->GetPosition(&posX, &posY);
 
-		if (cellGrid->GetCell(posX, posY + 1)->BurnsSurroudings())
-			m_IsBurning = true;
-
-		if (cellGrid->GetCell(posX, posY - 1)->BurnsSurroudings())
-			m_IsBurning = true;
+		if (cellGrid->GetCell(posX + 1, posY)->GetID() != cell_id::empty &&
+			cellGrid->GetCell(posX - 1, posY)->GetID() != cell_id::empty &&
+			cellGrid->GetCell(posX, posY + 1)->GetID() != cell_id::empty &&
+			cellGrid->GetCell(posX, posY - 1)->GetID() != cell_id::empty)
+		{
+			m_IsBurning = false;
+		}
 	}
 }
