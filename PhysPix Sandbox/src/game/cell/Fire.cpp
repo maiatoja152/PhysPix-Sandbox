@@ -54,47 +54,33 @@ namespace cell
 
 	void Fire::FireMove()
 	{
-		std::vector<std::pair<int32_t, int32_t>> validMovePositions;
-		validMovePositions.reserve(5);
 		int8_t dir = m_CellGrid->GetDir();
 
+		int randomNum = m_rng();
+		float biases[] = { 0.6f, 0.8f, 0.8f, 1.0f, 1.0f };
+
 		// Check down
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty)
+		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[0] <= m_rngMax)
 		{
-			validMovePositions.push_back({ m_PosX, m_PosY + 1 });
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX, m_PosY + 1);
 		}
 		// Check upper left and right
-		if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty)
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[1] <= m_rngMax)
 		{
-			validMovePositions.push_back({ m_PosX + dir, m_PosY + 1 });
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY + 1);
 		}
-		if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty)
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[2] <= m_rngMax)
 		{
-			validMovePositions.push_back({ m_PosX - dir, m_PosY + 1 });
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY + 1);
 		}
 		// Check left and right
-		if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty)
+		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty && randomNum * biases[3] <= m_rngMax)
 		{
-			validMovePositions.push_back({ m_PosX + dir, m_PosY });
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY);
 		}
-		if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty)
+		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty && randomNum * biases[4] <= m_rngMax)
 		{
-			validMovePositions.push_back({ m_PosX - dir, m_PosY });
-		}
-
-		// Exit immediately if there are no valid moves
-		if (validMovePositions.size() == 0)
-			return;
-
-		float biases[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
-		int randomNum = m_rng();
-		for (uint8_t i = 0; i < validMovePositions.size(); i++)
-		{
-			if (randomNum * biases[i] <= (m_rngMax / validMovePositions.size()) * (i + 1))
-			{
-				m_CellGrid->SwapCells(m_PosX, m_PosY, validMovePositions[i].first, validMovePositions[i].second);
-				return;
-			}
+			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
 		}
 	}
 }
