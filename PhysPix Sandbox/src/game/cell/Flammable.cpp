@@ -3,6 +3,8 @@
 #include "Cell.h"
 #include "CellGrid.h"
 
+#include "Fire.h"
+
 namespace cell
 {
 	Flammable::Flammable()
@@ -45,6 +47,43 @@ namespace cell
 			cellGrid->GetCell(posX, posY - 1)->GetID() != cell_id::empty)
 		{
 			m_IsBurning = false;
+		}
+	}
+
+	void Flammable::Burn(Cell* cell)
+	{
+		CellGrid* cellGrid = cell->GetCellGrid();
+		int32_t posX, posY;
+		cell->GetPosition(&posX, &posY);
+
+		int8_t dir = cellGrid->GetDir();
+		// Check down
+		if (cellGrid->GetCell(posX, posY + 1)->GetID() == cell_id::empty)
+		{
+			cellGrid->ReplaceCell(posX, posY + 1, new Fire(cellGrid, posX, posY + 1));
+		}
+		// Check upper left and right
+		else if (cellGrid->GetCell(posX + dir, posY + 1)->GetID() == cell_id::empty)
+		{
+			cellGrid->ReplaceCell(posX + dir, posY + 1, new Fire(cellGrid, posX + dir, posY + 1));
+		}
+		else if (cellGrid->GetCell(posX - dir, posY + 1)->GetID() == cell_id::empty)
+		{
+			cellGrid->ReplaceCell(posX - dir, posY + 1, new Fire(cellGrid, posX - dir, posY + 1));
+		}
+		// Check left and right
+		else if (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty)
+		{
+			cellGrid->ReplaceCell(posX + dir, posY, new Fire(cellGrid, posX + dir, posY));
+		}
+		else if (cellGrid->GetCell(posX - dir, posY)->GetID() == cell_id::empty)
+		{
+			cellGrid->ReplaceCell(posX - dir, posY, new Fire(cellGrid, posX - dir, posY));
+		}
+
+		if (++m_BurnCounter >= m_BurnLifetime)
+		{
+			cellGrid->ReplaceCell(posX, posY, new Fire(cellGrid, posX, posX));
 		}
 	}
 }

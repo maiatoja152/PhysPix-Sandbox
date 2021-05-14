@@ -30,7 +30,7 @@ namespace cell
 		long long seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 		m_rng = std::bind(std::uniform_int_distribution<int>(0, m_rngMax), std::mt19937(static_cast<unsigned int>(seed)));
 
-		m_Lifetime = std::bind(std::uniform_int_distribution<int>(20, 50), std::mt19937(static_cast<unsigned int>(seed)))();
+		m_Lifetime = std::bind(std::uniform_int_distribution<int>(10, 50), std::mt19937(static_cast<unsigned int>(seed)))();
 	}
 
 	Fire::~Fire()
@@ -59,6 +59,7 @@ namespace cell
 	void Fire::FireMove()
 	{
 		std::vector<std::pair<int32_t, int32_t>> validMovePositions;
+		validMovePositions.reserve(5);
 		int8_t dir = m_CellGrid->GetDir();
 
 		// Check down

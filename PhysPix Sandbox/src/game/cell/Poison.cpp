@@ -43,11 +43,9 @@ namespace cell
 
 		SetBurningOnContact(this);
 		ExtinguishIfSuffocated(this);
+		m_BurnsSurroudings = m_IsBurning;
 		if (m_IsBurning)
-		{
-			m_BurnsSurroudings = true;
-			Burn();
-		}
+			Burn(this);
 	}
 
 	void Poison::Spread()
@@ -63,38 +61,5 @@ namespace cell
 
 		if (m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::water)
 			m_CellGrid->ReplaceCell(m_PosX, m_PosY - 1, new Poison(m_CellGrid, m_PosX, m_PosY - 1));
-	}
-
-	void Poison::Burn()
-	{
-		int8_t dir = m_CellGrid->GetDir();
-		// Check down
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty)
-		{
-			m_CellGrid->ReplaceCell(m_PosX, m_PosY + 1, new Fire(m_CellGrid, m_PosX, m_PosY + 1));
-		}
-		// Check upper left and right
-		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty)
-		{
-			m_CellGrid->ReplaceCell(m_PosX + dir, m_PosY + 1, new Fire(m_CellGrid, m_PosX + dir, m_PosY + 1));
-		}
-		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty)
-		{
-			m_CellGrid->ReplaceCell(m_PosX - dir, m_PosY + 1, new Fire(m_CellGrid, m_PosX - dir, m_PosY + 1));
-		}
-		// Check left and right
-		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty)
-		{
-			m_CellGrid->ReplaceCell(m_PosX + dir, m_PosY, new Fire(m_CellGrid, m_PosX + dir, m_PosY));
-		}
-		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty)
-		{
-			m_CellGrid->ReplaceCell(m_PosX - dir, m_PosY, new Fire(m_CellGrid, m_PosX - dir, m_PosY));
-		}
-
-		if (++m_BurnCounter >= m_BurnLifetime)
-		{
-			m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Fire(m_CellGrid, m_PosX, m_PosX));
-		}
 	}
 }

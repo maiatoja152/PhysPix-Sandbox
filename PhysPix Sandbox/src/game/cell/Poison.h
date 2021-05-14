@@ -17,7 +17,5 @@ namespace cell
 
 	private:
 		void Spread();
-
-		virtual void Burn() override;
 	};
 }
