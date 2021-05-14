@@ -139,25 +139,18 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 	{
 	case cell_id::water:
 		return new cell::Water(m_CellGrid, 0, 0);
-		break;
 	case cell_id::sand:
 		return new cell::Sand(m_CellGrid, 0, 0);
-		break;
 	case cell_id::poison:
 		return new cell::Poison(m_CellGrid, 0, 0);
-		break;
 	case cell_id::stone:
 		return new cell::Stone(m_CellGrid, 0, 0);
-		break;
 	case cell_id::lava:
 		return new cell::Lava(m_CellGrid, 0, 0);
-		break;
 	case cell_id::smoke:
 		return new cell::Smoke(m_CellGrid, 0, 0);
-		break;
 	case cell_id::steam:
 		return new cell::Steam(m_CellGrid, 0, 0);
-		break;
 	default:
 		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
 		std::cout << "[ERROR] " << message << std::endl;
