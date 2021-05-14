@@ -11,7 +11,7 @@
 namespace cell
 {
 	Fire::Fire(CellGrid* cellGrid, int32_t posX, int32_t posY)
-		: m_rng(std::bind(std::uniform_int_distribution<int>(NULL), std::mt19937(static_cast<unsigned int>(NULL)))), m_rngMax(100), m_Lifetime(NULL), m_LifetimeCounter(0)
+		: m_rng(std::bind(std::uniform_int_distribution<int>(NULL), std::mt19937(static_cast<unsigned int>(NULL)))), m_rngMax(1000), m_Lifetime(NULL), m_LifetimeCounter(0)
 	{
 		m_CellGrid = cellGrid;
 
@@ -41,7 +41,7 @@ namespace cell
 	{
 		if (++m_LifetimeCounter >= m_Lifetime)
 		{
-			if (m_rng() % 5 == 0)
+			if (m_rng() % 13 == 0)
 				m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Smoke(m_CellGrid, m_PosX, m_PosY));
 			else
 				RemoveCell();

@@ -66,10 +66,10 @@ namespace cell_density
 {
 	static constexpr uint8_t default_density = 255;
 	static constexpr uint8_t fire = 0;
-	static constexpr uint8_t steam = 125;
-	static constexpr uint8_t smoke = 126;
+	static constexpr uint8_t steam = 99;
+	static constexpr uint8_t smoke = 100;
+	static constexpr uint8_t oil = 126;
 	static constexpr uint8_t water = 127;
 	static constexpr uint8_t poison = 127;
-	static constexpr uint8_t oil = 128;
 	static constexpr uint8_t lava = 129;
 }
