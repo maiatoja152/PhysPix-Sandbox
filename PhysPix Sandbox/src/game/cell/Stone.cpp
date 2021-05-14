@@ -18,10 +18,6 @@ namespace cell
 	{
 	}
 
-	void Stone::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Stone::OnTick()
 	{
 	}

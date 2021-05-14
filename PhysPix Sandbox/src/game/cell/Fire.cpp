@@ -37,10 +37,6 @@ namespace cell
 	{
 	}
 
-	void Fire::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Fire::OnTick()
 	{
 		if (++m_LifetimeCounter >= m_Lifetime)

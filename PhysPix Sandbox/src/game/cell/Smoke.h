@@ -11,7 +11,6 @@ namespace cell
 		Smoke(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Smoke();
 
-		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 	};
 }

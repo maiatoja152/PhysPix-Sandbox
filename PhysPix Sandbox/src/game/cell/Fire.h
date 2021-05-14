@@ -19,7 +19,6 @@ namespace cell
 		Fire(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Fire();
 
-		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 
 	private:

@@ -22,10 +22,6 @@ namespace cell
 	{
 	}
 
-	void Steam::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Steam::OnTick()
 	{
 		FluidMove(this);

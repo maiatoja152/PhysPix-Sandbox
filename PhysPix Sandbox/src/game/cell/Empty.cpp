@@ -13,10 +13,6 @@ namespace cell
 	{
 	}
 
-	void Empty::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Empty::OnTick()
 	{
 	}

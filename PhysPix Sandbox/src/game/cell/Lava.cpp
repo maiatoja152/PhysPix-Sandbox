@@ -34,10 +34,6 @@ namespace cell
 	{
 	}
 
-	void Lava::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Lava::OnTick()
 	{
 		CoolToStone();

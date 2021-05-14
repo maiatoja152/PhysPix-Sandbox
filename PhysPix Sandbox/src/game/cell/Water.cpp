@@ -28,10 +28,6 @@ namespace cell
 	{
 	}
 
-	void Water::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Water::OnTick()
 	{
 		FluidMove(this);

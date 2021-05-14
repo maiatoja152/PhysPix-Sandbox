@@ -11,7 +11,6 @@ namespace cell
 		Steam(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Steam();
 
-		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 	};
 }

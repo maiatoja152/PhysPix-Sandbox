@@ -54,15 +54,6 @@ void CellGrid::OnUpdate(float deltaTime)
 		Tick();
 		m_TickTimer += m_TickInterval;
 	}
-
-	for (uint16_t i = 0; i < m_Cells.size(); i++)
-	{
-		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
-		{
-			if (m_Cells[i][j]->GetID() != cell_id::empty)
-				m_Cells[i][j]->OnUpdate(deltaTime);
-		}
-	}
 }
 
 void CellGrid::Tick()

@@ -13,10 +13,6 @@ namespace cell
 	{
 	}
 
-	void Boundary::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Boundary::OnTick()
 	{
 	}

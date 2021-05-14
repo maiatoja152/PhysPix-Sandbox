@@ -22,10 +22,6 @@ namespace cell
 	{
 	}
 
-	void Smoke::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Smoke::OnTick()
 	{
 		FluidMove(this);

@@ -31,10 +31,6 @@ namespace cell
 	{
 	}
 
-	void Poison::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Poison::OnTick()
 	{
 		FluidMove(this);

@@ -12,7 +12,6 @@ namespace cell
 		Stone(CellGrid* cellGrid, int32_t posX, int32_t posY);
 		~Stone();
 
-		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 	};
 }

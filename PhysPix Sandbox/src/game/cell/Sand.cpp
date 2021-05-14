@@ -18,10 +18,6 @@ namespace cell
 	{
 	}
 
-	void Sand::OnUpdate(float deltaTime)
-	{
-	}
-
 	void Sand::OnTick()
 	{
 		PowderMove(this);

@@ -10,7 +10,6 @@ namespace cell
 		Boundary();
 		~Boundary();
 
-		void OnUpdate(float deltaTime) override;
 		void OnTick() override;
 	};
 }
