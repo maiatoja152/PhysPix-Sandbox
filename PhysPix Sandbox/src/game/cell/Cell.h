@@ -58,7 +58,8 @@ namespace cell_id
 	static constexpr uint8_t sand = 5;
 	static constexpr uint8_t stone = 6;
 	static constexpr uint8_t smoke = 7;
-	static constexpr uint8_t steam = 8;
+	static constexpr uint8_t fire = 8;
+	static constexpr uint8_t steam = 9;
 	static constexpr uint8_t boundary = 255;
 }
 

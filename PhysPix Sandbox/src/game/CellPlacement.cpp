@@ -11,6 +11,7 @@
 #include "cell/Lava.h"
 #include "cell/Smoke.h"
 #include "cell/Steam.h"
+#include "cell/Fire.h"
 
 #include "imgui/imgui.h"
 
@@ -158,6 +159,9 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 	case cell_id::steam:
 		return new cell::Steam(m_CellGrid, 0, 0);
 		break;
+	case cell_id::fire:
+		return new cell::Fire(m_CellGrid, 0, 0);
+		break;
 	default:
 		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
 		std::cout << "[ERROR] " << message << std::endl;
@@ -187,6 +191,8 @@ void CellPlacement::OnImGuiRender()
 		m_ActiveCell = cell_id::smoke;
 	if (ImGui::Button("Steam"))
 		m_ActiveCell = cell_id::steam;
+	if (ImGui::Button("Fire"))
+		m_ActiveCell = cell_id::fire;
 
 	ImGui::NewLine();
 
