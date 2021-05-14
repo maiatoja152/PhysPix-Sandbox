@@ -8,7 +8,7 @@ namespace cell
 	class Lava : public Cell, public Fluid
 	{
 	public:
-		Lava(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Lava(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Lava();
 
 		void OnTick() override;

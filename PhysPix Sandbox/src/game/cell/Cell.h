@@ -13,7 +13,7 @@ namespace cell
 	protected:
 		CellGrid* m_CellGrid;
 		bool m_IsTicked;
-		int32_t m_PosX, m_PosY;
+		uint16_t m_PosX, m_PosY;
 		uint8_t m_CellID;
 
 		glm::vec4 m_Color;
@@ -36,7 +36,7 @@ namespace cell
 		inline CellGrid* GetCellGrid() { return m_CellGrid; }
 		void SetTickState(bool state) { m_IsTicked = state; }
 		inline bool IsTicked() { return m_IsTicked; }
-		inline void GetPosition(int32_t* x, int32_t* y) { *x = m_PosX; *y = m_PosY; }
+		inline void GetPosition(uint16_t* x, uint16_t* y) { *x = m_PosX; *y = m_PosY; }
 		inline uint8_t GetID() { return m_CellID; }
 		inline glm::vec4 GetColor() { return m_Color; }
 

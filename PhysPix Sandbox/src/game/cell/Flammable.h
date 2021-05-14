@@ -13,8 +13,8 @@ namespace cell
 	{
 	protected:
 		bool m_IsBurning;
-		uint32_t m_BurnLifetime;
-		uint32_t m_BurnCounter;
+		uint16_t m_BurnLifetime;
+		uint16_t m_BurnCounter;
 
 		Flammable();
 	public:

@@ -16,7 +16,7 @@ namespace cell
 		uint16_t m_Lifetime, m_LifetimeCounter;
 
 	public:
-		Fire(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Fire(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Fire();
 
 		void OnTick() override;

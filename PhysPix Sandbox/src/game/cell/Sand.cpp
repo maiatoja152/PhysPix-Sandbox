@@ -2,7 +2,7 @@
 
 namespace cell
 {
-	Sand::Sand(CellGrid* cellGrid, int32_t posX, int32_t posY)
+	Sand::Sand(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 	{
 		m_CellGrid = cellGrid;
 

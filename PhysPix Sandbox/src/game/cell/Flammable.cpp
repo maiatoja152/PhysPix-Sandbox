@@ -19,7 +19,7 @@ namespace cell
 	void Flammable::SetBurningOnContact(Cell* cell)
 	{
 		auto cellGrid = cell->GetCellGrid();
-		int32_t posX, posY;
+		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
 		if (cellGrid->GetCell(posX + 1, posY)->BurnsSurroudings() ||
@@ -38,7 +38,7 @@ namespace cell
 	void Flammable::ExtinguishIfSuffocated(Cell* cell)
 	{
 		auto cellGrid = cell->GetCellGrid();
-		int32_t posX, posY;
+		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
 		if (cellGrid->GetCell(posX + 1, posY)->GetID() != cell_id::empty &&
@@ -53,7 +53,7 @@ namespace cell
 	void Flammable::Burn(Cell* cell)
 	{
 		CellGrid* cellGrid = cell->GetCellGrid();
-		int32_t posX, posY;
+		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
 		int8_t dir = cellGrid->GetDir();

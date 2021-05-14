@@ -17,7 +17,7 @@ namespace cell
 	void Powder::PowderMove(Cell* cell)
 	{
 		auto cellGrid = cell->GetCellGrid();
-		int32_t posX, posY;
+		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 
 		// Check down cell

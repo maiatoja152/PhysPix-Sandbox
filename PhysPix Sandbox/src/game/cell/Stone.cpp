@@ -2,7 +2,7 @@
 
 namespace cell
 {
-	Stone::Stone(CellGrid* cellGrid, int32_t posX, int32_t posY)
+	Stone::Stone(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 	{
 		m_CellGrid = cellGrid;
 

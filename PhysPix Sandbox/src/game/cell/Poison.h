@@ -9,7 +9,7 @@ namespace cell
 	class Poison : public Cell, public Fluid, public Flammable
 	{
 	public:
-		Poison(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Poison(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Poison();
 
 		void OnTick() override;

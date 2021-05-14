@@ -9,7 +9,7 @@
 
 namespace cell
 {
-	Poison::Poison(CellGrid* cellGrid, int32_t posX, int32_t posY)
+	Poison::Poison(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 	{
 		m_CellGrid = cellGrid;
 

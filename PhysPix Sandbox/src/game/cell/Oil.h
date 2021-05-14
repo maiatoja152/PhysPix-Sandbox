@@ -9,7 +9,7 @@ namespace cell
 	class Oil : public Cell, public Fluid, public Flammable
 	{
 	public:
-		Oil(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Oil(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Oil();
 
 		void OnTick() override;

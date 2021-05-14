@@ -8,7 +8,7 @@ namespace cell
 	class Sand : public Cell, public Powder
 	{
 	public:
-		Sand(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Sand(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Sand();
 
 		void OnTick() override;

@@ -10,7 +10,7 @@
 
 namespace cell
 {
-	Fire::Fire(CellGrid* cellGrid, int32_t posX, int32_t posY)
+	Fire::Fire(CellGrid* cellGrid, uint16_t posX, uint16_t posY)
 		: m_rng(std::bind(std::uniform_int_distribution<int>(NULL), std::mt19937(static_cast<unsigned int>(NULL)))), m_rngMax(1000), m_Lifetime(NULL), m_LifetimeCounter(0)
 	{
 		m_CellGrid = cellGrid;
@@ -86,7 +86,7 @@ namespace cell
 		if (validMovePositions.size() == 0)
 			return;
 
-		float biases[] = { 0.5f, 0.7f, 0.8f, 1.0f, 1.0f };
+		float biases[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 		int randomNum = m_rng();
 		for (uint8_t i = 0; i < validMovePositions.size(); i++)
 		{

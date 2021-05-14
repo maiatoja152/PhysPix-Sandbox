@@ -9,7 +9,7 @@ namespace cell
 	class Stone : public Cell
 	{
 	public:
-		Stone(CellGrid* cellGrid, int32_t posX, int32_t posY);
+		Stone(CellGrid* cellGrid, uint16_t posX, uint16_t posY);
 		~Stone();
 
 		void OnTick() override;

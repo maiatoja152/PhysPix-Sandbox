@@ -21,7 +21,7 @@ namespace cell
 	void Fluid::FluidMove(Cell* cell)
 	{
 		auto cellGrid = cell->GetCellGrid();
-		int32_t posX, posY;
+		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
 		auto density = cell->GetDensity();
 
