@@ -72,14 +72,14 @@ namespace cell
 		// Check upper left and right
 		currCell = m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1);
 		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
-			randomNum * biases[1] <= m_rngMax)
+			(randomNum * biases[1] <= m_rngMax))
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY + 1);
 			return;
 		}
 		currCell = m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1);
 		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
-			randomNum * biases[2] <= m_rngMax)
+			(randomNum * biases[2] <= m_rngMax))
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY + 1);
 			return;
@@ -87,14 +87,14 @@ namespace cell
 		// Check left and right
 		currCell = m_CellGrid->GetCell(m_PosX + dir, m_PosY);
 		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
-			randomNum * biases[3] <= m_rngMax)
+			(randomNum * biases[3] <= m_rngMax))
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY);
 			return;
 		}
 		currCell = m_CellGrid->GetCell(m_PosX - dir, m_PosY);
 		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
-			randomNum * biases[4] <= m_rngMax)
+			(randomNum * biases[4] <= m_rngMax))
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
 			return;
