@@ -2,6 +2,8 @@
 
 #include "GLFW/glfw3.h"
 
+#include "imgui/imgui.h"
+
 #include <memory>
 
 namespace cell
@@ -24,6 +26,8 @@ private:
 	enum class ClickState { None, Left, Right};
 	ClickState m_ClickState;
 
+	uint16_t m_MenuBarHeight;
+
 public:
 	CellPlacement(GLFWwindow* window, CellGrid* cellGrid);
 	~CellPlacement();
@@ -38,4 +42,8 @@ private:
 	void Erase(int32_t posX, int32_t posY);
 
 	cell::Cell* GetNewCellByID(uint8_t id);
+
+public:
+	// \return Height of the menu bar where cells can be selected in pixels
+	uint16_t GetMenuBarHeight() { return m_MenuBarHeight; }
 };

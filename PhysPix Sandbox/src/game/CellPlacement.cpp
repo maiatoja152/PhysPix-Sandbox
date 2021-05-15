@@ -13,8 +13,6 @@
 #include "cell/Steam.h"
 #include "cell/Oil.h"
 
-#include "imgui/imgui.h"
-
 #include <random>
 #include <chrono>
 #include <functional>
@@ -24,7 +22,9 @@
 #include <iostream>
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
-	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10), m_InputEnabled(true), m_ClickState(ClickState::None)
+	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10),
+	m_InputEnabled(true), m_ClickState(ClickState::None),
+	m_MenuBarHeight(100)
 {
 	if (m_CellGrid != nullptr)
 		m_CellGrid->SetCellPlacement(this);
@@ -50,6 +50,7 @@ void CellPlacement::OnTick()
 
 		int32_t windowWidth, windowHeight;
 		glfwGetFramebufferSize(m_Window, &windowWidth, &windowHeight);
+		windowHeight -= m_MenuBarHeight;
 
 		// Remap mouse position to make the origin bottom-left instead of top-left
 		clickPosY = static_cast<double>(windowHeight + (clickPosY - 0) * (0 - windowHeight) / (windowHeight - 0));
@@ -66,6 +67,7 @@ void CellPlacement::OnTick()
 
 		int32_t windowWidth, windowHeight;
 		glfwGetFramebufferSize(m_Window, &windowWidth, &windowHeight);
+		windowHeight -= m_MenuBarHeight;
 
 		// Remap mouse position to make the origin bottom-left instead of top-left
 		clickPosY = static_cast<double>(windowHeight + (clickPosY - 0) * (0 - windowHeight) / (windowHeight - 0));
@@ -163,33 +165,70 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 
 void CellPlacement::OnImGuiRender()
 {
-	ImGui::Begin("Cell Placement Menu");
+	int32_t windowWidth, windowHeight;
+	glfwGetFramebufferSize(m_Window, &windowWidth, &windowHeight);
+
+	m_MenuBarHeight = windowHeight * 0.1f;
+	ImGui::SetNextWindowPos({ 0, static_cast<float>(windowHeight - m_MenuBarHeight) });
+	ImGui::SetNextWindowSize({ static_cast<float>(windowWidth), static_cast<float>(m_MenuBarHeight) });
+
+	ImGuiWindowFlags flags =
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoScrollbar;
+
+	ImGui::Begin("Cell Placement Menu", 0, flags);
 
 	m_InputEnabled = !ImGui::IsWindowHovered();
 
+	// Slider
+	float sliderWidth = windowWidth * 0.2f;
+	ImGui::SetCursorPosX((windowWidth - sliderWidth) / 2);
+	ImGui::SetNextItemWidth(sliderWidth);
 	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 30);
 
-	if (ImGui::Button("Water"))
+	// Buttons
+	ImVec2 btnSize = { 100, 40 };
+	uint8_t numOfButtons = 8;
+	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
+	if (ImGui::Button("Water", btnSize))
 		m_ActiveCell = cell_id::water;
-	if (ImGui::Button("Sand"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Sand", btnSize))
 		m_ActiveCell = cell_id::sand;
-	if (ImGui::Button("Poison"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Poison", btnSize))
 		m_ActiveCell = cell_id::poison;
-	if (ImGui::Button("Stone"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Stone", btnSize))
 		m_ActiveCell = cell_id::stone;
-	if (ImGui::Button("Lava"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Lava", btnSize))
 		m_ActiveCell = cell_id::lava;
-	if (ImGui::Button("Smoke"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Smoke", btnSize))
 		m_ActiveCell = cell_id::smoke;
-	if (ImGui::Button("Steam"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Steam", btnSize))
 		m_ActiveCell = cell_id::steam;
-	if (ImGui::Button("Oil"))
+	ImGui::SameLine();
+
+	if (ImGui::Button("Oil", btnSize))
 		m_ActiveCell = cell_id::oil;
 
-	ImGui::NewLine();
-
-	if (ImGui::Button("Reset"))
-		m_CellGrid->Reset();
+	//ImGui::NewLine();
+	//
+	//ImGui::SetNextItemWidth(btnSize.x);
+	//if (ImGui::Button("Reset", btnSize))
+	//	m_CellGrid->Reset();
 
 	ImGui::End();
 }

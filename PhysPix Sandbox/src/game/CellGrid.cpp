@@ -61,12 +61,13 @@ void CellGrid::Tick()
 	if (!glfwGetWindowAttrib(m_Window, GLFW_ICONIFIED))
 	{
 		glfwGetFramebufferSize(m_Window, &m_WindowWidth, &m_WindowHeight);
-		ResizeGrid(static_cast<uint16_t>(m_WindowWidth / m_CellSize), static_cast<uint16_t>(m_WindowHeight / m_CellSize));
+		ResizeGrid(static_cast<uint16_t>(m_WindowWidth / m_CellSize),
+			static_cast<uint16_t>((m_WindowHeight - m_CellPlacement->GetMenuBarHeight()) / m_CellSize));
 	}
 
 	m_Dir *= -1;
-
-	if (m_CellPlacement != nullptr)
+	
+	if(m_CellPlacement != nullptr)
 		m_CellPlacement->OnTick();
 
 	// Random indices
@@ -114,7 +115,9 @@ void CellGrid::OnRender()
 			// Don't draw a quad for empty cells for performance
 			if (m_Cells[i][j]->GetID() != cell_id::empty)
 			{
-				glm::vec2 position = { static_cast<float>(i * m_CellSize + m_CellSize / 2 + border.x / 2), static_cast<float>(j * m_CellSize + m_CellSize / 2 + border.y / 2) };
+				float offsetX = static_cast<float>(m_CellSize / 2 + border.x / 2);
+				float offsetY = static_cast<float>(m_CellSize / 2 + border.y / 2 + m_CellPlacement->GetMenuBarHeight() / 2);
+				glm::vec2 position = { static_cast<float>(i * m_CellSize + offsetX), static_cast<float>(j * m_CellSize + offsetY) };
 				BatchRenderer::DrawQuad(position, { m_CellSize, m_CellSize }, m_Cells[i][j]->GetColor());
 			}
 		}
@@ -142,7 +145,7 @@ void CellGrid::Reset()
 		for (uint16_t j = 0; j < m_Cells[0].size(); j++)
 		{
 			// Only replace non-empty cells
-			if (m_Cells[i][j]->GetID() != 1)
+			if (m_Cells[i][j]->GetID() != cell_id::empty)
 				ReplaceCell(i, j, new cell::Empty());
 		}
 	}
