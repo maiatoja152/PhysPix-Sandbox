@@ -37,32 +37,32 @@ namespace cell
 
 		// Movement checks
 		Cell* currCell = cellGrid->GetCell(posX, posY + m_FluidDir);
-		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity(), m_FluidDir))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX, posY + m_FluidDir, m_FluidDir);
 			return;
 		}
 		int8_t dir = cellGrid->GetDir();
 		currCell = cellGrid->GetCell(posX + dir, posY + m_FluidDir);
-		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity(), m_FluidDir))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY + m_FluidDir, m_FluidDir);
 			return;
 		}
 		currCell = cellGrid->GetCell(posX - dir, posY + m_FluidDir);
-		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity(), m_FluidDir))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY + m_FluidDir, m_FluidDir);
 			return;
 		}
 		currCell = cellGrid->GetCell(posX + dir, posY);
-		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity(), m_FluidDir))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY, m_FluidDir);
 			return;
 		}
 		currCell = cellGrid->GetCell(posX - dir, posY);
-		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity()))
+		if (currCell->GetID() == cell_id::empty || IsValidFluidDisplacement(density, currCell->GetDensity(), m_FluidDir))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY, m_FluidDir);
 			return;
@@ -70,13 +70,13 @@ namespace cell
 	}
 
 	// Check if a fluid may displace another fluid based on their relative densities
-	bool Fluid::IsValidFluidDisplacement(uint8_t cellDensity, uint8_t destCellDensity)
+	bool Fluid::IsValidFluidDisplacement(uint8_t cellDensity, uint8_t destCellDensity, int8_t fluidDir /*= -1*/)
 	{
 		// Not a fluid
 		if (destCellDensity == cell_density::default_density)
 			return false;
 
-		if (m_FluidDir == -1)
+		if (fluidDir == -1)
 			return destCellDensity < cellDensity;
 		else
 			return destCellDensity > cellDensity;

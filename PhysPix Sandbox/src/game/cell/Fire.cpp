@@ -2,6 +2,8 @@
 
 #include "CellGrid.h"
 
+#include "Fluid.h"
+
 #include "Smoke.h"
 
 #include <chrono>
@@ -60,27 +62,42 @@ namespace cell
 		float biases[] = { 0.6f, 0.8f, 0.8f, 1.0f, 1.0f };
 
 		// Check down
-		if (m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[0] <= m_rngMax)
+		Cell* currCell = m_CellGrid->GetCell(m_PosX, m_PosY + 1);
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
+			(randomNum * biases[0] <= m_rngMax))
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX, m_PosY + 1);
+			return;
 		}
 		// Check upper left and right
-		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[1] <= m_rngMax)
+		currCell = m_CellGrid->GetCell(m_PosX + dir, m_PosY + 1);
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
+			randomNum * biases[1] <= m_rngMax)
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY + 1);
+			return;
 		}
-		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1)->GetID() == cell_id::empty && randomNum * biases[2] <= m_rngMax)
+		currCell = m_CellGrid->GetCell(m_PosX - dir, m_PosY + 1);
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
+			randomNum * biases[2] <= m_rngMax)
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY + 1);
+			return;
 		}
 		// Check left and right
-		else if (m_CellGrid->GetCell(m_PosX + dir, m_PosY)->GetID() == cell_id::empty && randomNum * biases[3] <= m_rngMax)
+		currCell = m_CellGrid->GetCell(m_PosX + dir, m_PosY);
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
+			randomNum * biases[3] <= m_rngMax)
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX + dir, m_PosY);
+			return;
 		}
-		else if (m_CellGrid->GetCell(m_PosX - dir, m_PosY)->GetID() == cell_id::empty && randomNum * biases[4] <= m_rngMax)
+		currCell = m_CellGrid->GetCell(m_PosX - dir, m_PosY);
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(m_Density, currCell->GetDensity(), 1)) &&
+			randomNum * biases[4] <= m_rngMax)
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
+			return;
 		}
 	}
 }

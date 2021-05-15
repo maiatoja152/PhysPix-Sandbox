@@ -1,6 +1,7 @@
 #include "Powder.h"
 
 #include "Cell.h"
+#include "Fluid.h"
 
 #include "CellGrid.h"
 
@@ -19,10 +20,11 @@ namespace cell
 		auto cellGrid = cell->GetCellGrid();
 		uint16_t posX, posY;
 		cell->GetPosition(&posX, &posY);
+		uint8_t density = cell->GetDensity();
 
 		// Check down cell
 		Cell* currCell = cellGrid->GetCell(posX, posY - 1);
-		if (currCell->GetID() == cell_id::empty || currCell->IsFluid())
+		if (currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(density, currCell->GetDensity()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX, posY - 1);
 			return;
@@ -31,13 +33,15 @@ namespace cell
 		// Check bottom left and right cells as well as the left and right cells on the same y-level
 		int8_t dir = cellGrid->GetDir();
 		currCell = cellGrid->GetCell(posX + dir, posY - 1);
-		if ((currCell->GetID() == cell_id::empty || currCell->IsFluid()) && (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(density, currCell->GetDensity()))
+			&& (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX + dir, posY - 1);
 			return;
 		}
 		currCell = cellGrid->GetCell(posX - dir, posY - 1);
-		if ((currCell->GetID() == cell_id::empty || currCell->IsFluid()) && (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
+		if ((currCell->GetID() == cell_id::empty || Fluid::IsValidFluidDisplacement(density, currCell->GetDensity()))
+			&& (cellGrid->GetCell(posX + dir, posY)->GetID() == cell_id::empty || cellGrid->GetCell(posX + dir, posY)->IsFluid()))
 		{
 			cellGrid->DisplaceFluid(posX, posY, posX - dir, posY - 1);
 			return;

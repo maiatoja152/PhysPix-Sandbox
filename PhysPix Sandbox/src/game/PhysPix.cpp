@@ -23,7 +23,7 @@ namespace physpix
 	static GLFWwindow* glfwWindow;
 	static int32_t windowResX = 1280, windowResY = 960;
 
-    static constexpr float cellSize = 3.0f;
+    static constexpr float cellSize = 4.0f;
     static std::unique_ptr<CellGrid> cellGrid;
     static std::unique_ptr<CellPlacement> cellPlacement;
 
