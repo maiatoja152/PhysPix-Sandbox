@@ -21,7 +21,8 @@
 namespace physpix
 {
 	static GLFWwindow* glfwWindow;
-	static int32_t windowResX = 1280, windowResY = 960;
+	static int32_t windowWidth = 1280, windowHeight = 960;
+    static constexpr int32_t minWindowWidth = 700, minWindowHeight = 780;
 
     static constexpr float cellSize = 4.0f;
     static std::unique_ptr<CellGrid> cellGrid;
@@ -39,7 +40,7 @@ namespace physpix
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         /* Create a windowed mode window and its OpenGL context */
-        glfwWindow = glfwCreateWindow(windowResX, windowResY, "PhysPix Sandbox", NULL, NULL);
+        glfwWindow = glfwCreateWindow(windowWidth, windowHeight, "PhysPix Sandbox", NULL, NULL);
         if (!glfwWindow)
         {
             glfwTerminate();
@@ -48,6 +49,11 @@ namespace physpix
 
         /* Make the window's context current */
         glfwMakeContextCurrent(glfwWindow);
+
+        // VSync
+        glfwSwapInterval(1);
+
+        glfwSetWindowSizeLimits(glfwWindow, minWindowWidth, minWindowHeight, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
         // Initialize GLEW
         if (glewInit() != GLEW_OK)
@@ -58,9 +64,6 @@ namespace physpix
 
         // Log the current OpenGL version
         std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
-
-        // VSync
-        glfwSwapInterval(1);
 
         // ImGui initialization
         IMGUI_CHECKVERSION();
@@ -88,8 +91,8 @@ namespace physpix
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(glfwWindow))
         {
-            glfwGetFramebufferSize(glfwWindow, &windowResX, &windowResY);
-            GLCall(glViewport(0, 0, windowResX, windowResY));
+            glfwGetFramebufferSize(glfwWindow, &windowWidth, &windowHeight);
+            GLCall(glViewport(0, 0, windowWidth, windowHeight));
 
             long long now = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
             float deltaTime = (float)(now - lastFrameTime) / 1000000.0f;

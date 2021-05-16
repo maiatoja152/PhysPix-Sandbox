@@ -1,10 +1,11 @@
 ﻿  CellPlacement.cpp
-C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(171,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(170,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
+  PhysPix.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  2 of 2416 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  4 of 2416 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    30 functions had inline decision re-evaluated but remain unchanged
+    28 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe
