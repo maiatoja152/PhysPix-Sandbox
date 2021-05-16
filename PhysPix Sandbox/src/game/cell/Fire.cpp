@@ -43,7 +43,7 @@ namespace cell
 	{
 		if (++m_LifetimeCounter >= m_Lifetime)
 		{
-			if (m_rng() % 13 == 0)
+			if (m_rng() % 30 == 0)
 				m_CellGrid->ReplaceCell(m_PosX, m_PosY, new Smoke(m_CellGrid, m_PosX, m_PosY));
 			else
 				RemoveCell();
