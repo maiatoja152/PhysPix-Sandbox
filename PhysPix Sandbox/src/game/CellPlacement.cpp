@@ -177,7 +177,7 @@ void CellPlacement::OnImGuiRender()
 	ImGui::SetNextWindowPos({ 0, static_cast<float>(windowHeight - m_MenuBarHeight) });
 	ImGui::SetNextWindowSize({ static_cast<float>(windowWidth), static_cast<float>(m_MenuBarHeight) });
 
-	ImGuiWindowFlags flags =
+	ImGuiWindowFlags windowFlags =
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoCollapse |
 		ImGuiWindowFlags_NoTitleBar |
@@ -187,7 +187,7 @@ void CellPlacement::OnImGuiRender()
 	// Window Styling
 	ImVec4 windowBgColor = { 0.6f, 0.6f, 0.6f, 1.0f };
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBgColor);
-	ImGui::Begin("Cell Placement Menu", 0, flags);
+	ImGui::Begin("Cell Placement Menu", 0, windowFlags);
 	ImGui::PopStyleColor();
 
 	m_InputEnabled = !ImGui::IsWindowHovered();
@@ -198,8 +198,9 @@ void CellPlacement::OnImGuiRender()
 	ImGui::SetNextItemWidth(sliderWidth);
 
 	// Draw slider and its label separately so that they can be different colors
+	ImGuiSliderFlags sliderFlags = ImGuiSliderFlags_NoInput;
 	ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 1.0f, 1.0f });
-	ImGui::SliderInt("", &m_PlaceSize, 1, 20);
+	ImGui::SliderInt("", &m_PlaceSize, 1, 20, "%d", sliderFlags);
 	ImGui::PopStyleColor();
 
 	ImGui::SameLine();
