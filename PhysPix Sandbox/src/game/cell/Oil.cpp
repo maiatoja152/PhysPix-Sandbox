@@ -17,7 +17,7 @@ namespace cell
 
 		m_CellID = cell_id::oil;
 
-		m_Color = { 0.05f, 0.05f, 0.05f, 1.0f };
+		m_Color = cell_color::oil;
 
 		m_IsFluid = true;
 		m_FluidDir = -1;

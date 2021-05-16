@@ -1,10 +1,26 @@
-﻿  CellPlacement.cpp
+﻿  CellGrid.cpp
+  CellPlacement.cpp
 C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(171,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
+  Boundary.cpp
+  Cell.cpp
+  Empty.cpp
+  Fire.cpp
+  Flammable.cpp
+  Fluid.cpp
+  Lava.cpp
+  Oil.cpp
+  Poison.cpp
+  Powder.cpp
+  Sand.cpp
+  Smoke.cpp
+  Steam.cpp
+  Stone.cpp
+  Water.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  38 of 2414 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+  84 of 2414 functions ( 3.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    21 functions had inline decision re-evaluated but remain unchanged
+    48 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

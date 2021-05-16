@@ -193,6 +193,7 @@ void CellPlacement::OnImGuiRender()
 	ImVec2 btnSize = { 100, 40 };
 	uint8_t numOfButtons = 8;
 	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
+
 	if (ImGui::Button("Water", btnSize))
 		m_ActiveCell = cell_id::water;
 	ImGui::SameLine();

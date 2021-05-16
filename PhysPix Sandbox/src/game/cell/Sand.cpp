@@ -11,7 +11,7 @@ namespace cell
 
 		m_CellID = cell_id::sand;
 
-		m_Color = { 0.95f, 0.92f, 0.33f, 1.0f };
+		m_Color = cell_color::sand;
 	}
 
 	Sand::~Sand()

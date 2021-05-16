@@ -73,3 +73,19 @@ namespace cell_density
 	static constexpr uint8_t poison = 127;
 	static constexpr uint8_t lava = 129;
 }
+
+namespace cell_color
+{
+	static constexpr glm::vec4 default_color = { 1.0f, 0.0f, 1.0f, 1.0f };
+	static constexpr glm::vec4 empty = { 0.8f, 0.7f, 0.7f, 1.0f };
+	static constexpr glm::vec4 water = { 0.1f, 0.3f, 0.8f, 1.0f };
+	static constexpr glm::vec4 poison = { 0.0f, 0.6f, 0.1f, 1.0f };
+	static constexpr glm::vec4 lava = { 1.0f, 0.45f, 0.2f, 1.0f };
+	static constexpr glm::vec4 sand = { 0.95f, 0.92f, 0.33f, 1.0f };
+	static constexpr glm::vec4 stone = { 0.5f, 0.5f, 0.53f, 1.0f };
+	static constexpr glm::vec4 smoke = { 0.2f, 0.2f, 0.2f, 1.0f };
+	static constexpr glm::vec4 fire = { 0.8f, 0.1f, 0.1f, 1.0f };
+	static constexpr glm::vec4 steam = { 0.8f, 0.8f, 0.8f, 1.0f };
+	static constexpr glm::vec4 oil = { 0.05f, 0.05f, 0.05f, 1.0f };
+	static constexpr glm::vec4 boundary = { 1.0f, 0.0f, 0.0f, 1.0f };
+}

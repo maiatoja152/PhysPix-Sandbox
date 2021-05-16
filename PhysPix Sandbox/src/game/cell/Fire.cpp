@@ -22,7 +22,7 @@ namespace cell
 
 		m_CellID = cell_id::fire;
 
-		m_Color = { 0.8f, 0.1f, 0.1f, 1.0f };
+		m_Color = cell_color::fire;
 
 		m_IsFluid = true;
 		m_Density = cell_density::fire;

@@ -21,7 +21,7 @@ namespace cell
 
 		m_CellID = cell_id::lava;
 
-		m_Color = { 1.0f, 0.45f, 0.2f, 1.0f };
+		m_Color = cell_color::lava;
 
 		m_IsFluid = true;
 		m_FluidDir = -1;

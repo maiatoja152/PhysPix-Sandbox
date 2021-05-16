@@ -11,7 +11,7 @@ namespace cell
 
 		m_CellID = cell_id::smoke;
 
-		m_Color = { 0.2f, 0.2f, 0.2f, 1.0f };
+		m_Color = cell_color::smoke;
 
 		m_IsFluid = true;
 		m_FluidDir = 1;
