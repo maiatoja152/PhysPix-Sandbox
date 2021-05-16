@@ -35,7 +35,7 @@ namespace cell
 		FluidMove(this);
 
 		BurnOnContact(this);
-		if (this == nullptr)	// This check is necessary because BurnOnContact may delete this
+		if (m_CellID != cell_id::oil)	// This check is necessary because BurnOnContact may delete this
 			return;
 		ExtinguishIfSuffocated(this);
 		ExtinguishIfDoused(this);

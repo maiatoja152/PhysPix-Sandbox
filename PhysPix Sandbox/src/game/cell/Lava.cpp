@@ -37,6 +37,8 @@ namespace cell
 	void Lava::OnTick()
 	{
 		CoolToStone();
+		if (m_CellID != cell_id::lava) // CoolToStone may turn this object into a stone cell so make sure the cell id is lava before continuing
+			return;
 
 		FluidMove(this);
 	}
