@@ -52,6 +52,8 @@ namespace cell
 		}
 
 		FireMove();
+
+		RemoveIfDoused();
 	}
 
 	void Fire::FireMove()
@@ -98,6 +100,17 @@ namespace cell
 		{
 			m_CellGrid->SwapCells(m_PosX, m_PosY, m_PosX - dir, m_PosY);
 			return;
+		}
+	}
+
+	void Fire::RemoveIfDoused()
+	{
+		if (m_CellGrid->GetCell(m_PosX + 1, m_PosY)->GetID() == cell_id::water ||
+			m_CellGrid->GetCell(m_PosX - 1, m_PosY)->GetID() == cell_id::water ||
+			m_CellGrid->GetCell(m_PosX, m_PosY + 1)->GetID() == cell_id::water ||
+			m_CellGrid->GetCell(m_PosX, m_PosY - 1)->GetID() == cell_id::water)
+		{
+			RemoveCell();
 		}
 	}
 }

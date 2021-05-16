@@ -23,5 +23,6 @@ namespace cell
 
 	private:
 		void FireMove();
+		void RemoveIfDoused();
 	};
 }

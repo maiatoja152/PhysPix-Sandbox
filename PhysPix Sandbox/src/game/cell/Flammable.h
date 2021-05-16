@@ -23,6 +23,7 @@ namespace cell
 	protected:
 		void SetBurningOnContact(Cell* cell);
 		void ExtinguishIfSuffocated(Cell* cell);
+		void ExtinguishIfDoused(Cell* cell);
 		void Burn(Cell* cell);
 	};
 }

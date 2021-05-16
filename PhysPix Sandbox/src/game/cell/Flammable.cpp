@@ -50,6 +50,21 @@ namespace cell
 		}
 	}
 
+	void Flammable::ExtinguishIfDoused(Cell* cell)
+	{
+		auto cellGrid = cell->GetCellGrid();
+		uint16_t posX, posY;
+		cell->GetPosition(&posX, &posY);
+
+		if (cellGrid->GetCell(posX + 1, posY)->GetID() == cell_id::water ||
+			cellGrid->GetCell(posX - 1, posY)->GetID() == cell_id::water ||
+			cellGrid->GetCell(posX, posY + 1)->GetID() == cell_id::water ||
+			cellGrid->GetCell(posX, posY - 1)->GetID() == cell_id::water)
+		{
+			m_IsBurning = false;
+		}
+	}
+
 	void Flammable::Burn(Cell* cell)
 	{
 		CellGrid* cellGrid = cell->GetCellGrid();

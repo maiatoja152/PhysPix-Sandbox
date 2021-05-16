@@ -39,6 +39,7 @@ namespace cell
 
 		SetBurningOnContact(this);
 		ExtinguishIfSuffocated(this);
+		ExtinguishIfDoused(this);
 		m_BurnsSurroudings = m_IsBurning;
 		if (m_IsBurning)
 			Burn(this);
