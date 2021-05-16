@@ -24,7 +24,7 @@ namespace cell
 		m_FluidDir = -1;
 		m_Density = cell_density::poison;
 
-		m_BurnLifetime = 5;
+		m_BurnLifetime = 8;
 	}
 
 	Poison::~Poison()
