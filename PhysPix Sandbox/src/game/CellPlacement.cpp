@@ -12,6 +12,7 @@
 #include "cell/Smoke.h"
 #include "cell/Steam.h"
 #include "cell/Oil.h"
+#include "cell/Fire.h"
 
 #include <random>
 #include <chrono>
@@ -156,6 +157,8 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 		return new cell::Steam(m_CellGrid, 0, 0);
 	case cell_id::oil:
 		return new cell::Oil(m_CellGrid, 0, 0);
+	case cell_id::fire:
+		return new cell::Fire(m_CellGrid, 0, 0);
 	default:
 		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
 		std::cout << "[ERROR] " << message << std::endl;
@@ -203,9 +206,8 @@ void CellPlacement::OnImGuiRender()
 	ImGui::Text("Radius");
 	ImGui::PopStyleColor();
 
-
 	// Buttons
-	uint8_t numOfButtons = 8;
+	uint8_t numOfButtons = 9;
 	ImVec2 btnSize = { (windowWidth / numOfButtons) * 0.8f, m_MenuBarHeight * 0.45f };
 	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
 
@@ -217,6 +219,7 @@ void CellPlacement::OnImGuiRender()
 	ImGuiCellButton(cell_id::poison, "Poison", btnSize, cell_color::poison);
 	ImGuiCellButton(cell_id::smoke, "Smoke", btnSize, cell_color::smoke);
 	ImGuiCellButton(cell_id::steam, "Steam", btnSize, cell_color::steam);
+	ImGuiCellButton(cell_id::fire, "Fire", btnSize, cell_color::fire);
 
 	ImGui::End();
 }
