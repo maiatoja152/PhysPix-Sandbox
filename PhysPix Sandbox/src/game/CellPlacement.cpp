@@ -213,7 +213,7 @@ void CellPlacement::OnImGuiRender()
 	ImGui::PopStyleColor();
 
 	// Buttons
-	uint8_t numOfButtons = 10;
+	uint8_t numOfButtons = 11;
 	ImVec2 btnSize = { (windowWidth / numOfButtons) * 0.8f, m_MenuBarHeight * 0.45f };
 	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
 
