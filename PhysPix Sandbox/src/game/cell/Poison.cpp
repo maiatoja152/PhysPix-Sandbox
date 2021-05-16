@@ -38,7 +38,9 @@ namespace cell
 		Spread();
 
 		BurnOnContact(this);
-		if (m_CellID != cell_id::poison) // This check is necessary because BurnOnContact may delete this
+		if (this == nullptr)
+			return;
+		else if (m_CellID != cell_id::poison) // This check is necessary because BurnOnContact may delete this
 			return;
 		ExtinguishIfSuffocated(this);
 		ExtinguishIfDoused(this);

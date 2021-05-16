@@ -23,7 +23,9 @@ namespace cell
 	void Wood::OnTick()
 	{
 		BurnOnContact(this);
-		if (m_CellID != cell_id::wood) // This check is necessary because BurnOnContact may delete this
+		if (this == nullptr)
+			return;
+		else if (m_CellID != cell_id::wood) // This check is necessary because BurnOnContact may delete this
 			return;
 		ExtinguishIfSuffocated(this);
 		ExtinguishIfDoused(this);
