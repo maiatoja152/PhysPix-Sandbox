@@ -1,8 +1,3 @@
-﻿  CellGrid.cpp
-  CellPlacement.cpp
-  PhysPix.cpp
-  Flammable.cpp
-  Lava.cpp
-  Poison.cpp
-  Generating Code...
+﻿  CellPlacement.cpp
+C:\Coding Projects\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(176,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
   PhysPix Sandbox.vcxproj -> C:\Coding Projects\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

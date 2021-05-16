@@ -13,6 +13,7 @@
 #include "cell/Steam.h"
 #include "cell/Oil.h"
 #include "cell/Fire.h"
+#include "cell/Wood.h"
 
 #include <random>
 #include <chrono>
@@ -159,6 +160,8 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 		return new cell::Oil(m_CellGrid, 0, 0);
 	case cell_id::fire:
 		return new cell::Fire(m_CellGrid, 0, 0);
+	case cell_id::wood:
+		return new cell::Wood(m_CellGrid, 0, 0);
 	default:
 		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
 		std::cout << "[ERROR] " << message << std::endl;
@@ -181,14 +184,13 @@ void CellPlacement::OnImGuiRender()
 		ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoScrollbar;
 
-	ImGui::Begin("Cell Placement Menu", 0, flags);
-
-	m_InputEnabled = !ImGui::IsWindowHovered();
-
 	// Window Styling
 	ImVec4 windowBgColor = { 0.6f, 0.6f, 0.6f, 1.0f };
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBgColor);
-	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBgColor.x, windowBgColor.y, windowBgColor.z, windowBgColor.w }));
+	ImGui::Begin("Cell Placement Menu", 0, flags);
+	ImGui::PopStyleColor();
+
+	m_InputEnabled = !ImGui::IsWindowHovered();
 
 	// Slider
 	float sliderWidth = windowWidth * 0.2f;
@@ -207,7 +209,7 @@ void CellPlacement::OnImGuiRender()
 	ImGui::PopStyleColor();
 
 	// Buttons
-	uint8_t numOfButtons = 9;
+	uint8_t numOfButtons = 10;
 	ImVec2 btnSize = { (windowWidth / numOfButtons) * 0.8f, m_MenuBarHeight * 0.45f };
 	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
 
@@ -220,6 +222,7 @@ void CellPlacement::OnImGuiRender()
 	ImGuiCellButton(cell_id::smoke, "Smoke", btnSize, cell_color::smoke);
 	ImGuiCellButton(cell_id::steam, "Steam", btnSize, cell_color::steam);
 	ImGuiCellButton(cell_id::fire, "Fire", btnSize, cell_color::fire);
+	ImGuiCellButton(cell_id::wood, "Wood", btnSize, cell_color::wood);
 
 	ImGui::End();
 }

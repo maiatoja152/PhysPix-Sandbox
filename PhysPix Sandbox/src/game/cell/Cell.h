@@ -59,6 +59,7 @@ namespace cell_id
 	static constexpr uint8_t fire = 8;
 	static constexpr uint8_t steam = 9;
 	static constexpr uint8_t oil = 10;
+	static constexpr uint8_t wood = 11;
 	static constexpr uint8_t boundary = 255;
 }
 
@@ -87,5 +88,6 @@ namespace cell_color
 	static constexpr glm::vec4 fire = { 0.8f, 0.1f, 0.1f, 1.0f };
 	static constexpr glm::vec4 steam = { 0.8f, 0.8f, 0.8f, 1.0f };
 	static constexpr glm::vec4 oil = { 0.08f, 0.08f, 0.08f, 1.0f };
+	static constexpr glm::vec4 wood = { 0.31f, 0.14f, 0.03f, 1.0f };
 	static constexpr glm::vec4 boundary = { 1.0f, 0.0f, 0.0f, 1.0f };
 }
