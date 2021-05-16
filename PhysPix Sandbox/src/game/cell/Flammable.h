@@ -21,7 +21,7 @@ namespace cell
 		~Flammable();
 
 	protected:
-		void SetBurningOnContact(Cell* cell);
+		void BurnOnContact(Cell* cell);
 		void ExtinguishIfSuffocated(Cell* cell);
 		void ExtinguishIfDoused(Cell* cell);
 		void Burn(Cell* cell);

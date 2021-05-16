@@ -23,7 +23,7 @@ namespace cell
 		m_FluidDir = -1;
 		m_Density = cell_density::oil;
 
-		m_BurnLifetime = 10;
+		m_BurnLifetime = 18;
 	}
 
 	Oil::~Oil()
@@ -34,11 +34,11 @@ namespace cell
 	{
 		FluidMove(this);
 
-		SetBurningOnContact(this);
+		BurnOnContact(this);
+		if (this == nullptr)	// This check is necessary because BurnOnContact may delete this
+			return;
 		ExtinguishIfSuffocated(this);
 		ExtinguishIfDoused(this);
 		m_BurnsSurroudings = m_IsBurning;
-		if (m_IsBurning)
-			Burn(this);
 	}
 }

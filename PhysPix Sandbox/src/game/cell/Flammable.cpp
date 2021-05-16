@@ -16,7 +16,7 @@ namespace cell
 	{
 	}
 
-	void Flammable::SetBurningOnContact(Cell* cell)
+	void Flammable::BurnOnContact(Cell* cell)
 	{
 		auto cellGrid = cell->GetCellGrid();
 		uint16_t posX, posY;
@@ -32,6 +32,7 @@ namespace cell
 			cellGrid->GetCell(posX - 1, posY + 1)->BurnsSurroudings())
 		{
 			m_IsBurning = true;
+			Burn(cell);
 		}
 	}
 

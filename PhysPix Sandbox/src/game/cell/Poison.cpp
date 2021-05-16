@@ -24,7 +24,7 @@ namespace cell
 		m_FluidDir = -1;
 		m_Density = cell_density::poison;
 
-		m_BurnLifetime = 3;
+		m_BurnLifetime = 5;
 	}
 
 	Poison::~Poison()
@@ -37,12 +37,12 @@ namespace cell
 
 		Spread();
 
-		SetBurningOnContact(this);
+		BurnOnContact(this);
+		if (this == nullptr)	// This check is necessary because BurnOnContact may delete this
+			return;
 		ExtinguishIfSuffocated(this);
 		ExtinguishIfDoused(this);
 		m_BurnsSurroudings = m_IsBurning;
-		if (m_IsBurning)
-			Burn(this);
 	}
 
 	void Poison::Spread()
