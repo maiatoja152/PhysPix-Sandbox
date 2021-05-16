@@ -6,11 +6,10 @@
 #include "imgui/imgui.h"
 
 #include <memory>
+#include <stdint.h>
+#include <vector>
 
-namespace cell
-{
-	class Cell;
-}
+#include "cell/Cell.h"
 
 class CellGrid;
 
@@ -28,6 +27,8 @@ private:
 	ClickState m_ClickState;
 
 	uint16_t m_MenuBarHeight;
+
+	const uint8_t m_SolidCells[2] = {cell_id::stone, cell_id::wood};
 
 public:
 	CellPlacement(GLFWwindow* window, CellGrid* cellGrid);

@@ -26,8 +26,7 @@
 
 CellPlacement::CellPlacement(GLFWwindow* window, CellGrid* cellGrid)
 	: m_Window(window), m_CellGrid(cellGrid), m_ActiveCell(cell_id::water), m_PlaceSize(10),
-	m_InputEnabled(true), m_ClickState(ClickState::None),
-	m_MenuBarHeight(100)
+	m_InputEnabled(true), m_ClickState(ClickState::None), m_MenuBarHeight(100)
 {
 	if (m_CellGrid != nullptr)
 		m_CellGrid->SetCellPlacement(this);
@@ -109,7 +108,7 @@ void CellPlacement::Place(int32_t posX, int32_t posY)
 	{
 		for (int x = -r; x <= r; x++)
 		{
-			if (x * x + y * y <= r * r && rng() > 7)
+			if (x * x + y * y <= r * r && (rng() > 7 || std::find(std::begin(m_SolidCells), std::end(m_SolidCells), m_ActiveCell) != std::end(m_SolidCells)))
 			{
 				m_CellGrid->ReplaceCell(posX + x, posY + y, GetNewCellByID(m_ActiveCell));
 			}
