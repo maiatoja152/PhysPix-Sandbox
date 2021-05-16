@@ -183,15 +183,26 @@ void CellPlacement::OnImGuiRender()
 	m_InputEnabled = !ImGui::IsWindowHovered();
 
 	// Window Styling
-	ImVec4 windowBg = { 0.6f, 0.6f, 0.6f, 1.0f };
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBg);
-	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBg.x, windowBg.y, windowBg.z, windowBg.w }));
+	ImVec4 windowBgColor = { 0.6f, 0.6f, 0.6f, 1.0f };
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBgColor);
+	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBgColor.x, windowBgColor.y, windowBgColor.z, windowBgColor.w }));
 
 	// Slider
 	float sliderWidth = windowWidth * 0.2f;
 	ImGui::SetCursorPosX((windowWidth - sliderWidth) / 2);
 	ImGui::SetNextItemWidth(sliderWidth);
-	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 20);
+
+	// Draw slider and its label separately so that they can be different colors
+	ImGui::PushStyleColor(ImGuiCol_Text, { 1.0f, 1.0f, 1.0f, 1.0f });
+	ImGui::SliderInt("", &m_PlaceSize, 1, 20);
+	ImGui::PopStyleColor();
+
+	ImGui::SameLine();
+
+	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBgColor.x, windowBgColor.y, windowBgColor.z, windowBgColor.w }));
+	ImGui::Text("Radius");
+	ImGui::PopStyleColor();
+
 
 	// Buttons
 	uint8_t numOfButtons = 8;

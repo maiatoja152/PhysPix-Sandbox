@@ -86,6 +86,6 @@ namespace cell_color
 	static constexpr glm::vec4 smoke = { 0.2f, 0.2f, 0.2f, 1.0f };
 	static constexpr glm::vec4 fire = { 0.8f, 0.1f, 0.1f, 1.0f };
 	static constexpr glm::vec4 steam = { 0.8f, 0.8f, 0.8f, 1.0f };
-	static constexpr glm::vec4 oil = { 0.05f, 0.05f, 0.05f, 1.0f };
+	static constexpr glm::vec4 oil = { 0.08f, 0.08f, 0.08f, 1.0f };
 	static constexpr glm::vec4 boundary = { 1.0f, 0.0f, 0.0f, 1.0f };
 }
