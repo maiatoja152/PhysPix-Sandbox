@@ -2,6 +2,7 @@
 
 #include "GLFW/glfw3.h"
 
+#include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
 
 #include <memory>
@@ -42,6 +43,11 @@ private:
 	void Erase(int32_t posX, int32_t posY);
 
 	cell::Cell* GetNewCellByID(uint8_t id);
+
+	// Create cell selection button. Color is a glm::vec4 because that is what all cell colors are stored as so it's convenient.
+	void ImGuiCellButton(uint8_t cellID, const char* label, ImVec2 size, glm::vec4 color);
+
+	static ImVec4 GenConstrastingTextColor(glm::vec4 backgroundColor);
 
 public:
 	// \return Height of the menu bar where cells can be selected in pixels

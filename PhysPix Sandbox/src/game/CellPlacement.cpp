@@ -167,8 +167,7 @@ void CellPlacement::OnImGuiRender()
 {
 	int32_t windowWidth, windowHeight;
 	glfwGetFramebufferSize(m_Window, &windowWidth, &windowHeight);
-
-	m_MenuBarHeight = windowHeight * 0.1f;
+	m_MenuBarHeight = windowHeight * 0.08f;
 	ImGui::SetNextWindowPos({ 0, static_cast<float>(windowHeight - m_MenuBarHeight) });
 	ImGui::SetNextWindowSize({ static_cast<float>(windowWidth), static_cast<float>(m_MenuBarHeight) });
 
@@ -183,53 +182,53 @@ void CellPlacement::OnImGuiRender()
 
 	m_InputEnabled = !ImGui::IsWindowHovered();
 
+	// Window Styling
+	ImVec4 windowBg = { 0.6f, 0.6f, 0.6f, 1.0f };
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBg);
+	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBg.x, windowBg.y, windowBg.z, windowBg.w }));
+
 	// Slider
 	float sliderWidth = windowWidth * 0.2f;
 	ImGui::SetCursorPosX((windowWidth - sliderWidth) / 2);
 	ImGui::SetNextItemWidth(sliderWidth);
-	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 30);
+	ImGui::SliderInt("Radius", &m_PlaceSize, 1, 20);
 
 	// Buttons
-	ImVec2 btnSize = { 100, 40 };
 	uint8_t numOfButtons = 8;
+	ImVec2 btnSize = { (windowWidth / numOfButtons) * 0.8f, m_MenuBarHeight * 0.45f };
 	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
 
-	if (ImGui::Button("Water", btnSize))
-		m_ActiveCell = cell_id::water;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Sand", btnSize))
-		m_ActiveCell = cell_id::sand;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Poison", btnSize))
-		m_ActiveCell = cell_id::poison;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Stone", btnSize))
-		m_ActiveCell = cell_id::stone;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Lava", btnSize))
-		m_ActiveCell = cell_id::lava;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Smoke", btnSize))
-		m_ActiveCell = cell_id::smoke;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Steam", btnSize))
-		m_ActiveCell = cell_id::steam;
-	ImGui::SameLine();
-
-	if (ImGui::Button("Oil", btnSize))
-		m_ActiveCell = cell_id::oil;
-
-	//ImGui::NewLine();
-	//
-	//ImGui::SetNextItemWidth(btnSize.x);
-	//if (ImGui::Button("Reset", btnSize))
-	//	m_CellGrid->Reset();
+	ImGuiCellButton(cell_id::water, "Water", btnSize, cell_color::water);
+	ImGuiCellButton(cell_id::sand, "Sand", btnSize, cell_color::sand);
+	ImGuiCellButton(cell_id::stone, "Stone", btnSize, cell_color::stone);
+	ImGuiCellButton(cell_id::lava, "Lava", btnSize, cell_color::lava);
+	ImGuiCellButton(cell_id::oil, "Oil", btnSize, cell_color::oil);
+	ImGuiCellButton(cell_id::poison, "Poison", btnSize, cell_color::poison);
+	ImGuiCellButton(cell_id::smoke, "Smoke", btnSize, cell_color::smoke);
+	ImGuiCellButton(cell_id::steam, "Steam", btnSize, cell_color::steam);
 
 	ImGui::End();
+}
+
+void CellPlacement::ImGuiCellButton(uint8_t cellID, const char* label, ImVec2 size, glm::vec4 color)
+{
+	ImGui::PushStyleColor(ImGuiCol_Button, { color.r, color.g, color.b, color.a });
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, { color.r * 1.3f, color.g * 1.3f, color.b * 1.3f, color.a });
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, { color.r, color.g, color.b, color.a });
+
+	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor(color));
+
+	if (ImGui::Button(label, size))
+		m_ActiveCell = cellID;
+
+	ImGui::PopStyleColor(4);
+	ImGui::SameLine();
+}
+
+ImVec4 CellPlacement::GenConstrastingTextColor(glm::vec4 backgroundColor)
+{
+	// YIQ color scheme (this is effectively the perceived brightness of a color)
+	float YIQ = backgroundColor.r * 0.299f + backgroundColor.g * 0.587f + backgroundColor.b * 0.114f;
+
+	return YIQ >= 0.5f ? ImVec4(0.0f, 0.0f, 0.0f, 1.0f) : ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 }
