@@ -28,7 +28,7 @@ namespace physpix
     static std::unique_ptr<CellGrid> cellGrid;
     static std::unique_ptr<CellPlacement> cellPlacement;
 
-    static constexpr float clearColor[4] = { 0.13f, 0.13f, 0.13f, 1.0f };
+    static constexpr float clearColor[4] = { 0.26f, 0.26f, 0.28f, 1.0f };
 
 	bool Init()
 	{
