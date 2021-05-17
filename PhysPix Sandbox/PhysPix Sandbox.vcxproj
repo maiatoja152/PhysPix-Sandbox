@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\cell\Dirt.cpp" />
     <ClCompile Include="src\game\cell\Fire.cpp" />
     <ClCompile Include="src\game\cell\Gunpowder.cpp" />
     <ClCompile Include="src\game\cell\Hydrogen.cpp" />
@@ -335,6 +336,7 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\cell\Dirt.h" />
     <ClInclude Include="src\game\cell\Fire.h" />
     <ClInclude Include="src\engine\Assertion.h" />
     <ClInclude Include="src\game\cell\Gunpowder.h" />

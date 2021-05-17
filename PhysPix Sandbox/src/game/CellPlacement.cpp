@@ -16,6 +16,7 @@
 #include "cell/Wood.h"
 #include "cell/Gunpowder.h"
 #include "cell/Hydrogen.h"
+#include "cell/Dirt.h"
 
 #include <random>
 #include <chrono>
@@ -169,6 +170,8 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 		return new cell::Gunpowder(m_CellGrid, 0, 0);
 	case cell_id::hydrogen:
 		return new cell::Hydrogen(m_CellGrid, 0, 0);
+	case cell_id::dirt:
+		return new cell::Dirt(m_CellGrid, 0, 0);
 	default:
 		std::string message = std::string("Default case triggered due to invalid cell ID: ") + std::to_string(id);
 		std::cout << "[ERROR] " << message << std::endl;
@@ -221,6 +224,7 @@ void CellPlacement::OnImGuiRender()
 
 	ImGuiCellButton(cell_id::water, "Water", btnSize, cell_color::water);
 	ImGuiCellButton(cell_id::sand, "Sand", btnSize, cell_color::sand);
+	ImGuiCellButton(cell_id::dirt, "Dirt", btnSize, cell_color::dirt);
 	ImGuiCellButton(cell_id::stone, "Stone", btnSize, cell_color::stone);
 	ImGuiCellButton(cell_id::lava, "Lava", btnSize, cell_color::lava);
 	ImGuiCellButton(cell_id::oil, "Oil", btnSize, cell_color::oil);
