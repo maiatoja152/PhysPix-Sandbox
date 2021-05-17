@@ -181,11 +181,11 @@ cell::Cell* CellPlacement::GetNewCellByID(uint8_t id)
 
 void CellPlacement::OnImGuiRender()
 {
-	int32_t windowWidth, windowHeight;
-	glfwGetFramebufferSize(m_Window, &windowWidth, &windowHeight);
-	m_MenuBarHeight = windowHeight * 0.08f;
-	ImGui::SetNextWindowPos({ 0, static_cast<float>(windowHeight - m_MenuBarHeight) });
-	ImGui::SetNextWindowSize({ static_cast<float>(windowWidth), static_cast<float>(m_MenuBarHeight) });
+	int32_t glfwWindowWidth, glfwWindowHeight;
+	glfwGetFramebufferSize(m_Window, &glfwWindowWidth, &glfwWindowHeight);
+	m_MenuBarHeight = glfwWindowHeight * 0.08f;
+	ImGui::SetNextWindowPos({ 0, static_cast<float>(glfwWindowHeight - m_MenuBarHeight) });
+	ImGui::SetNextWindowSize({ static_cast<float>(glfwWindowWidth), static_cast<float>(m_MenuBarHeight) });
 
 	ImGuiWindowFlags windowFlags =
 		ImGuiWindowFlags_NoResize |
@@ -200,9 +200,11 @@ void CellPlacement::OnImGuiRender()
 	ImGui::Begin("Cell Placement Menu", 0, windowFlags);
 	ImGui::PopStyleColor();
 
+	float contentRegionWidth = ImGui::GetWindowContentRegionWidth();
+
 	// Slider
-	float sliderWidth = windowWidth * 0.2f;
-	ImGui::SetCursorPosX((windowWidth - sliderWidth) / 2);
+	float sliderWidth = contentRegionWidth * 0.2f;
+	ImGui::SetCursorPosX((contentRegionWidth - sliderWidth) / 2);
 	ImGui::SetNextItemWidth(sliderWidth);
 
 	// Draw slider and its label separately so that they can be different colors
@@ -218,9 +220,9 @@ void CellPlacement::OnImGuiRender()
 	ImGui::PopStyleColor();
 
 	// Buttons
-	uint8_t numOfButtons = 12;
-	ImVec2 btnSize = { (windowWidth / numOfButtons) * 0.8f, m_MenuBarHeight * 0.45f };
-	ImGui::SetCursorPosX((windowWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1))) / 2);
+	uint8_t numOfButtons = 13;
+	ImVec2 btnSize = { (contentRegionWidth / numOfButtons) * 0.9f, m_MenuBarHeight * 0.45f };
+	ImGui::SetCursorPosX((contentRegionWidth - (btnSize.x * numOfButtons + ImGuiStyleVar_ItemSpacing * (numOfButtons - 1) / 2)) / 2);
 
 	ImGuiCellButton(cell_id::water, "Water", btnSize, cell_color::water);
 	ImGuiCellButton(cell_id::sand, "Sand", btnSize, cell_color::sand);
