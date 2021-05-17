@@ -1,8 +1,7 @@
-﻿  CellPlacement.cpp
-C:\dev\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(180,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
+﻿  Hydrogen.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  7 of 2299 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 2302 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     17 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="src\game\cell\Fire.cpp" />
     <ClCompile Include="src\game\cell\Gunpowder.cpp" />
+    <ClCompile Include="src\game\cell\Hydrogen.cpp" />
     <ClCompile Include="src\game\cell\Oil.cpp" />
     <ClCompile Include="src\game\cell\Smoke.cpp" />
     <ClCompile Include="src\game\CellPlacement.cpp" />
@@ -337,6 +338,7 @@
     <ClInclude Include="src\game\cell\Fire.h" />
     <ClInclude Include="src\engine\Assertion.h" />
     <ClInclude Include="src\game\cell\Gunpowder.h" />
+    <ClInclude Include="src\game\cell\Hydrogen.h" />
     <ClInclude Include="src\game\cell\Oil.h" />
     <ClInclude Include="src\game\cell\Smoke.h" />
     <ClInclude Include="src\game\CellPlacement.h" />
