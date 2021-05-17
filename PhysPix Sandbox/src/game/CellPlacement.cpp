@@ -83,6 +83,8 @@ void CellPlacement::OnTick()
 
 void CellPlacement::MouseBtnCallback(GLFWwindow* window, int button, int action, int mods)
 {
+	m_InputEnabled = !ImGui::GetIO().WantCaptureMouse;
+
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && m_InputEnabled)
 		m_ClickState = ClickState::Left;
 	else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS && m_InputEnabled)
@@ -191,8 +193,6 @@ void CellPlacement::OnImGuiRender()
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, windowBgColor);
 	ImGui::Begin("Cell Placement Menu", 0, windowFlags);
 	ImGui::PopStyleColor();
-
-	m_InputEnabled = !ImGui::IsWindowHovered();
 
 	// Slider
 	float sliderWidth = windowWidth * 0.2f;

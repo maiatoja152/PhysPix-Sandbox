@@ -178,9 +178,6 @@
     <ClCompile Include="src\game\cell\Water.cpp" />
     <ClCompile Include="src\game\cell\Wood.cpp" />
     <ClCompile Include="src\game\PhysPix.cpp" />
-    <ClCompile Include="src\tests\TestBatchRendering.cpp" />
-    <ClCompile Include="src\tests\TestBouncingImage.cpp" />
-    <ClCompile Include="src\tests\TestClearColor.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_demo.cpp" />
@@ -362,10 +359,6 @@
     <ClInclude Include="src\game\cell\Water.h" />
     <ClInclude Include="src\game\cell\Wood.h" />
     <ClInclude Include="src\game\PhysPix.h" />
-    <ClInclude Include="src\tests\Test.h" />
-    <ClInclude Include="src\tests\TestBatchRendering.h" />
-    <ClInclude Include="src\tests\TestBouncingImage.h" />
-    <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_vector_relational.hpp" />
