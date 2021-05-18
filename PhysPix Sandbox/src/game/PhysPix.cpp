@@ -22,7 +22,7 @@ namespace physpix
 {
 	static GLFWwindow* glfwWindow;
 	static int32_t windowWidth = 1280, windowHeight = 960;
-    static constexpr int32_t minWindowWidth = 900, minWindowHeight = 780;
+    static constexpr int32_t minWindowWidth = 1000, minWindowHeight = 780;
 
     static constexpr float cellSize = 4.0f;
     static std::unique_ptr<CellGrid> cellGrid;
