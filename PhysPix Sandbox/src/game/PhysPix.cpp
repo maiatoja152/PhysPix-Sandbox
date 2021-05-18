@@ -74,6 +74,9 @@ namespace physpix
         ImGui::StyleColorsDark();
         ImGui_ImplOpenGL3_Init();
 
+        // Disable ImGui config saving
+        ImGui::GetIO().IniFilename = NULL;
+
         BatchRenderer::Init();
 
         cellGrid = std::make_unique<CellGrid>(glfwWindow, cellSize);
@@ -135,6 +138,7 @@ namespace physpix
 
         BatchRenderer::Shutdown();
 
-        glfwTerminate();
+        // For some reason this call causes the application to never exit
+        //glfwTerminate();
     }
 }

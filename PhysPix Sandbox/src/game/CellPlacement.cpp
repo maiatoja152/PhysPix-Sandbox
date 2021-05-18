@@ -192,7 +192,8 @@ void CellPlacement::OnImGuiRender()
 		ImGuiWindowFlags_NoCollapse |
 		ImGuiWindowFlags_NoTitleBar |
 		ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoScrollbar;
+		ImGuiWindowFlags_NoScrollbar |
+		ImGuiWindowFlags_NoSavedSettings;
 
 	// Window Styling
 	ImVec4 windowBgColor = { 0.6f, 0.6f, 0.6f, 1.0f };

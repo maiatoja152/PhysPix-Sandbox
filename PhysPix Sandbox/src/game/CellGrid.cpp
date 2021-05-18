@@ -96,7 +96,7 @@ void CellGrid::Tick()
 
 void CellGrid::OnRender()
 {
-	Shader shader("res/shaders/BatchTextured.shader");
+	Shader shader("../../../PhysPix Sandbox/res/shaders/BatchTextured.shader");
 	shader.Bind();
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_WindowWidth), 0.0f, static_cast<float>(m_WindowHeight), -1.0f, 1.0f);

@@ -31,21 +31,18 @@ c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\imgui_draw.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\imgui_demo.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\imgui.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\glm.obj
-c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\testclearcolor.obj
-c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\testbouncingimage.obj
-c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\testbatchrendering.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\wood.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\water.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\steam.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\empty.obj
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\stone.obj
-c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.exe
-c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.pdb
+c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\hydrogen.obj
+c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\dirt.obj
 c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.ipdb
 c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.iobj
-c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix sandbox.ipdb
-c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix sandbox.iobj
+c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.pdb
+c:\dev\physpix sandbox\bin\release-win32\physpix sandbox\physpix sandbox.exe
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix sandbox.tlog\cl.command.1.tlog
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix sandbox.tlog\cl.read.1.tlog
 c:\dev\physpix sandbox\bin-int\release-win32\physpix sandbox\physpix sandbox.tlog\cl.write.1.tlog
