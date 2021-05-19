@@ -1,6 +1,2 @@
-﻿  CellPlacement.cpp
-C:\dev\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(180,33): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\dev\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
+﻿  PhysPix.cpp
   PhysPix Sandbox.vcxproj -> C:\dev\PhysPix Sandbox\bin\Debug-Win32\PhysPix Sandbox\PhysPix Sandbox.exe

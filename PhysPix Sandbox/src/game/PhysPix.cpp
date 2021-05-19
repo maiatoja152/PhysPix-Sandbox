@@ -25,6 +25,7 @@ namespace physpix
 	static GLFWwindow* glfwWindow;
 	static int32_t windowWidth = 1280, windowHeight = 960;
     static constexpr int32_t minWindowWidth = 1000, minWindowHeight = 780;
+    static GLFWimage windowIcons[4];
 
     static constexpr float cellSize = 4.0f;
     static std::unique_ptr<CellGrid> cellGrid;
@@ -33,16 +34,12 @@ namespace physpix
     static constexpr float clearColor[4] = { 0.26f, 0.26f, 0.28f, 1.0f };
 
     // Loads and returns an array of window icons
-    static GLFWimage* GetWindowIcons()
+    static void SetWindowIcons()
     {
-        GLFWimage icons[4];
-
-        icons[0].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_16.png", &icons[0].width, &icons[0].height, 0, 4);
-        icons[1].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_32.png", &icons[1].width, &icons[1].height, 0, 4);
-        icons[2].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_48.png", &icons[2].width, &icons[2].height, 0, 4);
-        icons[3].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_256.png", &icons[3].width, &icons[3].height, 0, 4);
-
-        return icons;
+        windowIcons[0].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_16.png", &windowIcons[0].width, &windowIcons[0].height, 0, 4);
+        windowIcons[1].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_32.png", &windowIcons[1].width, &windowIcons[1].height, 0, 4);
+        windowIcons[2].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_48.png", &windowIcons[2].width, &windowIcons[2].height, 0, 4);
+        windowIcons[3].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_256.png", &windowIcons[3].width, &windowIcons[3].height, 0, 4);
     }
 
 	bool Init()
@@ -62,7 +59,8 @@ namespace physpix
             return false;
         }
 
-        glfwSetWindowIcon(glfwWindow, 4, GetWindowIcons());
+        SetWindowIcons();
+        glfwSetWindowIcon(glfwWindow, 4, windowIcons);
 
         /* Make the window's context current */
         glfwMakeContextCurrent(glfwWindow);
