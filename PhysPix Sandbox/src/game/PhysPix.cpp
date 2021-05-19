@@ -10,6 +10,8 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
+#include "stb_image/stb_image.h"
+
 #include "CellGrid.h"
 #include "CellPlacement.h"
 
@@ -30,6 +32,19 @@ namespace physpix
 
     static constexpr float clearColor[4] = { 0.26f, 0.26f, 0.28f, 1.0f };
 
+    // Loads and returns an array of window icons
+    static GLFWimage* GetWindowIcons()
+    {
+        GLFWimage icons[4];
+
+        icons[0].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_16.png", &icons[0].width, &icons[0].height, 0, 4);
+        icons[1].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_32.png", &icons[1].width, &icons[1].height, 0, 4);
+        icons[2].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_48.png", &icons[2].width, &icons[2].height, 0, 4);
+        icons[3].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_256.png", &icons[3].width, &icons[3].height, 0, 4);
+
+        return icons;
+    }
+
 	bool Init()
 	{
         if (!glfwInit())
@@ -46,6 +61,8 @@ namespace physpix
             glfwTerminate();
             return false;
         }
+
+        glfwSetWindowIcon(glfwWindow, 4, GetWindowIcons());
 
         /* Make the window's context current */
         glfwMakeContextCurrent(glfwWindow);

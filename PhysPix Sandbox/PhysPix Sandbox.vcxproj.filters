@@ -1524,5 +1524,17 @@
     <Image Include="res\textures\beret.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\icons\icon_16.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\icons\icon_32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\icons\icon_48.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\icons\icon_256.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

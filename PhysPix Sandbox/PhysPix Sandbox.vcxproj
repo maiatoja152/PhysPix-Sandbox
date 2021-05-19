@@ -662,6 +662,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\beret.png" />
+    <Image Include="res\textures\icons\icon_16.png" />
+    <Image Include="res\textures\icons\icon_256.png" />
+    <Image Include="res\textures\icons\icon_32.png" />
+    <Image Include="res\textures\icons\icon_48.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
