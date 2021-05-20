@@ -33,7 +33,7 @@ namespace physpix
 
     static constexpr float clearColor[4] = { 0.26f, 0.26f, 0.28f, 1.0f };
 
-    // Loads and returns an array of window icons
+    // Loads array of window icons
     static void SetWindowIcons()
     {
         windowIcons[0].pixels = stbi_load("../../../PhysPix Sandbox/res/textures/icons/icon_16.png", &windowIcons[0].width, &windowIcons[0].height, 0, 4);
