@@ -10,6 +10,8 @@ namespace cell
 
 class CellPlacement;
 
+class Shader;
+
 #include <vector>
 #include <memory>
 #include <stdint.h>
@@ -29,6 +31,8 @@ private:
 	int8_t m_Dir;
 
 	CellPlacement* m_CellPlacement;
+
+	std::unique_ptr<Shader> m_Shader;
 
 public:
 	CellGrid(GLFWwindow* window, float cellSize, CellPlacement* cellPlacement = nullptr);

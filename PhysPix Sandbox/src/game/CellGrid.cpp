@@ -22,8 +22,8 @@
 #include <numeric>
 
 CellGrid::CellGrid(GLFWwindow* window, float cellSize, CellPlacement* cellPlacement /*= nullptr*/)
-	: m_Window(window), m_WindowWidth(0), m_WindowHeight(0), m_CellSize(cellSize), m_CellColumns(0), m_CellRows(0),
-	m_Cells(NULL), m_TickInterval(0.016f), m_TickTimer(m_TickInterval), m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1), m_CellPlacement(cellPlacement)
+	: m_Window(window), m_WindowWidth(0), m_WindowHeight(0), m_CellSize(cellSize), m_CellColumns(0), m_CellRows(0), m_Cells(NULL), m_TickInterval(0.016f), m_TickTimer(m_TickInterval),
+	m_BoundaryPtr(std::make_unique<cell::Boundary>()), m_Dir(1), m_CellPlacement(cellPlacement), m_Shader(std::make_unique<Shader>("../../../PhysPix Sandbox/res/shaders/BatchTextured.shader"))
 {
 	glfwGetFramebufferSize(window, &m_WindowWidth, &m_WindowHeight);
 	m_CellColumns = static_cast<uint16_t>(m_WindowWidth / cellSize);
@@ -96,14 +96,14 @@ void CellGrid::Tick()
 
 void CellGrid::OnRender()
 {
-	Shader shader("../../../PhysPix Sandbox/res/shaders/BatchTextured.shader");
-	shader.Bind();
+	m_Shader->Bind();
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(m_WindowWidth), 0.0f, static_cast<float>(m_WindowHeight), -1.0f, 1.0f);
 	glm::mat4 view = glm::mat4(1.0f);
+
 	glm::mat4 model = glm::mat4(1.0f);
 	glm::mat4 mvp = projection * view * model;
-	shader.SetUniformMat4f("u_MVP", mvp);
+	m_Shader->SetUniformMat4f("u_MVP", mvp);
 
 	glm::vec2 border = { m_WindowWidth % m_CellColumns, m_WindowHeight % m_CellRows };
 
