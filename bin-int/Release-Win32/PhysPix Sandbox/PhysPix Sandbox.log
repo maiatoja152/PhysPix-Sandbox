@@ -1,9 +1,51 @@
-﻿  CellGrid.cpp
+﻿  Console.cpp
+  Dirt.cpp
+  Fire.cpp
+  Gunpowder.cpp
+  Hydrogen.cpp
+  Oil.cpp
+  Smoke.cpp
+  CellPlacement.cpp
+C:\dev\PhysPix Sandbox\PhysPix Sandbox\src\game\CellPlacement.cpp(186,37): warning C4244: '=': conversion from 'float' to 'uint16_t', possible loss of data
+  Flammable.cpp
+  Lava.cpp
+  Poison.cpp
+  Sand.cpp
+  Powder.cpp
+  Fluid.cpp
+  Boundary.cpp
+  BatchRenderer.cpp
+  GLCore.cpp
+  Shader.cpp
+  Application.cpp
+  IndexBuffer.cpp
+  Compiling...
+  Renderer.cpp
+  Cell.cpp
+  CellGrid.cpp
+  Empty.cpp
+  Steam.cpp
+  Water.cpp
+  Wood.cpp
+  PhysPix.cpp
+  glm.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  stb_image.cpp
+  VertexBuffer.cpp
+  VertexArray.cpp
+  Texture.cpp
+  Compiling...
+  Stone.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  1 of 2471 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    25 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 2507 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\dev\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\vc120.pdb'; linking object as if no debug info
   PhysPix Sandbox.vcxproj -> C:\dev\PhysPix Sandbox\bin\Release-Win32\PhysPix Sandbox\PhysPix Sandbox.exe
