@@ -216,7 +216,7 @@ void CellPlacement::OnImGuiRender()
 
 	ImGui::SameLine();
 
-	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor({ windowBgColor.x, windowBgColor.y, windowBgColor.z, windowBgColor.w }));
+	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor(windowBgColor));
 	ImGui::Text("Radius");
 	ImGui::PopStyleColor();
 
@@ -244,9 +244,9 @@ void CellPlacement::OnImGuiRender()
 
 void CellPlacement::ImGuiCellButton(uint8_t cellID, const char* label, ImVec2 size, glm::vec4 color)
 {
-	ImGui::PushStyleColor(ImGuiCol_Button, { color.r, color.g, color.b, color.a });
-	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, { color.r * 1.3f, color.g * 1.3f, color.b * 1.3f, color.a });
-	ImGui::PushStyleColor(ImGuiCol_ButtonActive, { color.r, color.g, color.b, color.a });
+	ImGui::PushStyleColor(ImGuiCol_Button, color);
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, color * 1.3f);
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, color);
 
 	ImGui::PushStyleColor(ImGuiCol_Text, GenConstrastingTextColor(color));
 
